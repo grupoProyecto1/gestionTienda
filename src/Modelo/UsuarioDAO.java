@@ -28,7 +28,7 @@ public class UsuarioDAO {
         listaUsuarios.removeAll(listaUsuarios);
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("select * from usuario");
+            ResultSet rs = stm.executeQuery("select nombre,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios from usuario");
             String[] datos = new String[6];
             while (rs.next()) {
                 datos[0] = rs.getString("nombre");
