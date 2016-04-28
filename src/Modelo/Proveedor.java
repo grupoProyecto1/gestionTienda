@@ -18,8 +18,8 @@ public class Proveedor {
     private String email;
 
     /**
-     *Constructor parametrizado para crear un proveedor con sus atributos
-     * 
+     * Constructor parametrizado para crear un proveedor con sus atributos
+     *
      * @param nif
      * @param nombre
      * @param direccion
@@ -35,8 +35,8 @@ public class Proveedor {
     }
 
     /**
-     *Devuelve el nif del proveedor
-     * 
+     * Devuelve el nif del proveedor
+     *
      * @return
      */
     public String getNif() {
@@ -44,8 +44,8 @@ public class Proveedor {
     }
 
     /**
-     *Establece el nif del proveedor
-     * 
+     * Establece el nif del proveedor
+     *
      * @param nif
      */
     public void setNif(String nif) {
@@ -53,8 +53,8 @@ public class Proveedor {
     }
 
     /**
-     *Devuelve el nombre del proveedor
-     * 
+     * Devuelve el nombre del proveedor
+     *
      * @return
      */
     public String getNombre() {
@@ -62,8 +62,8 @@ public class Proveedor {
     }
 
     /**
-     *Establece el nombre del proveedor
-     * 
+     * Establece el nombre del proveedor
+     *
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -71,8 +71,8 @@ public class Proveedor {
     }
 
     /**
-     *Devuelve la direccion del proveedor
-     * 
+     * Devuelve la direccion del proveedor
+     *
      * @return
      */
     public String getDireccion() {
@@ -80,8 +80,8 @@ public class Proveedor {
     }
 
     /**
-     *Establece la direccion del proveedor
-     * 
+     * Establece la direccion del proveedor
+     *
      * @param direccion
      */
     public void setDireccion(String direccion) {
@@ -89,8 +89,8 @@ public class Proveedor {
     }
 
     /**
-     *Devuelve el telefono del proveedor
-     * 
+     * Devuelve el telefono del proveedor
+     *
      * @return
      */
     public int getTelefono() {
@@ -98,8 +98,8 @@ public class Proveedor {
     }
 
     /**
-     *Establece el telefono del proveedor
-     * 
+     * Establece el telefono del proveedor
+     *
      * @param telefono
      */
     public void setTelefono(int telefono) {
@@ -107,8 +107,8 @@ public class Proveedor {
     }
 
     /**
-     *Devuelve el email del proveedor
-     * 
+     * Devuelve el email del proveedor
+     *
      * @return
      */
     public String getEmail() {
@@ -116,8 +116,8 @@ public class Proveedor {
     }
 
     /**
-     *Establece el email del proveedor
-     * 
+     * Establece el email del proveedor
+     *
      * @param email
      */
     public void setEmail(String email) {

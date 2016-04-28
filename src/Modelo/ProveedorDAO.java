@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -21,9 +22,9 @@ public class ProveedorDAO {
     private Connection con = ConexionBBDD.getConnection();
 
     /**
-     *Metodo que carga los proveedores desde la base de datros en el atributo
+     * Metodo que carga los proveedores desde la base de datros en el atributo
      * listaProveedores
-     * 
+     *
      */
     public void cargaProveedorDAO() {
         listaProveedores.removeAll(listaProveedores);
@@ -35,19 +36,21 @@ public class ProveedorDAO {
                 datos[0] = rs.getString("NIF");
                 datos[1] = rs.getString("Nombre");
                 datos[2] = rs.getString("Direccion");
-                datos[3] = rs.getString("Telefono");
+                datos[3] = String.valueOf(rs.getInt("Telefono"));
                 datos[4] = rs.getString("Email");
                 Proveedor p1 = new Proveedor(datos[0], datos[1], datos[2], Integer.valueOf(datos[3]), datos[4]);
                 listaProveedores.add(p1);
+
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Peto al crear el objeto en la bbdd");
         }
     }
 
     /**
-     *Metodo para añadir un nuevo proveedor
-     * 
+     * Metodo para añadir un nuevo proveedor
+     *
      * @param p Objeto de tipo Proveedor
      */
     public void anadirProveedor(Proveedor p) {
@@ -64,7 +67,8 @@ public class ProveedorDAO {
     }
 
     /**
-     *Devuelve la lista con todos los objetos almacenados en listaProveedores
+     * Devuelve la lista con todos los objetos almacenados en listaProveedores
+     *
      * @return
      */
     public ArrayList<Proveedor> getListaProveedores() {
@@ -72,7 +76,8 @@ public class ProveedorDAO {
     }
 
     /**
-     *Metodo para eliminar un proveedor a partir de su NIF
+     * Metodo para eliminar un proveedor a partir de su NIF
+     *
      * @param nif
      */
     public void eliminarProveedores(String nif) {
@@ -87,8 +92,8 @@ public class ProveedorDAO {
     }
 
     /**
-     *Metodo para modificar un proveedor
-     * 
+     * Metodo para modificar un proveedor
+     *
      * @param p
      */
     public void modificarProveedor(Proveedor p) {
