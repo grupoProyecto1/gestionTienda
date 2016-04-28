@@ -51,7 +51,7 @@ public class ConexionBBDD {
                 Connection conn = ConexionBBDD.getConnection();
                 conn.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                 ex.getErrorCode();
             }
     }
         }
