@@ -21,13 +21,14 @@ import javax.swing.table.TableRowSorter;
  */
 public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
-    private ControladorJDTablaUsuarios controlador;
+    private ControladorJDTablaUsuarios controladorUsuario;
     private ControladorJDTablaClientes controladorClientes;
     private int ventana;
     private TableRowSorter trsfiltro;
-    
+
     /**
      * Creates new form JDTablaUsuariosClientes
+     *
      * @param parent
      * @param modal
      */
@@ -37,25 +38,22 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @param botones
      * @param ventana
      */
     public JDTablaUsuariosClientes(int botones, int ventana) {
         initComponents();
         this.setLocationRelativeTo(null);
-        //this.ventana = ventana;
         if (ventana == 0) {
-            controlador = new ControladorJDTablaUsuarios(this);
-            controlador.creaTabla();
-            controlador.rellenaTabla();
-        } 
-        if (ventana == 1) {
-           controladorClientes = new ControladorJDTablaClientes(this);
-           controladorClientes.creaTabla();
-           controladorClientes.rellenaTabla();
-           ventana =1;
+            controladorUsuario = new ControladorJDTablaUsuarios(this);
+            controladorUsuario.creaTabla();
+            controladorUsuario.rellenaTabla();
+        } else if (ventana == 1) {
+            controladorClientes = new ControladorJDTablaClientes(this);
+            controladorClientes.creaTabla();
+            controladorClientes.rellenaTabla();
         }
 
         if (botones == 0) {
@@ -70,7 +68,12 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             jButtonBorrar.setVisible(false);
             jButtonGuardar.setVisible(true);
             jButtonVolver.setVisible(true);
-            controladorClientes.setEditable(true);
+            if (ventana == 0) {
+                controladorUsuario.setEditable(true);
+            } else if (ventana == 1) {
+                controladorClientes.setEditable(true);
+            }
+
         }
 
     }
@@ -81,7 +84,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     public void filtro() {
         trsfiltro.setRowFilter(RowFilter.regexFilter(jTextFieldFiltrado.getText(), 0));
     }
-    
+
     /**
      *
      * @return
@@ -114,8 +117,6 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
         this.jTextFieldFiltrado = jTextFieldFiltrado;
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,7 +230,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
         jTextFieldFiltrado.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
-                
+
                 //repaint();
                 filtro();
             }
@@ -241,7 +242,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
         // TODO add your handling code here:
         if (ventana == 0) {
-            controlador.eliminaUsuario();
+            controladorUsuario.eliminaUsuario();
 
         } else if (ventana == 1) {
             controladorClientes.eliminaCliente();
@@ -256,7 +257,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         if (ventana == 0) {
-            controlador.modificaUsuario();
+            controladorUsuario.modificaUsuario();
 
         } else if (ventana == 1) {
             controladorClientes.modificaCliente();

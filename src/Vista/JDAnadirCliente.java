@@ -6,9 +6,8 @@
 package Vista;
 
 
-import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
+import Controlador.ControladorJDAnadirCliente;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class JDAnadirCliente extends javax.swing.JDialog {
 
+    private ControladorJDAnadirCliente controlador;
     /**
      * Creates new form VistaAnadirCliente
      * @param parent
@@ -24,6 +24,7 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     public JDAnadirCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador = new ControladorJDAnadirCliente(this);
     }
 
     /**
@@ -179,11 +180,11 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-      
+      this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-    
+        controlador.limpiaDatos();
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyPressed
@@ -215,7 +216,8 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldDniClienteKeyPressed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-
+        controlador.comprobador();
+        controlador.limpiaDatos();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextFieldTelefonoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyTyped
@@ -230,6 +232,56 @@ public class JDAnadirCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefonoClienteActionPerformed
 
+    public JTextField getjTextFieldApellidosCliente() {
+        return jTextFieldApellidosCliente;
+    }
+
+    public void setjTextFieldApellidosCliente(JTextField jTextFieldApellidosCliente) {
+        this.jTextFieldApellidosCliente = jTextFieldApellidosCliente;
+    }
+
+    public JTextField getjTextFieldDireccionCliente() {
+        return jTextFieldDireccionCliente;
+    }
+
+    public void setjTextFieldDireccionCliente(JTextField jTextFieldDireccionCliente) {
+        this.jTextFieldDireccionCliente = jTextFieldDireccionCliente;
+    }
+
+    public JTextField getjTextFieldDniCliente() {
+        return jTextFieldDniCliente;
+    }
+
+    public void setjTextFieldDniCliente(JTextField jTextFieldDniCliente) {
+        this.jTextFieldDniCliente = jTextFieldDniCliente;
+    }
+
+    public JTextField getjTextFieldEmailCliente() {
+        return jTextFieldEmailCliente;
+    }
+
+    public void setjTextFieldEmailCliente(JTextField jTextFieldEmailCliente) {
+        this.jTextFieldEmailCliente = jTextFieldEmailCliente;
+    }
+
+    public JTextField getjTextFieldNombreCliente() {
+        return jTextFieldNombreCliente;
+    }
+
+    public void setjTextFieldNombreCliente(JTextField jTextFieldNombreCliente) {
+        this.jTextFieldNombreCliente = jTextFieldNombreCliente;
+    }
+
+    public JTextField getjTextFieldTelefonoCliente() {
+        return jTextFieldTelefonoCliente;
+    }
+
+    public void setjTextFieldTelefonoCliente(JTextField jTextFieldTelefonoCliente) {
+        this.jTextFieldTelefonoCliente = jTextFieldTelefonoCliente;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */

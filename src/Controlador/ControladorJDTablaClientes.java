@@ -119,10 +119,10 @@ public class ControladorJDTablaClientes {
             String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
             String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();
             String apellidos = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();
-            int telefono = (int) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
+            int telefono = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString());
             String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();
-            String email =  vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();
-           Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);
+            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();
+            Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);
             clienteDAO.eliminarCliente(c);
             rellenaTabla();
         } catch (Exception e) {
@@ -141,8 +141,8 @@ public class ControladorJDTablaClientes {
             String apellidos = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();
             int telefono = (int) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
             String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();
-            String email =  vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();
-           Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);
+            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();
+            Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);
             clienteDAO.modificarCliente(c);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun cliente", "Error de cliente", JOptionPane.ERROR_MESSAGE);
