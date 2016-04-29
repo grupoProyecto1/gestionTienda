@@ -7,10 +7,8 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -43,7 +41,6 @@ public class ProveedorDAO {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Peto al crear el objeto en la bbdd");
         }
     }

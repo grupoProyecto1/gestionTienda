@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */
 package Modelo;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 
 /**
  *Clase que maneja todas las operaciones relacionadas con los clientes
  * @author Alejandroo
  */
 public class ClienteDAO {
+    private ArrayList<Cliente> listaClientes = new ArrayList<>();
     private Connection conn;
     
     /**
@@ -91,7 +98,8 @@ public class ClienteDAO {
      *Muestra todos los clientes almacenados en la base de datos de 
      * nuestra aplicacion
      */
-    public void mostrarCliente(){
+    public void cargaCliente(){
+        listaClientes.removeAll(listaClientes);
         try{
         conn = ConexionBBDD.getConnection();
         String sql = "select * from cliente";
@@ -106,11 +114,21 @@ public class ClienteDAO {
             datosCliente[3] = rs.getString("telefono");
             datosCliente[4] = rs.getString("direccion");
             datosCliente[5] = rs.getString("email");
-            
+            Cliente c = new Cliente(datosCliente[0], datosCliente[1], datosCliente[2], Integer.parseInt(datosCliente[3]), datosCliente[4], datosCliente[5]);
+            listaClientes.add(c);
         }
          stm.close();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+    }
+    
+    /**
+     * Devuelve la lista con todos los objetos almacenados en listaClientes
+     *
+     * @return arraylist listaClientes
+     */
+    public ArrayList<Cliente> getListaProveedores() {
+        return listaClientes;
     }
 }
