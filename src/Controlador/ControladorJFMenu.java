@@ -8,6 +8,8 @@ package Controlador;
 import Modelo.Usuario;
 import Vista.JFGestionUsuarios;
 import Vista.JFMenu;
+import Vista.JFGestionClientes;
+
 
 /**
  *
@@ -43,6 +45,11 @@ public class ControladorJFMenu {
      */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
+    }
+    
+    public void gestionCliente() {
+       new JFGestionClientes().setVisible(true);
+        vista.dispose();
     }
 
 }

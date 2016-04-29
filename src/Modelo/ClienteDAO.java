@@ -128,7 +128,7 @@ public class ClienteDAO {
      *
      * @return arraylist listaClientes
      */
-    public ArrayList<Cliente> getListaProveedores() {
+    public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
 }

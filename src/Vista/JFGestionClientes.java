@@ -5,21 +5,20 @@
  */
 package Vista;
 
-import Controlador.ControladorJFGestionUsuarios;
+import Controlador.ControladorJFGestionClientes;
+
 
 /**
  *
  * @author Mario
  */
-public class JFGestionUsuarios extends javax.swing.JFrame {
+public class JFGestionClientes extends javax.swing.JFrame {
 
-    private ControladorJFGestionUsuarios controlador;
-    /**
-     * Creates new form JFGestionUsuarios
-     */
-    public JFGestionUsuarios() {
+    private ControladorJFGestionClientes controlador;
+    
+    public JFGestionClientes() {
         initComponents();
-        controlador = new ControladorJFGestionUsuarios(this);
+        controlador = new ControladorJFGestionClientes(this);
     }
 
     /**
@@ -37,30 +36,30 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
         jButtonVerCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menú de Gestión de Usuarios");
+        setTitle("Menú de Gestión de Clientes");
 
-        jButtonAnadirCliente.setText("Añadir Usuario");
+        jButtonAnadirCliente.setText("Añadir Cliente");
         jButtonAnadirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAnadirClienteActionPerformed(evt);
             }
         });
 
-        jButtonBorraCliente.setText("Borrar Usuario");
+        jButtonBorraCliente.setText("Borrar Cliente");
         jButtonBorraCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBorraClienteActionPerformed(evt);
             }
         });
 
-        jButtonModificaCliente.setText("Modificar Usuario");
+        jButtonModificaCliente.setText("Modificar Cliente");
         jButtonModificaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificaClienteActionPerformed(evt);
             }
         });
 
-        jButtonVerCliente.setText("Ver Usuarios");
+        jButtonVerCliente.setText("Ver Clientes");
         jButtonVerCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerClienteActionPerformed(evt);
@@ -72,13 +71,16 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonVerCliente)
-                    .addComponent(jButtonModificaCliente)
-                    .addComponent(jButtonBorraCliente)
-                    .addComponent(jButtonAnadirCliente))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(168, 168, 168)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButtonVerCliente)
+                        .addComponent(jButtonAnadirCliente)
+                        .addComponent(jButtonBorraCliente))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jButtonModificaCliente)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,23 +100,23 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAnadirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirClienteActionPerformed
-        // TODO add your handling code here:
-        controlador.anadirUsuario();
+        controlador.anadirCliente();
+        
     }//GEN-LAST:event_jButtonAnadirClienteActionPerformed
 
     private void jButtonBorraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorraClienteActionPerformed
-        // TODO add your handling code here:
-        controlador.borrarUsuarios();
+        controlador.borrarClientes();
+        
     }//GEN-LAST:event_jButtonBorraClienteActionPerformed
 
     private void jButtonModificaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificaClienteActionPerformed
-        // TODO add your handling code here:
-        controlador.modificarUsuarios();
+       controlador.modificarClientes();
+        
     }//GEN-LAST:event_jButtonModificaClienteActionPerformed
 
     private void jButtonVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerClienteActionPerformed
-        // TODO add your handling code here:
-        controlador.verUsuarios();
+        controlador.verClientes();
+       
     }//GEN-LAST:event_jButtonVerClienteActionPerformed
 
     /**
@@ -134,20 +136,21 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFGestionUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFGestionClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFGestionUsuarios().setVisible(true);
+                new JFGestionClientes().setVisible(true);
             }
         });
     }

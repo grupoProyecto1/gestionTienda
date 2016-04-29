@@ -47,6 +47,11 @@ public class JFMenu extends javax.swing.JFrame {
         });
 
         jButtonClientes.setText("Clientes");
+        jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientesActionPerformed(evt);
+            }
+        });
 
         jButtonProveedores.setText("Proveedores");
 
@@ -91,6 +96,10 @@ public class JFMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         controlador.gestionUsuarios();
     }//GEN-LAST:event_jButtonUsuariosActionPerformed
+
+    private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
+       controlador.gestionCliente();
+    }//GEN-LAST:event_jButtonClientesActionPerformed
 
     public ControladorJFMenu getControlador() {
         return controlador;

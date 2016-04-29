@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControladorJDTablaClientes;
 import Controlador.ControladorJDTablaUsuarios;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -21,6 +22,7 @@ import javax.swing.table.TableRowSorter;
 public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
     private ControladorJDTablaUsuarios controlador;
+    private ControladorJDTablaClientes controladorClientes;
     private int ventana;
     private TableRowSorter trsfiltro;
     
@@ -48,8 +50,12 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             controlador = new ControladorJDTablaUsuarios(this);
             controlador.creaTabla();
             controlador.rellenaTabla();
-        } else if (ventana == 1) {
-           // Aqui va el controlador de cliente
+        } 
+        if (ventana == 1) {
+           controladorClientes = new ControladorJDTablaClientes(this);
+           controladorClientes.creaTabla();
+           controladorClientes.rellenaTabla();
+           ventana =1;
         }
 
         if (botones == 0) {
@@ -64,7 +70,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             jButtonBorrar.setVisible(false);
             jButtonGuardar.setVisible(true);
             jButtonVolver.setVisible(true);
-            controlador.setEditable(true);
+            controladorClientes.setEditable(true);
         }
 
     }
@@ -238,7 +244,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             controlador.eliminaUsuario();
 
         } else if (ventana == 1) {
-            //controlador2.eliminaCliente();
+            controladorClientes.eliminaCliente();
         }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
@@ -253,7 +259,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             controlador.modificaUsuario();
 
         } else if (ventana == 1) {
-            //controlador2.modificaCliente();
+            controladorClientes.modificaCliente();
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
