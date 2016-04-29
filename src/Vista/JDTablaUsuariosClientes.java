@@ -46,6 +46,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     public JDTablaUsuariosClientes(int botones, int ventana) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ventana = ventana;
         if (ventana == 0) {
             controladorUsuario = new ControladorJDTablaUsuarios(this);
             controladorUsuario.creaTabla();
