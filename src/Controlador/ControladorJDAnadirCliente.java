@@ -37,6 +37,27 @@ public class ControladorJDAnadirCliente {
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Cliente añadido satisfactoriamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
     }
+    public void checkDni(){
+        String dni = vista.getjTextFieldDniCliente().getText();
+        try {
+        int numDni= Integer.valueOf(dni.substring(0, 8));
+        char letraDni = dni.charAt(8);
+        int resto = numDni%23;
+        String letrasMayus="TRWAGMYFPDXBNJZSQVHLCKE";
+        String letrasMin="trwagmyfpdxbnjzsqvhlcke";
+        if (letraDni != letrasMayus.charAt(resto) && letraDni != letrasMin.charAt(resto)){
+            JOptionPane.showMessageDialog(vista, "El DNI no es correcto", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else System.out.println(vista.getjTextFieldDniCliente().getText());  
+        } catch (StringIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(vista, "DNI vacio", "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+        } catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(vista, "Longitud del DNI invalida", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+   
 
     /**
      * Metodo para limpiar los datos que hay rellenos en el formulario

@@ -7,6 +7,8 @@ package Vista;
 
 
 import Controlador.ControladorJDAnadirCliente;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -188,23 +190,59 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyPressed
-
+char c = evt.getKeyChar();
+        if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK)  {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTextFieldNombreClienteKeyPressed
 
     private void jTextFieldNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyTyped
-  
+  char c = evt.getKeyChar();
+        if(Character.isDigit(c) || !Character.isLetter(c)) {
+            evt.consume();
+            
+        }
     }//GEN-LAST:event_jTextFieldNombreClienteKeyTyped
 
     private void jTextFieldApellidosClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidosClienteKeyPressed
-
+char c = evt.getKeyChar();
+        if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK)  {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTextFieldApellidosClienteKeyPressed
 
     private void jTextFieldApellidosClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidosClienteKeyTyped
-
+char c = evt.getKeyChar();
+        if(Character.isDigit(c) || !Character.isLetter(c)) {
+            evt.consume();
+            
+        }
     }//GEN-LAST:event_jTextFieldApellidosClienteKeyTyped
 
     private void jTextFieldDniClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteKeyTyped
-
+char c = evt.getKeyChar();
+       
+        if(jTextFieldDniCliente.getText().length()== 9) {
+           evt.consume();
+           JOptionPane.showMessageDialog(this, "El DNI no puede contener mas de 9 caracteres", "ERROR", JOptionPane.ERROR_MESSAGE);
+       }
+       if(jTextFieldDniCliente.getText().length() <8) {
+           
+           if(!Character.isDigit(c)) {
+               evt.consume();
+               
+           }
+       }
+       
+       if(jTextFieldDniCliente.getText().length() == 8) {
+           if(Character.isDigit(c) || !Character.isLetter(c)) {
+               evt.consume();
+           }
+           
+       }
+           
     }//GEN-LAST:event_jTextFieldDniClienteKeyTyped
 
     private void jTextFieldDniClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteActionPerformed
@@ -212,20 +250,47 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldDniClienteActionPerformed
 
     private void jTextFieldDniClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteKeyPressed
-
+ char c = evt.getKeyChar();
+        
+        if(jTextFieldDniCliente.getText().length() <8) {
+           
+           if(!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+               evt.consume();
+               JOptionPane.showMessageDialog(this, "Solo se pueden introducir caracteres numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
+           }
+       }
+        if(jTextFieldDniCliente.getText().length() == 8) {
+            
+            if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+               evt.consume();
+               JOptionPane.showMessageDialog(this, "Debes escribir una letra", "ERROR", JOptionPane.ERROR_MESSAGE);
+           }
+        }
     }//GEN-LAST:event_jTextFieldDniClienteKeyPressed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        controlador.checkDni();
         controlador.comprobador();
         controlador.limpiaDatos();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextFieldTelefonoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyTyped
-        
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+            
+        }
+        if(jTextFieldTelefonoCliente.getText().length()>8){
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede contener 9 digitos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTextFieldTelefonoClienteKeyTyped
 
     private void jTextFieldTelefonoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyPressed
-
+ char c = evt.getKeyChar();
+        if(!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            JOptionPane.showMessageDialog(this, "Solo se pueden introducir numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jTextFieldTelefonoClienteKeyPressed
 
     private void jTextFieldTelefonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteActionPerformed
