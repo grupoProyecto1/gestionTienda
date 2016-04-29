@@ -47,6 +47,10 @@ public class ControladorJFMenu {
         this.usuarioLogueado = usuarioLogueado;
     }
     
+    /**
+     *Metedo que crea una ventana JFGestionCliente, la hace visible y elmina
+     * la ventana en la que nos encontramos
+     */
     public void gestionCliente() {
        new JFGestionClientes().setVisible(true);
         vista.dispose();

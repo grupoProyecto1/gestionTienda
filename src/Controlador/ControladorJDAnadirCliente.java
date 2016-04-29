@@ -37,6 +37,11 @@ public class ControladorJDAnadirCliente {
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Cliente añadido satisfactoriamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    /**
+     *Metodo que comprueba la valided del DNI
+     * 
+     */
     public void checkDni(){
         String dni = vista.getjTextFieldDniCliente().getText();
         try {
