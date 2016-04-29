@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,20 +25,21 @@ public class UsuarioDAO {
      *  Metodo que carga los usuarios desde la base de datos
      * en el atributo privado listaUsuarios
      */
-    public void cargaUsuarioDAO() {
+    public void cargaUsuarios() {
         listaUsuarios.removeAll(listaUsuarios);
         try {
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("select nombre,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios from usuario");
-            String[] datos = new String[6];
+            ResultSet rs = stm.executeQuery("select * from usuario");
+            String[] datos = new String[7];
             while (rs.next()) {
                 datos[0] = rs.getString("nombre");
-                datos[1] = rs.getString("admin");
-                datos[2] = rs.getString("vistaClientes");
-                datos[3] = rs.getString("vistaProductos");
-                datos[4] = rs.getString("vistaProveedores");
-                datos[5] = rs.getString("vistaUsuarios");
-                Usuario u1 = new Usuario(datos[0], Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
+                datos[1] = rs.getString("contrasena");
+                datos[2] = rs.getString("admin");
+                datos[3] = rs.getString("vistaClientes");
+                datos[4] = rs.getString("vistaProductos");
+                datos[5] = rs.getString("vistaProveedores");
+                datos[6] = rs.getString("vistaUsuarios");
+                Usuario u1 = new Usuario(datos[0], datos[1],Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
                 listaUsuarios.add(u1);
             }
             stm.close();
@@ -78,10 +80,10 @@ public class UsuarioDAO {
      * 
      * @param nombre
      */
-    public void eliminarUsuarios(String nombre) {
+    public void eliminarUsuarios(Usuario u) {
         try {
             Statement stm = con.createStatement();
-            String consulta = "Delete from usuario where nombre='" + nombre + "'";
+            String consulta = "Delete from usuario where nombre='" + u.getNombre() + "'";
             stm.executeUpdate(consulta);
             stm.close();
         } catch (SQLException e) {
@@ -106,4 +108,27 @@ public class UsuarioDAO {
         }
     }
 
+    public Usuario compruebaUsuario(String usuario,String contrasena){
+        try {
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("select * from usuario where nombre='" + usuario + "' and contrasena ='" + contrasena + "';");
+            String[] datos = new String[7];
+            if (rs.next()) {
+                datos[0] = rs.getString("nombre");
+                datos[1] = rs.getString("contrasena");
+                datos[2] = rs.getString("admin");
+                datos[3] = rs.getString("vistaClientes");
+                datos[4] = rs.getString("vistaProductos");
+                datos[5] = rs.getString("vistaProveedores");
+                datos[6] = rs.getString("vistaUsuarios");
+                Usuario u = new Usuario(datos[0],datos[1], Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
+                rs.close();
+                stm.close();
+                return u;   
+            }
+        } catch (SQLException ex) {
+            System.out.println("Ha petado al comprobaUsuario");
+        }
+        return null;
+    }
 }

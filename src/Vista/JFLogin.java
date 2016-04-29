@@ -5,17 +5,26 @@
  */
 package Vista;
 
+import Controlador.ControladorJFLogin;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
- * @author Joaquin
+ * @author Mario
  */
 public class JFLogin extends javax.swing.JFrame {
+
+    private ControladorJFLogin controlador;
 
     /**
      * Creates new form JFLogin
      */
     public JFLogin() {
         initComponents();
+        controlador = new ControladorJFLogin(this);
     }
 
     /**
@@ -34,12 +43,30 @@ public class JFLogin extends javax.swing.JFrame {
         jButtonAcceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+
+        jPasswordFieldContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldContrasenaKeyPressed(evt);
+            }
+        });
+
+        jTextFieldUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldUsuarioKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
 
         jButtonAcceder.setText("Acceder");
+        jButtonAcceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAccederActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,10 +83,7 @@ public class JFLogin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPasswordFieldContrasena)
                             .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAcceder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButtonAcceder))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,6 +104,27 @@ public class JFLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTextFieldUsuarioKeyPressed
+
+    private void jPasswordFieldContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldContrasenaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            controlador.aceptar();
+        }
+    }//GEN-LAST:event_jPasswordFieldContrasenaKeyPressed
+
+    private void jButtonAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAccederActionPerformed
+        // TODO add your handling code here:
+        controlador.aceptar();
+    }//GEN-LAST:event_jButtonAccederActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,6 +160,23 @@ public class JFLogin extends javax.swing.JFrame {
             }
         });
     }
+
+    public JPasswordField getjPasswordFieldContrasena() {
+        return jPasswordFieldContrasena;
+    }
+
+    public void setjPasswordFieldContrasena(JPasswordField jPasswordFieldContrasena) {
+        this.jPasswordFieldContrasena = jPasswordFieldContrasena;
+    }
+
+    public JTextField getjTextFieldUsuario() {
+        return jTextFieldUsuario;
+    }
+
+    public void setjTextFieldUsuario(JTextField jTextFieldUsuario) {
+        this.jTextFieldUsuario = jTextFieldUsuario;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcceder;
