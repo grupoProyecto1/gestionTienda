@@ -101,6 +101,10 @@ public class JFMenu extends javax.swing.JFrame {
        controlador.gestionCliente();
     }//GEN-LAST:event_jButtonClientesActionPerformed
 
+    /**
+     *Obtiene el controlador de la clase ControladorJFMenu
+     * @return controlador
+     */
     public ControladorJFMenu getControlador() {
         return controlador;
     }

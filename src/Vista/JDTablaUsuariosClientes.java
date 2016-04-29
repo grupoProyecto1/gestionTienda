@@ -39,7 +39,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
     /**
      *
-     *
+     *Constructor parametrizado
      * @param botones
      * @param ventana
      */
@@ -87,15 +87,15 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     *
-     * @return
+     *Obtiene el tableModel de la clase TableUsuariosClientes
+     * @return tableModel 
      */
     public JTable getjTableUsuariosClientes() {
         return jTableUsuariosClientes;
     }
 
     /**
-     *
+     *Modifica y selecciona el modelo
      * @param tm
      */
     public void setjTableUsuariosClientes(TableModel tm) {
@@ -103,15 +103,15 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     *
-     * @return
+     *Obtiene el texto filtrado
+     * @return textoFiltrado
      */
     public JTextField getjTextFieldFiltrado() {
         return jTextFieldFiltrado;
     }
 
     /**
-     *
+     *Modifica el texto filtrado
      * @param jTextFieldFiltrado
      */
     public void setjTextFieldFiltrado(JTextField jTextFieldFiltrado) {

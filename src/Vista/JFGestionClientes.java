@@ -16,6 +16,9 @@ public class JFGestionClientes extends javax.swing.JFrame {
 
     private ControladorJFGestionClientes controlador;
     
+    /**
+     *Constructor parametrizado que inicializa los componentes
+     */
     public JFGestionClientes() {
         initComponents();
         controlador = new ControladorJFGestionClientes(this);

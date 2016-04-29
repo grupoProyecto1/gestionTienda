@@ -107,6 +107,12 @@ public class UsuarioDAO {
         }
     }
 
+    /**
+     *Comprueba si existe o no el usuario en la base de datos
+     * @param usuario
+     * @param contrasena
+     * @return objeto de la clase Usuario
+     */
     public Usuario compruebaUsuario(String usuario,String contrasena){
         try {
             Statement stm = con.createStatement();

@@ -161,18 +161,34 @@ public class JFLogin extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *Obtiene la contraseña del campo contraseña
+     * @return contraseña
+     */
     public JPasswordField getjPasswordFieldContrasena() {
         return jPasswordFieldContrasena;
     }
 
+    /**
+     *Modifica la contraseña
+     * @param jPasswordFieldContrasena
+     */
     public void setjPasswordFieldContrasena(JPasswordField jPasswordFieldContrasena) {
         this.jPasswordFieldContrasena = jPasswordFieldContrasena;
     }
 
+    /**
+     *Obtiene el usuario
+     * @return usuario
+     */
     public JTextField getjTextFieldUsuario() {
         return jTextFieldUsuario;
     }
 
+    /**
+     *Modifica el usuario
+     * @param jTextFieldUsuario
+     */
     public void setjTextFieldUsuario(JTextField jTextFieldUsuario) {
         this.jTextFieldUsuario = jTextFieldUsuario;
     }

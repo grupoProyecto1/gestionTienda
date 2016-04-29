@@ -297,50 +297,98 @@ char c = evt.getKeyChar();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefonoClienteActionPerformed
 
+    /**
+     *Obtiene el texto del cuadro en el que se escriben los apellidos
+     * @return apellidosCliente
+     */
     public JTextField getjTextFieldApellidosCliente() {
         return jTextFieldApellidosCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escriben los apellidos
+     * @param jTextFieldApellidosCliente
+     */
     public void setjTextFieldApellidosCliente(JTextField jTextFieldApellidosCliente) {
         this.jTextFieldApellidosCliente = jTextFieldApellidosCliente;
     }
 
+    /**
+     *Obtiene el texto del cuadro en el que se escriben la direccion
+     * @return direccionCliente
+     */
     public JTextField getjTextFieldDireccionCliente() {
         return jTextFieldDireccionCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escribe la direccion
+     * @param jTextFieldDireccionCliente
+     */
     public void setjTextFieldDireccionCliente(JTextField jTextFieldDireccionCliente) {
         this.jTextFieldDireccionCliente = jTextFieldDireccionCliente;
     }
 
+    /**
+     *Obtiene el texto del cuadro en el que se escriben el dni
+     * @return dniCliente
+     */
     public JTextField getjTextFieldDniCliente() {
         return jTextFieldDniCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escribe el dni
+     * @param jTextFieldDniCliente
+     */
     public void setjTextFieldDniCliente(JTextField jTextFieldDniCliente) {
         this.jTextFieldDniCliente = jTextFieldDniCliente;
     }
 
+    /**
+     *Obtiene el texto del cuadro en el que se escribe el email
+     * @return emailCliente
+     */
     public JTextField getjTextFieldEmailCliente() {
         return jTextFieldEmailCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escribe el email
+     * @param jTextFieldEmailCliente
+     */
     public void setjTextFieldEmailCliente(JTextField jTextFieldEmailCliente) {
         this.jTextFieldEmailCliente = jTextFieldEmailCliente;
     }
 
+    /**
+     *Obtiene el texto del cuadro en el que se escribe el nombre
+     * @return nombreCliente
+     */
     public JTextField getjTextFieldNombreCliente() {
         return jTextFieldNombreCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escribe el nombre
+     * @param jTextFieldNombreCliente
+     */
     public void setjTextFieldNombreCliente(JTextField jTextFieldNombreCliente) {
         this.jTextFieldNombreCliente = jTextFieldNombreCliente;
     }
 
+    /**
+     *Obtiene el texto del cuadro en el que se escribe el telefono
+     * @return telefonoCliente
+     */
     public JTextField getjTextFieldTelefonoCliente() {
         return jTextFieldTelefonoCliente;
     }
 
+    /**
+     *Modifica el valor del cuadro en el que se escribe el telefono
+     * @param jTextFieldTelefonoCliente
+     */
     public void setjTextFieldTelefonoCliente(JTextField jTextFieldTelefonoCliente) {
         this.jTextFieldTelefonoCliente = jTextFieldTelefonoCliente;
     }
