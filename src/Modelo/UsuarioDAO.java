@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,7 +38,7 @@ public class UsuarioDAO {
                 datos[4] = rs.getString("vistaProductos");
                 datos[5] = rs.getString("vistaProveedores");
                 datos[6] = rs.getString("vistaUsuarios");
-                Usuario u1 = new Usuario(datos[0], datos[1],Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
+                Usuario u1 = new Usuario(datos[0], datos[1],Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));
                 listaUsuarios.add(u1);
             }
             stm.close();
@@ -78,7 +77,7 @@ public class UsuarioDAO {
     /**
      * Metodo para eliminar un usuario a partir de su nombre
      * 
-     * @param nombre
+     * @param u Objeto de tipo usuario
      */
     public void eliminarUsuarios(Usuario u) {
         try {

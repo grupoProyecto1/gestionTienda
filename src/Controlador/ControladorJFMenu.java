@@ -18,17 +18,31 @@ public class ControladorJFMenu {
     private JFMenu vista;
     private Usuario usuarioLogueado;
 
+    /**
+     * Constructor que establece la vista
+     *
+     * @param vista
+     */
     public ControladorJFMenu(JFMenu vista) {
         this.vista = vista;
     }
 
-     public void gestionUsuarios(){
-         new JFGestionUsuarios().setVisible(true);
-         vista.dispose();
+    /**
+     * Metodo que crea una ventana JFGestionUsuarios, la hace visible y elimina
+     * la ventana en la que nos encontramos
+     */
+    public void gestionUsuarios() {
+        new JFGestionUsuarios().setVisible(true);
+        vista.dispose();
     }
-       
+
+    /**
+     * Metodo para establecer el usuario que se ha logueado
+     *
+     * @param usuarioLogueado
+     */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }
-    
+
 }

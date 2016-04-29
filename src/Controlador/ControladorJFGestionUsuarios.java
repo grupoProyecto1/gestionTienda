@@ -14,21 +14,43 @@ import Vista.JFGestionUsuarios;
  * @author Mario
  */
 public class ControladorJFGestionUsuarios {
+
     private JFGestionUsuarios vista;
-    
-    public ControladorJFGestionUsuarios(JFGestionUsuarios vista){
+
+    /**
+     * Constructor con un parametro para establecer la vista
+     *
+     * @param vista
+     */
+    public ControladorJFGestionUsuarios(JFGestionUsuarios vista) {
         this.vista = vista;
     }
-    public void anadirUsuario(){
+
+    /**
+     * Metodo que crea una ventana para añadir el usuario
+     */
+    public void anadirUsuario() {
         new JDAnadirUsuario(vista, true).setVisible(true);
     }
-    public void borrarUsuarios(){
+
+    /**
+     * Metodo que crea una ventana para borrar usuarios
+     */
+    public void borrarUsuarios() {
         new JDTablaUsuariosClientes(1, 0).setVisible(true);
     }
-    public void modificarUsuarios(){
+
+    /**
+     * Metodo que crea una ventana para modificar los usuarios
+     */
+    public void modificarUsuarios() {
         new JDTablaUsuariosClientes(2, 0).setVisible(true);
     }
-    public void verUsuarios(){
+
+    /**
+     * Metodo que crea una ventana para ver los usuarios
+     */
+    public void verUsuarios() {
         new JDTablaUsuariosClientes(0, 0).setVisible(true);
     }
 }

@@ -20,7 +20,7 @@ public class ControladorJDAnadirUsuario {
     private JDAnadirUsuario vista;
 
     /**
-     *
+     * Constructor parametrizado con un objeto para establecer la vista
      * @param vista
      */
     public ControladorJDAnadirUsuario(JDAnadirUsuario vista) {

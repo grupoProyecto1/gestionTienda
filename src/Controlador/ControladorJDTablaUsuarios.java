@@ -21,10 +21,20 @@ public class ControladorJDTablaUsuarios {
     private boolean editable = false;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    public ControladorJDTablaUsuarios(JDTablaUsuariosClientes vista){
+    /**
+     * Constructor parametrizado que establece la vista
+     *
+     * @param vista
+     */
+    public ControladorJDTablaUsuarios(JDTablaUsuariosClientes vista) {
         this.vista = vista;
     }
-    
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
     public DefaultTableModel miTableModel = new DefaultTableModel() {
 
         @Override
@@ -45,6 +55,9 @@ public class ControladorJDTablaUsuarios {
         }
     };
 
+    /**
+     * Metodo que crea el modelo de tabla y lo establece
+     */
     public void creaTabla() {
         miTableModel.addColumn("Nombre");
         miTableModel.addColumn("Admin");
@@ -57,6 +70,9 @@ public class ControladorJDTablaUsuarios {
 
     }
 
+    /**
+     * Metodo para rellenar la tabla creada
+     */
     public void rellenaTabla() {
         for (int i = 0; i < vista.getjTableUsuariosClientes().getRowCount(); i++) {
             miTableModel.removeRow(i);
@@ -75,16 +91,30 @@ public class ControladorJDTablaUsuarios {
         }
     }
 
+    /**
+     * Devuelve si las columnas son editables excepto la primera, o ninguna es
+     * editable
+     *
+     * @return
+     */
     public boolean isEditable() {
         return editable;
     }
 
+    /**
+     * Establece si las columnas son editables excepto la primera, o ninguna es
+     * editable
+     *
+     * @param editable
+     */
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
 
+    /**
+     * Metodo que elimina el usuario seleccionado en la tabla
+     */
     public void eliminaUsuario() {
-        //Falta comprobar que haya alguno seleccionado
         try {
             String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
             Boolean admin = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1);
@@ -100,6 +130,10 @@ public class ControladorJDTablaUsuarios {
         }
     }
 
+    /**
+     * Metodo que actualiza el usuario de la base de datos con el modificado en
+     * la tabla
+     */
     public void modificaUsuario() {
         try {
             String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
