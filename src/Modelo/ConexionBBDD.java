@@ -27,8 +27,8 @@ public class ConexionBBDD {
                 Runtime.getRuntime().addShutdownHook(new MiShDwHook());
                 String driver = "com.mysql.jdbc.Driver";
                 String url = "jdbc:mysql://localhost/empresa";
-                String usuario = "root";
-                String password = "";
+                String usuario = "usrproged";
+                String password = "usrproged";
                 Class.forName(driver);
                 conn = DriverManager.getConnection(url, usuario, password);
             }
