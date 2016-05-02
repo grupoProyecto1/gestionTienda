@@ -122,7 +122,7 @@ public class ControladorJDTablaUsuarios {
             Boolean vistaProductos = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
             Boolean vistaProveedores = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4);
             Boolean vistaUsuarios = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5);
-            Usuario u = new Usuario(nombre, admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
+            Usuario u = new Usuario(nombre, null,admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
             usuarioDAO.eliminarUsuarios(u);
             rellenaTabla();
         } catch (Exception e) {
@@ -142,7 +142,7 @@ public class ControladorJDTablaUsuarios {
             Boolean vistaProductos = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
             Boolean vistaProveedores = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4);
             Boolean vistaUsuarios = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5);
-            Usuario u = new Usuario(nombre, admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
+            Usuario u = new Usuario(nombre, null,admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
             System.out.println(u.toString());
             usuarioDAO.modificarUsuarios(u);
         } catch (Exception e) {

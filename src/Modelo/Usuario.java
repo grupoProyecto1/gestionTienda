@@ -39,27 +39,6 @@ public class Usuario {
         this.vistaProveedores = proveedor;
         this.vistaUsuarios = usuarios;
     }
-
-    /**
-     * Constructor parametrizado para crearte un usuario con todos sus atributos
-     * exceptuando pass, debido a que al modificar usuarios o eliminarlos en
-     * la tabla es necesario tener este constructor al no trabajar con password
-     * 
-     * @param nombre
-     * @param admin
-     * @param cliente
-     * @param producto
-     * @param proveedor
-     * @param usuarios
-     */
-     public Usuario(String nombre, boolean admin, boolean cliente, boolean producto, boolean proveedor, boolean usuarios) {
-        this.nombre = nombre;
-        this.admin = admin;
-        this.vistaClientes = cliente;
-        this.vistaProductos = producto;
-        this.vistaProveedores = proveedor;
-        this.vistaUsuarios = usuarios;
-    }
     
     /**
      * Devuelve el nombre del usuario
