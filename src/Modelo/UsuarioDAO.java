@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -115,8 +116,10 @@ public class UsuarioDAO {
      */
     public Usuario compruebaUsuario(String usuario,String contrasena){
         try {
-            Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("select * from usuario where nombre='" + usuario + "' and contrasena ='" + contrasena + "';");
+            PreparedStatement pstm = con.prepareStatement("select * from usuario where nombre=? and contrasena =?");
+            pstm.setString(1, usuario);
+            pstm.setString(2, contrasena);
+            ResultSet rs = pstm.executeQuery();
             String[] datos = new String[7];
             if (rs.next()) {
                 datos[0] = rs.getString("nombre");
@@ -128,11 +131,11 @@ public class UsuarioDAO {
                 datos[6] = rs.getString("vistaUsuarios");
                 Usuario u = new Usuario(datos[0],datos[1], Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
                 rs.close();
-                stm.close();
+                pstm.close();
                 return u;   
             }
         } catch (SQLException ex) {
-            System.out.println("Ha petado al comprobaUsuario");
+            System.out.println("Ha petado al compruebaUsuario");
         }
         return null;
     }

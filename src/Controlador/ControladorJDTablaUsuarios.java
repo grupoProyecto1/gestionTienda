@@ -143,7 +143,6 @@ public class ControladorJDTablaUsuarios {
             Boolean vistaProveedores = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4);
             Boolean vistaUsuarios = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5);
             Usuario u = new Usuario(nombre, null,admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
-            System.out.println(u.toString());
             usuarioDAO.modificarUsuarios(u);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun usuario", "Error de usuario", JOptionPane.ERROR_MESSAGE);

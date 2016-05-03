@@ -52,8 +52,7 @@ public class ControladorJDAnadirCliente {
         String letrasMin="trwagmyfpdxbnjzsqvhlcke";
         if (letraDni != letrasMayus.charAt(resto) && letraDni != letrasMin.charAt(resto)){
             JOptionPane.showMessageDialog(vista, "El DNI no es correcto", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else System.out.println(vista.getjTextFieldDniCliente().getText());  
+        } 
         } catch (StringIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(vista, "DNI vacio", "ERROR", JOptionPane.ERROR_MESSAGE);
             
