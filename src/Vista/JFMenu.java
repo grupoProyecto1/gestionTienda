@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.ControladorJFMenu;
+import Modelo.Usuario;
 
 /**
  *
@@ -17,9 +18,9 @@ public class JFMenu extends javax.swing.JFrame {
     /**
      * Creates new form JFMenu
      */
-    public JFMenu() { 
+    public JFMenu(Usuario u) { 
         initComponents();
-        controlador = new ControladorJFMenu(this);
+        controlador = new ControladorJFMenu(this, u);
     }
 
     /**
@@ -141,7 +142,7 @@ public class JFMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFMenu().setVisible(true);
+                new JFMenu(new Usuario(null, null, false, false, false, false, false)).setVisible(true);
             }
         });
     }

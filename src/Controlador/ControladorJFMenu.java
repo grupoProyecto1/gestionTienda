@@ -25,8 +25,9 @@ public class ControladorJFMenu {
      *
      * @param vista
      */
-    public ControladorJFMenu(JFMenu vista) {
+    public ControladorJFMenu(JFMenu vista,Usuario u) {
         this.vista = vista;
+        this.usuarioLogueado = u;
     }
 
     /**
