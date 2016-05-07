@@ -43,12 +43,10 @@ public class ControladorJFMenu {
     
     public void gestionHorarios(){
         new JDTablaHorario(vista, true, usuarioLogueado).setVisible(true);
-        vista.dispose();
     }
 
     public void gestionVentas(){
         new JDVentas(vista, true).setVisible(true);
-        vista.dispose();
     }
     /**
      * Metodo para establecer el usuario que se ha logueado
