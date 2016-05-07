@@ -22,6 +22,14 @@ public class ControladorJDTablaHorario {
     private horarioDAO horariodao = new horarioDAO();
     private Usuario usuarioLogueado;
 
+    public Usuario getUsuarioLogueado() {
+        return usuarioLogueado;
+    }
+
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+    }
+
     public ControladorJDTablaHorario(JDTablaHorario vista) {
         this.vista = vista;
     }
@@ -70,7 +78,7 @@ public class ControladorJDTablaHorario {
             }
 
         } else {
-            horariodao.cargaHorario();
+            horariodao.cargaHorarioUsuario(usuarioLogueado);
             Object[] datos = new Object[3];
 
             for (horario h : horariodao.getListaHorarios()) {

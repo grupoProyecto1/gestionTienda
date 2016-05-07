@@ -38,11 +38,11 @@ public class horarioDAO {
         
     
 }
-    public void cargaHorarioUsuario(){
+    public void cargaHorarioUsuario(Usuario u){
         listaHorarios.removeAll(listaHorarios);
         try {
             Statement stm =con.createStatement();
-            ResultSet rs = stm.executeQuery("select * from horario where NombreUsuario = '"+usuarioLogueado.getNombre()+"'");
+            ResultSet rs = stm.executeQuery("select * from horario where NombreUsuario = '"+u.getNombre()+"'");
             String [] datos = new String [4];
             while (rs.next()){
                 datos[0] = rs.getString("nombreusuario");

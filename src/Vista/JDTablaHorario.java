@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.Usuario;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import controlador.ControladorJDTablaHorario;
@@ -17,6 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class JDTablaHorario extends javax.swing.JDialog {
     private ControladorJDTablaHorario controlador;
     private TableRowSorter trsfiltro;
+    
 
     /**
      * Creates new form JDTablaHorario
@@ -26,6 +28,7 @@ public class JDTablaHorario extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(this);
         controlador = new ControladorJDTablaHorario(this);
+        
         controlador.creaTabla();
         controlador.rellanaTabla();
     }

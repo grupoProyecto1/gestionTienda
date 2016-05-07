@@ -20,6 +20,15 @@ public class ControladorJFHorario {
     private JFHorario vista;
     private boolean editable = false;
     private horarioDAO horario = new horarioDAO();
+    private Usuario usuarioLoguedo;
+
+    public Usuario getUsuarioLoguedo() {
+        return usuarioLoguedo;
+    }
+
+    public void setUsuarioLoguedo(Usuario usuarioLoguedo) {
+        this.usuarioLoguedo = usuarioLoguedo;
+    }
 
     public ControladorJFHorario(JFHorario vista) {
         this.vista = vista;
