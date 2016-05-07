@@ -27,9 +27,8 @@ public class ControladorJFMenu {
      *
      * @param vista
      */
-    public ControladorJFMenu(JFMenu vista,Usuario u) {
+    public ControladorJFMenu(JFMenu vista) {
         this.vista = vista;
-        this.usuarioLogueado = u;
     }
 
     /**
@@ -37,7 +36,9 @@ public class ControladorJFMenu {
      * la ventana en la que nos encontramos
      */
     public void gestionUsuarios() {
-        new JFGestionUsuarios().setVisible(true);
+        JFGestionUsuarios jfgu = new JFGestionUsuarios();
+        jfgu.getControlador().setUsuarioLogueado(usuarioLogueado);
+        jfgu.setVisible(true);
         vista.dispose();
     }
     
@@ -55,6 +56,7 @@ public class ControladorJFMenu {
      */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
+        compruebaUsuario();
     }
     
     /**
@@ -66,4 +68,12 @@ public class ControladorJFMenu {
         vista.dispose();
     }
 
+    public void compruebaUsuario(){
+        if(usuarioLogueado.isAdmin()){
+            vista.getjButtonUsuarios().setVisible(true);
+            vista.getjButtonClientes().setVisible(true);      
+        }
+        vista.repaint();
+    }
+    
 }

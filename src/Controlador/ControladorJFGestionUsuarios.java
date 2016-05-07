@@ -5,9 +5,11 @@
  */
 package Controlador;
 
+import Modelo.Usuario;
 import Vista.JDAnadirUsuario;
 import Vista.JDTablaUsuariosClientes;
 import Vista.JFGestionUsuarios;
+import Vista.JFMenu;
 
 /**
  *
@@ -16,6 +18,7 @@ import Vista.JFGestionUsuarios;
 public class ControladorJFGestionUsuarios {
 
     private JFGestionUsuarios vista;
+    private Usuario usuarioLogueado;
 
     /**
      * Constructor con un parametro para establecer la vista
@@ -55,6 +58,19 @@ public class ControladorJFGestionUsuarios {
     }
     
     public void volver(){
-        
+        JFMenu jfm = new JFMenu();
+        jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
+        jfm.setVisible(true);
+        vista.dispose();
     }
+
+    public Usuario getUsuarioLogueado() {
+        return usuarioLogueado;
+    }
+
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+    }
+    
+    
 }

@@ -134,6 +134,9 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    public ControladorJFGestionUsuarios getControlador() {
+        return controlador;
+    }
     /**
      * @param args the command line arguments
      */

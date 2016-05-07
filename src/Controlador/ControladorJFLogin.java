@@ -38,7 +38,8 @@ public class ControladorJFLogin {
         UsuarioDAO udao = new UsuarioDAO();
         Usuario usuarioLogueado = udao.compruebaUsuario(vista.getjTextFieldUsuario().getText(), DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword())));
         if (usuarioLogueado != null) {
-            JFMenu jfm = new JFMenu(usuarioLogueado);
+            JFMenu jfm = new JFMenu();
+            jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
             jfm.setVisible(true);
             vista.dispose();
         } else {
