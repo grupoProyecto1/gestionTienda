@@ -248,6 +248,8 @@ public class JDVentas extends javax.swing.JDialog {
 
         jButtonVender.setText("Vender");
 
+        jSpinnerCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

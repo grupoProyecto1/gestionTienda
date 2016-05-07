@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Usuario;
 import Vista.JDTablaHorario;
+import Vista.JDVentas;
 import Vista.JFGestionUsuarios;
 import Vista.JFMenu;
 import Vista.JFGestionClientes;
@@ -37,14 +38,18 @@ public class ControladorJFMenu {
      */
     public void gestionUsuarios() {
         new JFGestionUsuarios().setVisible(true);
-        vista.setVisible(false);
+        vista.dispose();
     }
     
     public void gestionHorarios(){
         new JDTablaHorario(vista, true, usuarioLogueado).setVisible(true);
-        vista.setVisible(false);
+        vista.dispose();
     }
 
+    public void gestionVentas(){
+        new JDVentas(vista, true).setVisible(true);
+        vista.dispose();
+    }
     /**
      * Metodo para establecer el usuario que se ha logueado
      *
@@ -60,7 +65,7 @@ public class ControladorJFMenu {
      */
     public void gestionCliente() {
        new JFGestionClientes().setVisible(true);
-        vista.setVisible(false);
+        vista.dispose();
     }
 
 }

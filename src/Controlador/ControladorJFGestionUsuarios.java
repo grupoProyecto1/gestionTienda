@@ -53,4 +53,8 @@ public class ControladorJFGestionUsuarios {
     public void verUsuarios() {
         new JDTablaUsuariosClientes(0, 0).setVisible(true);
     }
+    
+    public void volver(){
+        
+    }
 }
