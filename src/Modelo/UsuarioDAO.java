@@ -129,7 +129,7 @@ public class UsuarioDAO {
                 datos[4] = rs.getString("vistaProductos");
                 datos[5] = rs.getString("vistaProveedores");
                 datos[6] = rs.getString("vistaUsuarios");
-                Usuario u = new Usuario(datos[0],datos[1], Boolean.parseBoolean(datos[1]), Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]));
+                Usuario u = new Usuario(datos[0],datos[1], Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));
                 rs.close();
                 pstm.close();
                 return u;   
