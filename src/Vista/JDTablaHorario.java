@@ -23,12 +23,12 @@ public class JDTablaHorario extends javax.swing.JDialog {
     /**
      * Creates new form JDTablaHorario
      */
-    public JDTablaHorario(java.awt.Frame parent, boolean modal) {
+    public JDTablaHorario(java.awt.Frame parent, boolean modal, Usuario u) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(this);
         controlador = new ControladorJDTablaHorario(this);
-        
+        controlador.setUsuarioLogueado(u);
         controlador.creaTabla();
         controlador.rellanaTabla();
     }
@@ -107,7 +107,7 @@ public class JDTablaHorario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDTablaHorario dialog = new JDTablaHorario(new javax.swing.JFrame(), true);
+                JDTablaHorario dialog = new JDTablaHorario(new javax.swing.JFrame(), true,new Usuario(null, null, false, false, false, false, false));
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

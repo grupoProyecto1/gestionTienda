@@ -33,7 +33,7 @@ public class horarioDAO {
                 listaHorarios.add(h1);
             }
         } catch (Exception e) {
-            System.out.println("Ha petado al cargar los usuarios");
+            System.out.println("Ha petado al cargar los horarios");
         }
         
     
@@ -53,7 +53,7 @@ public class horarioDAO {
                 listaHorarios.add(h1);
             }
         } catch (Exception e) {
-            System.out.println("Ha petado al cargar los usuarios");
+            System.out.println("Ha petado al cargar los horarios");
         }
     }
      public void cargaHorarios(){
@@ -71,7 +71,7 @@ public class horarioDAO {
                 listaHorarios.add(h1);
             }
         } catch (Exception e) {
-            System.out.println("Ha petado al cargar los usuarios");
+            System.out.println("Ha petado al cargar los horarios");
         }
     }
     public void anadirHorario(horario h){
@@ -83,7 +83,7 @@ public class horarioDAO {
             stm.executeUpdate(consulta);
             stm.close();
         } catch (Exception e) {
-            System.out.println("Ha petado al insertar el usuario");
+            System.out.println("Ha petado al insertar el horarios");
         }
     
 }

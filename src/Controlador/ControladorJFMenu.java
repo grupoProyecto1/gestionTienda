@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Usuario;
+import Vista.JDTablaHorario;
 import Vista.JFGestionUsuarios;
 import Vista.JFMenu;
 import Vista.JFGestionClientes;
@@ -36,7 +37,12 @@ public class ControladorJFMenu {
      */
     public void gestionUsuarios() {
         new JFGestionUsuarios().setVisible(true);
-        vista.dispose();
+        vista.setVisible(false);
+    }
+    
+    public void gestionHorarios(){
+        new JDTablaHorario(vista, true, usuarioLogueado).setVisible(true);
+        vista.setVisible(false);
     }
 
     /**
@@ -54,7 +60,7 @@ public class ControladorJFMenu {
      */
     public void gestionCliente() {
        new JFGestionClientes().setVisible(true);
-        vista.dispose();
+        vista.setVisible(false);
     }
 
 }
