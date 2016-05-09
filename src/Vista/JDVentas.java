@@ -33,6 +33,7 @@ public class JDVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         controlador = new ControladorJDVentas(this);
+        controlador.rellenaTablas();
     }
 
     public JButton getjButtonVender() {
@@ -131,6 +132,12 @@ public class JDVentas extends javax.swing.JDialog {
         this.jTextFieldStock = jTextFieldStock;
     }
 
+    public ControladorJDVentas getControlador() {
+        return controlador;
+    }
+    
+    
+
     public void filtro() {
         int columnaABuscar = 0;
         if (jComboBoxFiltrado.getSelectedItem() == "ID") {
@@ -193,6 +200,11 @@ public class JDVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableArticulosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableArticulos);
 
         jTableVenta.setModel(new javax.swing.table.DefaultTableModel(
@@ -206,6 +218,11 @@ public class JDVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableVentaMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableVenta);
 
         jComboBoxFiltrado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -247,8 +264,18 @@ public class JDVentas extends javax.swing.JDialog {
         jTextFieldPrecio.setEditable(false);
 
         jButtonVender.setText("Vender");
+        jButtonVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVenderActionPerformed(evt);
+            }
+        });
 
         jSpinnerCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinnerCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCantidadStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,6 +383,52 @@ public class JDVentas extends javax.swing.JDialog {
         trsFiltro = new TableRowSorter(jTableArticulos.getModel());
         jTableArticulos.setRowSorter(trsFiltro);
     }//GEN-LAST:event_jTextFieldFiltradoKeyTyped
+
+    private void jButtonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVenderActionPerformed
+        // TODO add your handling code here:
+        System.out.println(controlador.getUsuarioLogueado().getNombre());
+    }//GEN-LAST:event_jButtonVenderActionPerformed
+
+    private void jTableArticulosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableArticulosMousePressed
+        // TODO add your handling code here:
+        if(evt.getClickCount() == 2){
+            
+            
+            
+            
+            //Comprobar que el articulo no este ya añadido y si esta añadido que le sume uno
+            
+            
+            
+            
+            
+            
+            controlador.anadeArticulo();
+        } 
+    }//GEN-LAST:event_jTableArticulosMousePressed
+
+    private void jTableVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVentaMousePressed
+        // TODO add your handling code here:
+        int fila = jTableVenta.getSelectedRow();
+        jTextFieldId.setText(String.valueOf(jTableVenta.getValueAt(fila, 0)));
+        jTextFieldNombre.setText((String) jTableVenta.getValueAt(fila, 1));
+        jTextFieldDescripcion.setText((String) jTableVenta.getValueAt(fila, 2));
+        jTextFieldPrecio.setText(String.valueOf(jTableVenta.getValueAt(fila, 5)));
+        jTextFieldImpuesto.setText(String.valueOf(jTableVenta.getValueAt(fila, 4)));
+        jSpinnerCantidad.setValue(jTableVenta.getValueAt(fila, 3));
+    }//GEN-LAST:event_jTableVentaMousePressed
+
+    private void jSpinnerCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCantidadStateChanged
+        // TODO add your handling code here:
+        int fila = jTableVenta.getSelectedRow();
+        int cantidad = (Integer) jSpinnerCantidad.getValue();
+        double impuesto = (Double) jTableVenta.getValueAt(fila, 4);
+        double precioUnid = (Double) jTableVenta.getValueAt(fila, 5);
+        double precioTotal = cantidad*precioUnid;
+        jTableVenta.setValueAt(cantidad, jTableVenta.getSelectedRow(), 3);
+        jTableVenta.setValueAt(precioTotal, fila, 6);
+        jTableVenta.setValueAt(precioTotal*impuesto, fila, 7);
+    }//GEN-LAST:event_jSpinnerCantidadStateChanged
 
     /**
      * @param args the command line arguments

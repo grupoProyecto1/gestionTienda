@@ -36,9 +36,7 @@ public class ControladorJFMenu {
      * la ventana en la que nos encontramos
      */
     public void gestionUsuarios() {
-        JFGestionUsuarios jfgu = new JFGestionUsuarios();
-        jfgu.getControlador().setUsuarioLogueado(usuarioLogueado);
-        jfgu.setVisible(true);
+        new JFGestionUsuarios().setVisible(true);
         vista.dispose();
     }
     
@@ -47,7 +45,10 @@ public class ControladorJFMenu {
     }
 
     public void gestionVentas(){
-        new JDVentas(vista, true).setVisible(true);
+        JDVentas jdv = new JDVentas(vista, true);
+        jdv.getControlador().setUsuarioLogueado(usuarioLogueado);
+        jdv.setVisible(true);
+        vista.dispose();
     }
     /**
      * Metodo para establecer el usuario que se ha logueado
