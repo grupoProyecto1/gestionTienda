@@ -26,23 +26,11 @@ public class ClienteDAO {
      *
      * @param datosCliente
      */
-    public void anadirCliente(Cliente datosCliente) {
+    public void anadirCliente(Cliente datosCliente) throws SQLException {
         String sql = "INSERT into cliente values (" + "'" + datosCliente.getDni() + "'" + "," + "'" + datosCliente.getNombre() + "'" + "," + "'" + datosCliente.getApellidos() + "'" + "," + "'" + datosCliente.getTelefono() + "'" + "," + "'" + datosCliente.getDireccion() + "'" + "," + "'" + datosCliente.getEmail() + "'" + ")";
-
-        try {
-            Statement stm = conn.createStatement();
-            int result = stm.executeUpdate(sql);
-
-            if (result > 0) {
-                System.out.println("La inserción se realizó correctamente");
-            } else {
-                System.out.println("Ha ocurrido un error al intentar añadir un cliente");
-            }
-            stm.close();
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        Statement stm = conn.createStatement();
+        int result = stm.executeUpdate(sql);
+        stm.close();
     }
 
     /**
@@ -50,16 +38,11 @@ public class ClienteDAO {
      *
      * @param datosCliente
      */
-    public void eliminarCliente(Cliente datosCliente) {
-        
-        try {
-            Statement stm = conn.createStatement();
-            String sql = "delete from cliente where DNI= '" + datosCliente.getDni() + "'";
-            stm.executeUpdate(sql);
-            stm.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void eliminarCliente(Cliente datosCliente) throws SQLException {
+        Statement stm = conn.createStatement();
+        String sql = "delete from cliente where DNI= '" + datosCliente.getDni() + "'";
+        stm.executeUpdate(sql);
+        stm.close();
     }
 
     /**
@@ -67,54 +50,44 @@ public class ClienteDAO {
      *
      * @param datosCliente
      */
-    public void modificarCliente(Cliente datosCliente) {
+    public void modificarCliente(Cliente datosCliente) throws SQLException {
         String sql = "update cliente set DNI = '" + datosCliente.getDni() + "',nombre='"
                 + datosCliente.getNombre() + "',apellidos ='" + datosCliente.getApellidos()
                 + "',telefono ='" + datosCliente.getTelefono() + "',direccion='" + datosCliente.getDireccion()
                 + "',email ='" + datosCliente.getEmail() + "' where dni = '" + datosCliente.getDni()
                 + "'";
+        Statement stm = conn.createStatement();
+        int result = stm.executeUpdate(sql);
 
-        try {
-            Statement stm = conn.createStatement();
-            int result = stm.executeUpdate(sql);
-
-            if (result > 0) {
-                System.out.println("Se ha modificado correctamente el cliente");
-            } else {
-                System.out.println("Ha ocurrido un error al intentar modificar un cliente");
-            }
-            stm.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        if (result > 0) {
+            System.out.println("Se ha modificado correctamente el cliente");
+        } else {
+            System.out.println("Ha ocurrido un error al intentar modificar un cliente");
         }
+        stm.close();
     }
 
     /**
      * Muestra todos los clientes almacenados en la base de datos de nuestra
      * aplicacion
      */
-    public void cargaCliente() {
+    public void cargaCliente() throws SQLException {
         listaClientes.removeAll(listaClientes);
-        try {
-            String sql = "select * from cliente";
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(sql);
-            String[] datosCliente = new String[6];
-
-            while (rs.next()) {
-                datosCliente[0] = rs.getString("dni");
-                datosCliente[1] = rs.getString("nombre");
-                datosCliente[2] = rs.getString("apellidos");
-                datosCliente[3] = rs.getString("telefono");
-                datosCliente[4] = rs.getString("direccion");
-                datosCliente[5] = rs.getString("email");
-                Cliente c = new Cliente(datosCliente[0], datosCliente[1], datosCliente[2], Integer.parseInt(datosCliente[3]), datosCliente[4], datosCliente[5]);
-                listaClientes.add(c);
-            }
-            stm.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        String sql = "select * from cliente";
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
+        String[] datosCliente = new String[6];
+        while (rs.next()) {
+            datosCliente[0] = rs.getString("dni");
+            datosCliente[1] = rs.getString("nombre");
+            datosCliente[2] = rs.getString("apellidos");
+            datosCliente[3] = rs.getString("telefono");
+            datosCliente[4] = rs.getString("direccion");
+            datosCliente[5] = rs.getString("email");
+            Cliente c = new Cliente(datosCliente[0], datosCliente[1], datosCliente[2], Integer.parseInt(datosCliente[3]), datosCliente[4], datosCliente[5]);
+            listaClientes.add(c);
         }
+        stm.close();
     }
 
     /**

@@ -7,6 +7,7 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -24,24 +25,20 @@ public class ProveedorDAO {
      * listaProveedores
      *
      */
-    public void cargaProveedorDAO() {
+    public void cargaProveedorDAO() throws SQLException {
         listaProveedores.removeAll(listaProveedores);
-        try {
-            Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("select * from proveedor");
-            String[] datos = new String[5];
-            while (rs.next()) {
-                datos[0] = rs.getString("NIF");
-                datos[1] = rs.getString("Nombre");
-                datos[2] = rs.getString("Direccion");
-                datos[3] = String.valueOf(rs.getInt("Telefono"));
-                datos[4] = rs.getString("Email");
-                Proveedor p1 = new Proveedor(datos[0], datos[1], datos[2], Integer.valueOf(datos[3]), datos[4]);
-                listaProveedores.add(p1);
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery("select * from proveedor");
+        String[] datos = new String[5];
+        while (rs.next()) {
+            datos[0] = rs.getString("NIF");
+            datos[1] = rs.getString("Nombre");
+            datos[2] = rs.getString("Direccion");
+            datos[3] = String.valueOf(rs.getInt("Telefono"));
+            datos[4] = rs.getString("Email");
+            Proveedor p1 = new Proveedor(datos[0], datos[1], datos[2], Integer.valueOf(datos[3]), datos[4]);
+            listaProveedores.add(p1);
 
-            }
-        } catch (Exception e) {
-            System.out.println("Peto al crear el objeto en la bbdd");
         }
     }
 
@@ -50,17 +47,13 @@ public class ProveedorDAO {
      *
      * @param p Objeto de tipo Proveedor
      */
-    public void anadirProveedor(Proveedor p) {
-        try {
-            Statement stm = con.createStatement();
-            String consulta = "Insert into proveedor "
-                    + "(NIF,Nombre,Direccion,Telefono,Email)"
-                    + "values('" + p.getNif() + "','" + p.getNombre() + "','" + p.getDireccion() + "','" + p.getTelefono() + "','" + p.getEmail() + "')";
-            stm.executeUpdate(consulta);
-            stm.close();
-        } catch (Exception e) {
-            System.out.println("Pero al meter el prov");
-        }
+    public void anadirProveedor(Proveedor p) throws SQLException {
+        Statement stm = con.createStatement();
+        String consulta = "Insert into proveedor "
+                + "(NIF,Nombre,Direccion,Telefono,Email)"
+                + "values('" + p.getNif() + "','" + p.getNombre() + "','" + p.getDireccion() + "','" + p.getTelefono() + "','" + p.getEmail() + "')";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
     /**
@@ -77,15 +70,11 @@ public class ProveedorDAO {
      *
      * @param nif
      */
-    public void eliminarProveedores(Proveedor datosProveedor) {
-        try {
-            Statement stm = con.createStatement();
-            String consulta = "Delete from proveedor where NIF='" + datosProveedor.getNif() + "'";
-            stm.executeUpdate(consulta);
-            stm.close();
-        } catch (Exception e) {
-            System.out.println("Peto al borrar el prov");
-        }
+    public void eliminarProveedores(Proveedor datosProveedor) throws SQLException {
+        Statement stm = con.createStatement();
+        String consulta = "Delete from proveedor where NIF='" + datosProveedor.getNif() + "'";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
     /**
@@ -93,15 +82,11 @@ public class ProveedorDAO {
      *
      * @param p
      */
-    public void modificarProveedor(Proveedor p) {
-        try {
-            Statement stm = con.createStatement();
-            String consulta = "update proveedor set nombre='" + p.getNombre() + "',direccion='" + p.getDireccion() + "',telefono=" + p.getTelefono() + ",email='" + p.getEmail() + "'where nif = '" + p.getNif() + "'";
-            stm.executeUpdate(consulta);
-            stm.close();
-        } catch (Exception e) {
-            System.out.println("Peto al modificar el prov");
-        }
+    public void modificarProveedor(Proveedor p) throws SQLException {
+        Statement stm = con.createStatement();
+        String consulta = "update proveedor set nombre='" + p.getNombre() + "',direccion='" + p.getDireccion() + "',telefono=" + p.getTelefono() + ",email='" + p.getEmail() + "'where nif = '" + p.getNif() + "'";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
 }

@@ -14,6 +14,7 @@ import java.sql.SQLException;
  * @author Mario
  */
 public class ConexionBBDD {
+
     private static Connection conn = null;
 
     /**
@@ -51,8 +52,8 @@ public class ConexionBBDD {
                 Connection conn = ConexionBBDD.getConnection();
                 conn.close();
             } catch (SQLException ex) {
-                 ex.getErrorCode();
+                System.out.println("No se ha podido cerrar la conexion.");
             }
-    }
         }
+    }
 }
