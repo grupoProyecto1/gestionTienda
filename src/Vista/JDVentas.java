@@ -407,6 +407,11 @@ public class JDVentas extends javax.swing.JDialog {
     private void jTableVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVentaMousePressed
         // TODO add your handling code here:
         controlador.establecerInformacion();
+        if (evt.getClickCount() == 2) {
+            controlador.eliminaArticulo();
+        }
+        
+        
     }//GEN-LAST:event_jTableVentaMousePressed
 
     private void jSpinnerCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCantidadStateChanged

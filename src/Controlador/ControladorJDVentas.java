@@ -91,7 +91,12 @@ public class ControladorJDVentas {
             modeloArticulos.removeRow(i);
             i -= 1;
         }
-        articuloDAO.cargaArticulos();
+        try {
+            articuloDAO.cargaArticulos();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(vista, "Ha fallado al cargar los articulos de la BD", "Error en conexion BD", WIDTH);
+        }
+        
         Object[] datos = new Object[6];
         for (Articulo a : articuloDAO.getListaArticulos()) {
             datos[0] = a.getId();
@@ -161,6 +166,10 @@ public class ControladorJDVentas {
         }
     }
 
+    public void eliminaArticulo(){
+        modeloVentas.removeRow(vista.getjTableVenta().getSelectedRow());
+    }
+    
     public void establecerInformacion() {
         int fila = vista.getjTableVenta().getSelectedRow();
         vista.getjTextFieldId().setText(String.valueOf(vista.getjTableVenta().getValueAt(fila, 0)));

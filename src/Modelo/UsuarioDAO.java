@@ -20,7 +20,6 @@ public class UsuarioDAO {
 
     private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
     private Connection con = ConexionBBDD.getConnection();
-    private Usuario usuarioLogueado;
 
     
     /**
@@ -140,14 +139,6 @@ public class UsuarioDAO {
             System.out.println("Ha petado al compruebaUsuario");
         }
         return null;
-    }
-
-    public Usuario getUsuarioLogueado() {
-        return usuarioLogueado;
-    }
-
-    public void setUsuarioLogueado(Usuario usuarioLogueado) {
-        this.usuarioLogueado = usuarioLogueado;
     }
     
 }
