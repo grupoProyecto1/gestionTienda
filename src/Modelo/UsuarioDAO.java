@@ -26,9 +26,8 @@ public class UsuarioDAO {
      * Metodo que carga los usuarios desde la base de datos en el atributo
      * privado listaUsuarios
      */
-    public void cargaUsuarios() {
+    public void cargaUsuarios() throws SQLException {
         listaUsuarios.removeAll(listaUsuarios);
-        try {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery("select * from usuario");
             String[] datos = new String[7];
@@ -44,10 +43,6 @@ public class UsuarioDAO {
                 listaUsuarios.add(u1);
             }
             stm.close();
-        } catch (SQLException e) {
-            System.out.println("Ha petado en la creacion del objeto obtenido de la bd");
-
-        }
     }
 
     /**
@@ -55,17 +50,13 @@ public class UsuarioDAO {
      *
      * @param u Objeto de tipo Usuario
      */
-    public void anadirUsuario(Usuario u) {
-        try {
+    public void anadirUsuario(Usuario u) throws SQLException{
             Statement stm = con.createStatement();
             String consulta = "Insert into usuario "
                     + "(nombre,contrasena,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios,establecimiento_nif)"
                     + "values('" + u.getNombre() + "','" + u.getPass() + "','" + u.isAdmin() + "','" + u.isVistaClientes() + "','" + u.isVistaProductos() + "','" + u.isVistaProveedores() + "','" + u.isVistaUsuarios() + "','11111111A')";
             stm.executeUpdate(consulta);
             stm.close();
-        } catch (SQLException e) {
-            System.out.println("Ha petado al añadir el usuario.");
-        }
     }
 
     /**
@@ -83,15 +74,11 @@ public class UsuarioDAO {
      *
      * @param u Objeto de tipo usuario
      */
-    public void eliminarUsuarios(Usuario u) {
-        try {
+    public void eliminarUsuarios(Usuario u) throws SQLException {
             Statement stm = con.createStatement();
             String consulta = "Delete from usuario where nombre='" + u.getNombre() + "'";
             stm.executeUpdate(consulta);
             stm.close();
-        } catch (SQLException e) {
-            System.out.println("Ha petado al eliminar el usuario.");
-        }
     }
 
     /**
@@ -99,17 +86,13 @@ public class UsuarioDAO {
      *
      * @param u Objeto de tipo Usuario
      */
-    public void modificarUsuarios(Usuario u) {
-        try {
+    public void modificarUsuarios(Usuario u) throws SQLException {
             Statement stm = con.createStatement();
             String consulta = "update usuario set admin='" + u.isAdmin() + "',vistaclientes='" + u.isVistaClientes()
                     + "',vistaproductos='" + u.isVistaProductos() + "',vistaproveedores='" + u.isVistaProveedores()
                     + "',vistausuarios='" + u.isVistaUsuarios() + "'where nombre = '" + u.getNombre() + "'";
             stm.executeUpdate(consulta);
             stm.close();
-        } catch (SQLException e) {
-            System.out.println("Ha petado al modificar el usuario.");
-        }
     }
 
     /**
