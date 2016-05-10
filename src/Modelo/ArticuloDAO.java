@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.sql.Connection;
@@ -20,8 +19,8 @@ public class ArticuloDAO {
 
     private ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
     private Connection con = ConexionBBDD.getConnection();
-    
-    public void cargaArticulos(){
+
+    public void cargaArticulos() {
         listaArticulos.removeAll(listaArticulos);
         try {
             Statement stm = con.createStatement();
@@ -40,12 +39,31 @@ public class ArticuloDAO {
             stm.close();
         } catch (SQLException e) {
             System.out.println("Ha fallado en la creacion del articulo obtenido de la bd");
-            
+
         }
     }
 
     public ArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
     }
-    
+
+    public void creaFactura(Usuario u, Cliente c, double totalNeto, double totalBruto) throws SQLException {
+        Statement stm = con.createStatement();
+        String consulta = "insert into factura(dnicliente,nombreusuario,totalneto,totalbruto)values('" + c.getDni() + "','" + u.getNombre() + "','" + totalNeto + "','" + totalBruto + "')";
+        stm.executeUpdate(consulta);
+        stm.close();
+    }
+
+    public void creaLineasFactura(Articulo a, int cantidad) throws SQLException {
+        Statement stm = con.createStatement();
+        String consulta = "select id from factura order by id desc limit 1";
+        ResultSet rs = stm.executeQuery(consulta);
+        int facturaId=0;
+        if (rs.next()) {
+            facturaId = rs.getInt("id");
+        }
+        String consulta2 = "insert into lineafactura(factura_id,articulo_idlineafactura,precioventa,cantidad)values('" + facturaId + "','" + a.getId() + "','" + a.getPrecioUnitario() + "','" + cantidad + "')";
+        stm.executeUpdate(consulta2);
+        stm.close();
+    }
 }

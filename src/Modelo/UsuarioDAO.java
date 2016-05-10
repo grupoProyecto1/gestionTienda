@@ -20,7 +20,9 @@ public class UsuarioDAO {
 
     private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
     private Connection con = ConexionBBDD.getConnection();
+    private Usuario usuarioLogueado;
 
+    
     /**
      *  Metodo que carga los usuarios desde la base de datos
      * en el atributo privado listaUsuarios
@@ -139,4 +141,13 @@ public class UsuarioDAO {
         }
         return null;
     }
+
+    public Usuario getUsuarioLogueado() {
+        return usuarioLogueado;
+    }
+
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+    }
+    
 }

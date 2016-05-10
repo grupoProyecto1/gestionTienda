@@ -27,6 +27,7 @@ public class ControladorJFGestionUsuarios {
      */
     public ControladorJFGestionUsuarios(JFGestionUsuarios vista) {
         this.vista = vista;
+        System.out.println(usuarioLogueado.getNombre());
     }
 
     /**

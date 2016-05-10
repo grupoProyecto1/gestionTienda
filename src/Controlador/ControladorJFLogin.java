@@ -40,6 +40,7 @@ public class ControladorJFLogin {
         if (usuarioLogueado != null) {
             JFMenu jfm = new JFMenu();
             jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
+            udao.setUsuarioLogueado(usuarioLogueado);
             jfm.setVisible(true);
             vista.dispose();
         } else {

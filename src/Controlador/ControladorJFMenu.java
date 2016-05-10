@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Usuario;
+import Modelo.UsuarioDAO;
 import Vista.JDTablaHorario;
 import Vista.JDVentas;
 import Vista.JFGestionUsuarios;
@@ -29,6 +30,8 @@ public class ControladorJFMenu {
      */
     public ControladorJFMenu(JFMenu vista) {
         this.vista = vista;
+        UsuarioDAO udao = new UsuarioDAO();
+        System.out.println(udao.getUsuarioLogueado().getNombre()+" hola");
     }
 
     /**
