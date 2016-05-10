@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.ControladorJDTablaArticulos;
 import Controlador.ControladorJDTablaClientes;
 import Controlador.ControladorJDTablaUsuarios;
 import Controlador.ControladorJDTablaProveedor;
@@ -25,6 +26,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     private ControladorJDTablaUsuarios controladorUsuario;
     private ControladorJDTablaClientes controladorClientes;
     private ControladorJDTablaProveedor controladorProveedor;
+    private ControladorJDTablaArticulos controladorArticulo;
     private int ventana;
     private TableRowSorter trsfiltro;
 
@@ -41,7 +43,8 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
     /**
      *
-     *Constructor parametrizado
+     * Constructor parametrizado
+     *
      * @param botones
      * @param ventana
      */
@@ -57,10 +60,14 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             controladorClientes = new ControladorJDTablaClientes(this);
             controladorClientes.creaTabla();
             controladorClientes.rellenaTabla();
-        }else if (ventana ==2){
+        } else if (ventana == 2) {
             controladorProveedor = new ControladorJDTablaProveedor(this);
             controladorProveedor.creaTabla();
             controladorProveedor.rellenaTabla();
+        } else if (ventana == 3) {
+            controladorArticulo = new ControladorJDTablaArticulos(this);
+            controladorArticulo.creaTabla();
+            controladorArticulo.rellenaTabla();
         }
 
         if (botones == 0) {
@@ -75,10 +82,15 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             jButtonBorrar.setVisible(false);
             jButtonGuardar.setVisible(true);
             jButtonVolver.setVisible(true);
+            //para hacer no modificable la primera linea (ID)
             if (ventana == 0) {
                 controladorUsuario.setEditable(true);
             } else if (ventana == 1) {
                 controladorClientes.setEditable(true);
+            } else if (ventana == 2) {
+                controladorProveedor.setEditable(true);
+            } else if (ventana == 3) {
+                controladorArticulo.setEditable(true);
             }
 
         }
@@ -93,15 +105,17 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     *Obtiene el tableModel de la clase TableUsuariosClientes
-     * @return tableModel 
+     * Obtiene el tableModel de la clase TableUsuariosClientes
+     *
+     * @return tableModel
      */
     public JTable getjTableUsuariosClientes() {
         return jTableUsuariosClientes;
     }
 
     /**
-     *Modifica y selecciona el modelo
+     * Modifica y selecciona el modelo
+     *
      * @param tm
      */
     public void setjTableUsuariosClientes(TableModel tm) {
@@ -109,7 +123,8 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     *Obtiene el texto filtrado
+     * Obtiene el texto filtrado
+     *
      * @return textoFiltrado
      */
     public JTextField getjTextFieldFiltrado() {
@@ -117,7 +132,8 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
     }
 
     /**
-     *Modifica el texto filtrado
+     * Modifica el texto filtrado
+     *
      * @param jTextFieldFiltrado
      */
     public void setjTextFieldFiltrado(JTextField jTextFieldFiltrado) {
@@ -253,6 +269,10 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
         } else if (ventana == 1) {
             controladorClientes.eliminaCliente();
+        } else if (ventana == 2) {
+            controladorProveedor.eliminaProveedor();
+        } else if (ventana == 3) {
+            controladorArticulo.eliminaArticulo();
         }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
@@ -268,6 +288,10 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
         } else if (ventana == 1) {
             controladorClientes.modificaCliente();
+        } else if (ventana == 2) {
+            controladorProveedor.modificaProveedor();
+        } else if (ventana == 3) {
+            controladorArticulo.modificaArticulo();
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
