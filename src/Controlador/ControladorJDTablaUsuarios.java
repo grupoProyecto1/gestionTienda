@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Vista.JDTablaUsuariosClientes;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -78,7 +79,12 @@ public class ControladorJDTablaUsuarios {
             miTableModel.removeRow(i);
             i -= 1;
         }
-        usuarioDAO.cargaUsuarios();
+        try {
+            usuarioDAO.cargaUsuarios();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(vista, "Error al cargar la lista de usuarios en la tabla", "Error al cargar los usuarios", JOptionPane.ERROR_MESSAGE);
+        }
+        
         Object[] datos = new Object[6];
         for (Usuario u : usuarioDAO.getListaUsuarios()) {
             datos[0] = u.getNombre();

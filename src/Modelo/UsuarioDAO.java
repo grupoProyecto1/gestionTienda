@@ -25,38 +25,41 @@ public class UsuarioDAO {
     /**
      * Metodo que carga los usuarios desde la base de datos en el atributo
      * privado listaUsuarios
+     * @throws java.sql.SQLException
      */
     public void cargaUsuarios() throws SQLException {
         listaUsuarios.removeAll(listaUsuarios);
-            Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("select * from usuario");
-            String[] datos = new String[7];
-            while (rs.next()) {
-                datos[0] = rs.getString("nombre");
-                datos[1] = rs.getString("contrasena");
-                datos[2] = rs.getString("admin");
-                datos[3] = rs.getString("vistaClientes");
-                datos[4] = rs.getString("vistaProductos");
-                datos[5] = rs.getString("vistaProveedores");
-                datos[6] = rs.getString("vistaUsuarios");
-                Usuario u1 = new Usuario(datos[0], datos[1], Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));
-                listaUsuarios.add(u1);
-            }
-            stm.close();
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery("select * from usuario");
+        String[] datos = new String[7];
+        while (rs.next()) {
+            datos[0] = rs.getString("nombre");
+            datos[1] = rs.getString("contrasena");
+            datos[2] = rs.getString("admin");
+            datos[3] = rs.getString("vistaClientes");
+            datos[4] = rs.getString("vistaProductos");
+            datos[5] = rs.getString("vistaProveedores");
+            datos[6] = rs.getString("vistaUsuarios");
+            Usuario u1 = new Usuario(datos[0], datos[1], Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));
+            listaUsuarios.add(u1);
+        }
+        stm.close();
     }
 
     /**
      * Metodo para añadir un nuevo usuario
      *
      * @param u Objeto de tipo Usuario
+     * @throws java.sql.SQLException
      */
-    public void anadirUsuario(Usuario u) throws SQLException{
-            Statement stm = con.createStatement();
-            String consulta = "Insert into usuario "
-                    + "(nombre,contrasena,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios,establecimiento_nif)"
-                    + "values('" + u.getNombre() + "','" + u.getPass() + "','" + u.isAdmin() + "','" + u.isVistaClientes() + "','" + u.isVistaProductos() + "','" + u.isVistaProveedores() + "','" + u.isVistaUsuarios() + "','11111111A')";
-            stm.executeUpdate(consulta);
-            stm.close();
+    public void anadirUsuario(Usuario u) throws SQLException {
+        Statement stm = con.createStatement();
+        //el establecimiento_nif esta por defecto con una empresa pero para futuras implementaciones esta esa columna
+        String consulta = "Insert into usuario "
+                + "(nombre,contrasena,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios,establecimiento_nif)"
+                + "values('" + u.getNombre() + "','" + u.getPass() + "','" + u.isAdmin() + "','" + u.isVistaClientes() + "','" + u.isVistaProductos() + "','" + u.isVistaProveedores() + "','" + u.isVistaUsuarios() + "','11111111A')";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
     /**
@@ -73,26 +76,28 @@ public class UsuarioDAO {
      * Metodo para eliminar un usuario a partir de su nombre
      *
      * @param u Objeto de tipo usuario
+     * @throws java.sql.SQLException
      */
     public void eliminarUsuarios(Usuario u) throws SQLException {
-            Statement stm = con.createStatement();
-            String consulta = "Delete from usuario where nombre='" + u.getNombre() + "'";
-            stm.executeUpdate(consulta);
-            stm.close();
+        Statement stm = con.createStatement();
+        String consulta = "Delete from usuario where nombre='" + u.getNombre() + "'";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
     /**
      * Metodo para modificar un usuario
      *
      * @param u Objeto de tipo Usuario
+     * @throws java.sql.SQLException
      */
     public void modificarUsuarios(Usuario u) throws SQLException {
-            Statement stm = con.createStatement();
-            String consulta = "update usuario set admin='" + u.isAdmin() + "',vistaclientes='" + u.isVistaClientes()
-                    + "',vistaproductos='" + u.isVistaProductos() + "',vistaproveedores='" + u.isVistaProveedores()
-                    + "',vistausuarios='" + u.isVistaUsuarios() + "'where nombre = '" + u.getNombre() + "'";
-            stm.executeUpdate(consulta);
-            stm.close();
+        Statement stm = con.createStatement();
+        String consulta = "update usuario set admin='" + u.isAdmin() + "',vistaclientes='" + u.isVistaClientes()
+                + "',vistaproductos='" + u.isVistaProductos() + "',vistaproveedores='" + u.isVistaProveedores()
+                + "',vistausuarios='" + u.isVistaUsuarios() + "'where nombre = '" + u.getNombre() + "'";
+        stm.executeUpdate(consulta);
+        stm.close();
     }
 
     /**
@@ -101,6 +106,7 @@ public class UsuarioDAO {
      * @param usuario
      * @param contrasena
      * @return objeto de la clase Usuario
+     * @throws java.sql.SQLException
      */
     public Usuario compruebaUsuario(String usuario, String contrasena) throws SQLException {
         if (con == null) {

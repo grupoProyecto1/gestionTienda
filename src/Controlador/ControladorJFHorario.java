@@ -10,6 +10,8 @@ import java.util.Calendar;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Vista.JFHorario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +39,12 @@ public class ControladorJFHorario {
 
     public void combo() {
         UsuarioDAO usuariodao = new UsuarioDAO();
-        usuariodao.cargaUsuarios();
+        try {
+            usuariodao.cargaUsuarios();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(vista, "Error al cargar la lista de usuarios", "Error al cargar el usuario", JOptionPane.ERROR_MESSAGE);
+        }
+        
         vista.getjComboBoxUsuario().removeAllItems();
 
         for (Usuario u : usuariodao.getListaUsuarios()) {

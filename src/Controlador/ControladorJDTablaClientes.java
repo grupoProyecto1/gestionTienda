@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
 import Vista.JDTablaUsuariosClientes;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -78,7 +79,12 @@ public class ControladorJDTablaClientes {
             miTableModel.removeRow(i);
             i -= 1;
         }
-        clienteDAO.cargaCliente();
+        try {
+            clienteDAO.cargaCliente();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(vista, "Error al cargar los clientes en la tabla", "Error al cargar los clientes", JOptionPane.ERROR_MESSAGE);
+        }
+        
         Object[] datos = new Object[6];
         for (Cliente c : clienteDAO.getListaClientes()) {
             datos[0] = c.getDni();

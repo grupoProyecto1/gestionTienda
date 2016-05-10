@@ -31,7 +31,6 @@ public class ControladorJFMenu {
     public ControladorJFMenu(JFMenu vista) {
         this.vista = vista;
         UsuarioDAO udao = new UsuarioDAO();
-        System.out.println(udao.getUsuarioLogueado().getNombre()+" hola");
     }
 
     /**

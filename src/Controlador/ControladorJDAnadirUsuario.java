@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Vista.JDAnadirUsuario;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -21,6 +22,7 @@ public class ControladorJDAnadirUsuario {
 
     /**
      * Constructor parametrizado con un objeto para establecer la vista
+     *
      * @param vista
      */
     public ControladorJDAnadirUsuario(JDAnadirUsuario vista) {
@@ -37,15 +39,20 @@ public class ControladorJDAnadirUsuario {
         } else if (new String(vista.getjPasswordFieldContrasena().getPassword()).isEmpty() || new String(vista.getjPasswordFieldContrasena2().getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(vista, "No puede haber una contraseña vacia", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (new String(vista.getjPasswordFieldContrasena().getPassword()).equals(new String(vista.getjPasswordFieldContrasena2().getPassword()))) {
-            String pass = DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword()));
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario u1 = new Usuario(vista.getjTextFieldNombre().getText(), pass,
-                    vista.getjCheckBoxAdmin().isSelected(), vista.getjCheckBoxCliente().isSelected(),
-                    vista.getjCheckBoxProductos().isEnabled(), vista.getjCheckBoxProveedores().isSelected(),
-                    vista.getjCheckBoxUsuarios().isSelected());
-            usuarioDAO.anadirUsuario(u1);
-            limpiaDatos();
-            JOptionPane.showMessageDialog(vista, "Usuario añadido satisfactoriamente", "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                String pass = DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword()));
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                Usuario u1 = new Usuario(vista.getjTextFieldNombre().getText(), pass,
+                        vista.getjCheckBoxAdmin().isSelected(), vista.getjCheckBoxCliente().isSelected(),
+                        vista.getjCheckBoxProductos().isEnabled(), vista.getjCheckBoxProveedores().isSelected(),
+                        vista.getjCheckBoxUsuarios().isSelected());
+                usuarioDAO.anadirUsuario(u1);
+                limpiaDatos();
+                JOptionPane.showMessageDialog(vista, "Usuario añadido satisfactoriamente", "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(vista, "El usuario no ha podido ser creado", "Error al Crear el Usuario", JOptionPane.ERROR_MESSAGE);
+            }
+
         } else {
             JOptionPane.showMessageDialog(vista, "Las contraseña son diferentes", "ERROR", JOptionPane.ERROR_MESSAGE);
         }

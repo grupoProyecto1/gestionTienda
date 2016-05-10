@@ -10,6 +10,8 @@ import Vista.JDTablaHorario;
 import Modelo.horario;
 import Modelo.horarioDAO;
 import Modelo.Usuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,7 +69,12 @@ public class ControladorJDTablaHorario {
             i -= 1;
         }
         if (usuarioLogueado.isAdmin()) {
-            horariodao.cargaHorarios();
+            try {
+                horariodao.cargaHorarios();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(vista, "Error al cargar la lista de horarios en la tabla", "Error al cargar la lista", JOptionPane.ERROR_MESSAGE);
+            }
+
             Object[] datos = new Object[3];
 
             for (horario h : horariodao.getListaHorarios()) {
@@ -78,7 +85,12 @@ public class ControladorJDTablaHorario {
             }
 
         } else {
-            horariodao.cargaHorarioUsuario(usuarioLogueado);
+            try {
+                horariodao.cargaHorarios();
+                horariodao.cargaHorarioUsuario(usuarioLogueado);
+            } catch (SQLException e) {               
+                JOptionPane.showMessageDialog(vista, "Error al cargar la lista de horarios en la tabla", "Error al cargar la lista", JOptionPane.ERROR_MESSAGE);
+            }
             Object[] datos = new Object[3];
 
             for (horario h : horariodao.getListaHorarios()) {

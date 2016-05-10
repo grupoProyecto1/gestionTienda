@@ -9,6 +9,7 @@ import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Vista.JFLogin;
 import Vista.JFMenu;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -35,16 +36,18 @@ public class ControladorJFLogin {
      * valor del atributo usuarioLogueado
      */
     public void aceptar() {
-        UsuarioDAO udao = new UsuarioDAO();
-        Usuario usuarioLogueado = udao.compruebaUsuario(vista.getjTextFieldUsuario().getText(), DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword())));
-        if (usuarioLogueado != null) {
-            JFMenu jfm = new JFMenu();
-            jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
-            udao.setUsuarioLogueado(usuarioLogueado);
-            jfm.setVisible(true);
-            vista.dispose();
-        } else {
+        try {
+            UsuarioDAO udao = new UsuarioDAO();
+            Usuario usuarioLogueado = udao.compruebaUsuario(vista.getjTextFieldUsuario().getText(), DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword())));
+            if (usuarioLogueado != null) {
+                JFMenu jfm = new JFMenu();
+                jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
+                jfm.setVisible(true);
+                vista.dispose();
+            }
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrecta", "Error al Iniciar Sesion", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 }
