@@ -73,7 +73,7 @@ public class ControladorJDTablaProveedor {
  public void setEditable(boolean editable) {
         this.editable = editable;
     }
-   public void eliminaCliente() {
+   public void eliminaProveedor() {
         try {
             String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
             String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();
@@ -88,7 +88,7 @@ public class ControladorJDTablaProveedor {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun proveedor", "Error de Proveedor", JOptionPane.ERROR_MESSAGE);
         }
     } 
-   public void modificaCliente() {
+   public void modificaProveedor() {
         try {
             String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
             String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();
