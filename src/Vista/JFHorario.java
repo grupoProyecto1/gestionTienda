@@ -6,7 +6,6 @@
 package Vista;
 
 import com.toedter.calendar.JDateChooser;
-import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;

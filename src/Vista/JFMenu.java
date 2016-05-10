@@ -6,7 +6,6 @@
 package Vista;
 
 import Controlador.ControladorJFMenu;
-import Modelo.Usuario;
 import javax.swing.JButton;
 
 /**

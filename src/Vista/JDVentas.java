@@ -33,7 +33,7 @@ public class JDVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         controlador = new ControladorJDVentas(this);
-        controlador.rellenaTablas();
+        controlador.rellenaTabla();
     }
 
     public JButton getjButtonVender() {
@@ -92,6 +92,14 @@ public class JDVentas extends javax.swing.JDialog {
         this.jTextFieldFiltrado = jTextFieldFiltrado;
     }
 
+    public JTextField getjTextFieldDni() {
+        return jTextFieldDni;
+    }
+
+    public void setjTextFieldDni(JTextField jTextFieldDni) {
+        this.jTextFieldDni = jTextFieldDni;
+    }
+
     public JTextField getjTextFieldId() {
         return jTextFieldId;
     }
@@ -124,19 +132,9 @@ public class JDVentas extends javax.swing.JDialog {
         this.jTextFieldPrecio = jTextFieldPrecio;
     }
 
-    public JTextField getjTextFieldStock() {
-        return jTextFieldStock;
-    }
-
-    public void setjTextFieldStock(JTextField jTextFieldStock) {
-        this.jTextFieldStock = jTextFieldStock;
-    }
-
     public ControladorJDVentas getControlador() {
         return controlador;
     }
-    
-    
 
     public void filtro() {
         int columnaABuscar = 0;
@@ -170,7 +168,6 @@ public class JDVentas extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -179,11 +176,12 @@ public class JDVentas extends javax.swing.JDialog {
         jTextFieldDescripcion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldStock = new javax.swing.JTextField();
         jTextFieldImpuesto = new javax.swing.JTextField();
         jTextFieldPrecio = new javax.swing.JTextField();
         jButtonVender = new javax.swing.JButton();
         jSpinnerCantidad = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldDni = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de Ventas");
@@ -218,9 +216,19 @@ public class JDVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableVenta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTableVentaFocusGained(evt);
+            }
+        });
         jTableVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTableVentaMousePressed(evt);
+            }
+        });
+        jTableVenta.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTableVentaPropertyChange(evt);
             }
         });
         jScrollPane2.setViewportView(jTableVenta);
@@ -239,8 +247,6 @@ public class JDVentas extends javax.swing.JDialog {
 
         jLabel3.setText("Descripción:");
 
-        jLabel4.setText("Stock:");
-
         jLabel5.setText("Impuesto:");
 
         jLabel6.setText("Filtrar:");
@@ -256,8 +262,6 @@ public class JDVentas extends javax.swing.JDialog {
         jLabel8.setText("Precio/u:");
 
         jLabel9.setText("Cantidad:");
-
-        jTextFieldStock.setEditable(false);
 
         jTextFieldImpuesto.setEditable(false);
 
@@ -276,6 +280,8 @@ public class JDVentas extends javax.swing.JDialog {
                 jSpinnerCantidadStateChanged(evt);
             }
         });
+
+        jLabel10.setText("DNI:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,20 +305,20 @@ public class JDVentas extends javax.swing.JDialog {
                                     .addComponent(jTextFieldNombre))
                                 .addGap(46, 46, 46)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldStock)
-                                    .addComponent(jTextFieldImpuesto, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                                .addGap(46, 46, 46)
+                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldImpuesto))
+                                .addGap(53, 53, 53)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldDni)
+                                    .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
                             .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addComponent(jButtonVender, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
@@ -334,21 +340,23 @@ public class JDVentas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextFieldStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
                             .addComponent(jTextFieldImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10)
+                            .addComponent(jTextFieldDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -386,49 +394,34 @@ public class JDVentas extends javax.swing.JDialog {
 
     private void jButtonVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVenderActionPerformed
         // TODO add your handling code here:
-        System.out.println(controlador.getUsuarioLogueado().getNombre());
+        controlador.creaFactura();
     }//GEN-LAST:event_jButtonVenderActionPerformed
 
     private void jTableArticulosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableArticulosMousePressed
         // TODO add your handling code here:
-        if(evt.getClickCount() == 2){
-            
-            
-            
-            
-            //Comprobar que el articulo no este ya añadido y si esta añadido que le sume uno
-            
-            
-            
-            
-            
-            
+        if (evt.getClickCount() == 2) {
             controlador.anadeArticulo();
-        } 
+        }
     }//GEN-LAST:event_jTableArticulosMousePressed
 
     private void jTableVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVentaMousePressed
         // TODO add your handling code here:
-        int fila = jTableVenta.getSelectedRow();
-        jTextFieldId.setText(String.valueOf(jTableVenta.getValueAt(fila, 0)));
-        jTextFieldNombre.setText((String) jTableVenta.getValueAt(fila, 1));
-        jTextFieldDescripcion.setText((String) jTableVenta.getValueAt(fila, 2));
-        jTextFieldPrecio.setText(String.valueOf(jTableVenta.getValueAt(fila, 5)));
-        jTextFieldImpuesto.setText(String.valueOf(jTableVenta.getValueAt(fila, 4)));
-        jSpinnerCantidad.setValue(jTableVenta.getValueAt(fila, 3));
+        controlador.establecerInformacion();
     }//GEN-LAST:event_jTableVentaMousePressed
 
     private void jSpinnerCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCantidadStateChanged
         // TODO add your handling code here:
-        int fila = jTableVenta.getSelectedRow();
-        int cantidad = (Integer) jSpinnerCantidad.getValue();
-        double impuesto = (Double) jTableVenta.getValueAt(fila, 4);
-        double precioUnid = (Double) jTableVenta.getValueAt(fila, 5);
-        double precioTotal = cantidad*precioUnid;
-        jTableVenta.setValueAt(cantidad, jTableVenta.getSelectedRow(), 3);
-        jTableVenta.setValueAt(precioTotal, fila, 6);
-        jTableVenta.setValueAt(precioTotal*impuesto, fila, 7);
+        controlador.cambiaCantidad();
+
     }//GEN-LAST:event_jSpinnerCantidadStateChanged
+
+    private void jTableVentaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTableVentaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableVentaFocusGained
+
+    private void jTableVentaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableVentaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableVentaPropertyChange
 
     /**
      * @param args the command line arguments
@@ -476,9 +469,9 @@ public class JDVentas extends javax.swing.JDialog {
     private javax.swing.JButton jButtonVender;
     private javax.swing.JComboBox jComboBoxFiltrado;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -490,11 +483,11 @@ public class JDVentas extends javax.swing.JDialog {
     private javax.swing.JTable jTableArticulos;
     private javax.swing.JTable jTableVenta;
     private javax.swing.JTextField jTextFieldDescripcion;
+    private javax.swing.JTextField jTextFieldDni;
     private javax.swing.JTextField jTextFieldFiltrado;
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldImpuesto;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPrecio;
-    private javax.swing.JTextField jTextFieldStock;
     // End of variables declaration//GEN-END:variables
 }
