@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.ControladorJDTablaClientes;
 import Controlador.ControladorJDTablaUsuarios;
+import Controlador.ControladorJDTablaProveedor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
@@ -23,6 +24,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
 
     private ControladorJDTablaUsuarios controladorUsuario;
     private ControladorJDTablaClientes controladorClientes;
+    private ControladorJDTablaProveedor controladorProveedor;
     private int ventana;
     private TableRowSorter trsfiltro;
 
@@ -55,6 +57,10 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             controladorClientes = new ControladorJDTablaClientes(this);
             controladorClientes.creaTabla();
             controladorClientes.rellenaTabla();
+        }else if (ventana ==2){
+            controladorProveedor = new ControladorJDTablaProveedor(this);
+            controladorProveedor.creaTabla();
+            controladorProveedor.rellenaTabla();
         }
 
         if (botones == 0) {

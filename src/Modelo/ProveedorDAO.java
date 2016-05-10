@@ -77,10 +77,10 @@ public class ProveedorDAO {
      *
      * @param nif
      */
-    public void eliminarProveedores(String nif) {
+    public void eliminarProveedores(Proveedor datosProveedor) {
         try {
             Statement stm = con.createStatement();
-            String consulta = "Delete from proveedor where NIF='" + nif + "'";
+            String consulta = "Delete from proveedor where NIF='" + datosProveedor.getNif() + "'";
             stm.executeUpdate(consulta);
             stm.close();
         } catch (Exception e) {
