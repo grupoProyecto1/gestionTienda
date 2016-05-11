@@ -28,12 +28,12 @@ public class JDVentas extends javax.swing.JDialog {
 
     /**
      * Creates new form JDVentas
+     * @param parent
+     * @param modal
      */
     public JDVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controlador = new ControladorJDVentas(this);
-        controlador.rellenaTabla();
     }
 
     public JButton getjButtonVender() {
@@ -134,6 +134,10 @@ public class JDVentas extends javax.swing.JDialog {
 
     public ControladorJDVentas getControlador() {
         return controlador;
+    }
+
+    public void setControlador(ControladorJDVentas controlador) {
+        this.controlador = controlador;
     }
 
     public void filtro() {
@@ -410,8 +414,8 @@ public class JDVentas extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             controlador.eliminaArticulo();
         }
-        
-        
+
+
     }//GEN-LAST:event_jTableVentaMousePressed
 
     private void jSpinnerCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCantidadStateChanged

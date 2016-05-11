@@ -19,7 +19,6 @@ public class JFGestionHorario extends javax.swing.JFrame {
      */
     public JFGestionHorario() {
         initComponents();
-        controlador = new ControladorJFGestionHorario(this);
     }
 
     /**
@@ -115,6 +114,10 @@ public class JFGestionHorario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    public void setControlador(ControladorJFGestionHorario controlador) {
+        this.controlador = controlador;
+    }
+    
     /**
      * @param args the command line arguments
      */

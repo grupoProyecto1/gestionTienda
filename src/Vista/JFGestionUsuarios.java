@@ -19,7 +19,6 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
      */
     public JFGestionUsuarios() {
         initComponents();
-        controlador = new ControladorJFGestionUsuarios(this);
     }
 
     /**
@@ -134,9 +133,10 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
-    public ControladorJFGestionUsuarios getControlador() {
-        return controlador;
+    public void setControlador(ControladorJFGestionUsuarios controlador) {
+        this.controlador = controlador;
     }
+    
     /**
      * @param args the command line arguments
      */

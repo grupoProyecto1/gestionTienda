@@ -8,7 +8,6 @@ package Controlador;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Vista.JFLogin;
-import Vista.JFMenu;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -20,6 +19,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class ControladorJFLogin {
 
     private JFLogin vista;
+    private Usuario usuarioLogueado;
 
     /**
      * Constructor que establece la vista
@@ -38,11 +38,9 @@ public class ControladorJFLogin {
     public void aceptar() {
         try {
             UsuarioDAO udao = new UsuarioDAO();
-            Usuario usuarioLogueado = udao.compruebaUsuario(vista.getjTextFieldUsuario().getText(), DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword())));
+            usuarioLogueado = udao.compruebaUsuario(vista.getjTextFieldUsuario().getText(), DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword())));
             if (usuarioLogueado != null) {
-                JFMenu jfm = new JFMenu();
-                jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
-                jfm.setVisible(true);
+                ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
                 vista.dispose();
             }
         } catch (SQLException e) {

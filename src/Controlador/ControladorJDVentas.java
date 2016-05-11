@@ -24,11 +24,18 @@ public class ControladorJDVentas {
     private JDVentas vista;
     private Usuario usuarioLogueado;
     private ArticuloDAO articuloDAO = new ArticuloDAO();
+    
+    public ControladorJDVentas(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
 
-    public ControladorJDVentas(JDVentas vista) {
-        this.vista = vista;
+    public void creaVista() {
+        this.vista = new JDVentas(null, true);
+        vista.setControlador(this);
         creaModelos();
-        usuarioLogueado = new Usuario("1", "4dff4ea340f0a823f15d3f4f01ab62eae0e5da579ccb851f8db9dfe84c58b2b37b89903a740e1ee172da793a6e79d560e5f7f9bd058a12a280433ed6fa46510a", true, true, true, true, true);
+        rellenaTabla();
+        vista.setVisible(true);
     }
 
     public DefaultTableModel modeloArticulos = new DefaultTableModel() {
@@ -110,8 +117,8 @@ public class ControladorJDVentas {
     }
 
     public void anadeArticulo() {
-        if (!compruebaDatoColumnaa()) {
-            Object[] obj = new Object[8];
+        if (!compruebaDatoColumna()) {
+            Object[] obj = new Object[8];          
             int linea = vista.getjTableArticulos().getSelectedRow();
             double precio = (Double) vista.getjTableArticulos().getValueAt(linea, 4);
             double impuesto = (Double) vista.getjTableArticulos().getValueAt(linea, 5);
@@ -123,7 +130,8 @@ public class ControladorJDVentas {
             obj[5] = (Double) precio;//precioUnidad
             obj[6] = (Double) precio;//precioTotal
             obj[7] = (Double) precio * impuesto;//precioImp
-            modeloVentas.insertRow(0, obj);
+            DefaultTableModel model = (DefaultTableModel) vista.getjTableVenta().getModel();
+            model.insertRow(0, obj);
             vista.getjTableVenta().getSelectionModel().setSelectionInterval(0, 0);
             establecerInformacion();
         } else {
@@ -132,7 +140,7 @@ public class ControladorJDVentas {
 
     }
 
-    public Boolean compruebaDatoColumnaa() {
+    public Boolean compruebaDatoColumna() {
         int datoSeleccionado = (Integer) vista.getjTableArticulos().getValueAt(vista.getjTableArticulos().getSelectedRow(), 0);
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
             if ((Integer) vista.getjTableVenta().getValueAt(i, 0) == datoSeleccionado) {
@@ -194,23 +202,23 @@ public class ControladorJDVentas {
                 Articulo a1 = new Articulo((Integer) vista.getjTableVenta().getValueAt(i, 0), null, null, 0, (Double) vista.getjTableVenta().getValueAt(i, 5), 0);
                 adao.creaLineasFactura(a1, (Integer) vista.getjTableVenta().getValueAt(i, 3));
             }
-
+            JOptionPane.showMessageDialog(vista, "Venta realizada correctamente.", "Información Venta", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Ha fallado al crear la factura,repita la acción", "Error en factura", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
-    public int totalNeto() {
-        int totalNeto = 0;
+    public double totalNeto() {
+        double totalNeto = 0;
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
             totalNeto += (Double) vista.getjTableVenta().getValueAt(i, 7);
         }
         return totalNeto;
     }
 
-    public int totalBruto() {
-        int totalNeto = 0;
+    public double totalBruto() {
+        double totalNeto = 0;
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
             totalNeto += (Double) vista.getjTableVenta().getValueAt(i, 6);
         }

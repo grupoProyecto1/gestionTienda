@@ -6,13 +6,10 @@
 package Controlador;
 
 import Modelo.Usuario;
-import Modelo.UsuarioDAO;
 import Vista.JDTablaHorario;
 import Vista.JDVentas;
-import Vista.JFGestionUsuarios;
 import Vista.JFMenu;
 import Vista.JFGestionClientes;
-
 
 /**
  *
@@ -28,9 +25,19 @@ public class ControladorJFMenu {
      *
      * @param vista
      */
-    public ControladorJFMenu(JFMenu vista) {
-        this.vista = vista;
-        UsuarioDAO udao = new UsuarioDAO();
+    public ControladorJFMenu(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
+
+    public void creaVista() {
+        this.vista = new JFMenu();
+        vista.setControlador(this);
+        if (usuarioLogueado.isAdmin()) {
+            vista.getjButtonUsuarios().setVisible(true);
+            vista.getjButtonClientes().setVisible(true);
+        }
+        vista.setVisible(true);
     }
 
     /**
@@ -38,45 +45,27 @@ public class ControladorJFMenu {
      * la ventana en la que nos encontramos
      */
     public void gestionUsuarios() {
-        new JFGestionUsuarios().setVisible(true);
+        ControladorJFGestionUsuarios cjfgu = new ControladorJFGestionUsuarios(usuarioLogueado);
         vista.dispose();
-    }
-    
-    public void gestionHorarios(){
-        new JDTablaHorario(vista, true, usuarioLogueado).setVisible(true);
     }
 
-    public void gestionVentas(){
-        JDVentas jdv = new JDVentas(vista, true);
-        jdv.getControlador().setUsuarioLogueado(usuarioLogueado);
-        jdv.setVisible(true);
+    public void gestionHorarios() {
+       ControladorJFGestionHorario cjfgh = new ControladorJFGestionHorario(usuarioLogueado);
+       vista.dispose();       
+    }
+
+    public void gestionVentas() {
+        ControladorJDVentas cjdv = new ControladorJDVentas(usuarioLogueado);
         vista.dispose();
     }
+
     /**
-     * Metodo para establecer el usuario que se ha logueado
-     *
-     * @param usuarioLogueado
-     */
-    public void setUsuarioLogueado(Usuario usuarioLogueado) {
-        this.usuarioLogueado = usuarioLogueado;
-        compruebaUsuario();
-    }
-    
-    /**
-     *Metedo que crea una ventana JFGestionCliente, la hace visible y elmina
-     * la ventana en la que nos encontramos
+     * Metedo que crea una ventana JFGestionCliente, la hace visible y elmina la
+     * ventana en la que nos encontramos
      */
     public void gestionCliente() {
-       new JFGestionClientes().setVisible(true);
+        ControladorJFGestionClientes cjfgc = new ControladorJFGestionClientes(usuarioLogueado);
         vista.dispose();
     }
 
-    public void compruebaUsuario(){
-        if(usuarioLogueado.isAdmin()){
-            vista.getjButtonUsuarios().setVisible(true);
-            vista.getjButtonClientes().setVisible(true);      
-        }
-        vista.repaint();
-    }
-    
 }

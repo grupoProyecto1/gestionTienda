@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.Usuario;
 import Vista.JFGestionClientes;
 import Vista.JDTablaUsuariosClientes;
 import Vista.JDAnadirCliente;
@@ -16,14 +17,22 @@ import Vista.JDAnadirCliente;
  */
 public class ControladorJFGestionClientes {
     private JFGestionClientes vista;
+    private Usuario usuarioLogueado;
     
     /**
      * Constructor con un parametro para establecer la vista
      *
      * @param vista
      */
-    public ControladorJFGestionClientes(JFGestionClientes vista) {
-        this.vista = vista;
+    public ControladorJFGestionClientes(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
+    
+    public void creaVista() {
+        this.vista = new JFGestionClientes();
+        vista.setControlador(this);
+        vista.setVisible(true);
     }
     
     /**

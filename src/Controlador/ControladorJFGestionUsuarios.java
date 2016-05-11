@@ -21,15 +21,20 @@ public class ControladorJFGestionUsuarios {
     private Usuario usuarioLogueado;
 
     /**
-     * Constructor con un parametro para establecer la vista
+     * Constructor con un parametro para establecer el usuarioLogueado
      *
-     * @param vista
+     * @param usuarioLogueado
      */
-    public ControladorJFGestionUsuarios(JFGestionUsuarios vista) {
-        this.vista = vista;
-        System.out.println(usuarioLogueado.getNombre());
+    public ControladorJFGestionUsuarios(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
     }
 
+    public void creaVista() {
+        this.vista = new JFGestionUsuarios();      
+        vista.setVisible(true);
+    }
+    
     /**
      * Metodo que crea una ventana para añadir el usuario
      */
@@ -60,7 +65,7 @@ public class ControladorJFGestionUsuarios {
     
     public void volver(){
         JFMenu jfm = new JFMenu();
-        jfm.getControlador().setUsuarioLogueado(usuarioLogueado);
+        jfm.getControlador();
         jfm.setVisible(true);
         vista.dispose();
     }

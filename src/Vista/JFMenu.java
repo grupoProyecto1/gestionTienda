@@ -20,7 +20,6 @@ public class JFMenu extends javax.swing.JFrame {
      */
     public JFMenu() { 
         initComponents();
-        controlador = new ControladorJFMenu(this);
         jButtonUsuarios.setVisible(false);
         jButtonClientes.setVisible(false);
     }
@@ -138,6 +137,10 @@ public class JFMenu extends javax.swing.JFrame {
         return controlador;
     }
 
+    public void setControlador(ControladorJFMenu controlador) {
+        this.controlador = controlador;
+    }
+    
     public JButton getjButtonClientes() {
         return jButtonClientes;
     }

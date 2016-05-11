@@ -21,7 +21,6 @@ public class JFGestionClientes extends javax.swing.JFrame {
      */
     public JFGestionClientes() {
         initComponents();
-        controlador = new ControladorJFGestionClientes(this);
     }
 
     /**
@@ -122,6 +121,12 @@ public class JFGestionClientes extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButtonVerClienteActionPerformed
 
+    public void setControlador(ControladorJFGestionClientes controlador) {
+        this.controlador = controlador;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
