@@ -41,8 +41,8 @@ public class ArticuloDAO {
     public void anadirArticulo(Articulo a) throws SQLException {
         Statement stm = con.createStatement();
         String consulta = "Insert into articulo "
-                + "(idarticulo,nombre,descripcion,stock,preciounitario,impuesto)"
-                + "values('" + a.getId() + "','" + a.getNombre() + "','" + a.getDescripcion() + "','" + a.getStock() + "','" + a.getPrecioUnitario() + "','" + a.getImpuesto() + "')";
+                + "(nombre,descripcion,stock,preciounitario,impuesto)"
+                + "values('"+ a.getNombre() + "','" + a.getDescripcion() + "','" + a.getStock() + "','" + a.getPrecioUnitario() + "','" + a.getImpuesto() + "')";
         stm.executeUpdate(consulta);
         stm.close();
     }
