@@ -25,10 +25,14 @@ public class ControladorJDTablaLineas {
     public ControladorJDTablaLineas(Factura f, Usuario usuarioLogueado) {
         this.f = f;
         this.usuarioLogueado = usuarioLogueado;
+        this.lineaFacturaDAO = new LineafacturaDAO();
+        creaVista();
     }
     public void creaVista(){
         this.vista = new JDTablaLineas(null, true);
         vista.setControlador(this);
+        creaTabla();
+        rellenaTabla();
         vista.setVisible(true);
     
 }
@@ -46,8 +50,9 @@ public class ControladorJDTablaLineas {
         }
     };
     public void creaTabla (){
-        miTableModel.addColumn("Linea");
-        miTableModel.addColumn("Id Factura");
+        miTableModel.addColumn("IdLinea");
+        miTableModel.addColumn("IdFactura");
+        miTableModel.addColumn("IdArticulo");
         miTableModel.addColumn("Precio de venta");
         miTableModel.addColumn("Cantidad");
         vista.setjTable1(miTableModel);

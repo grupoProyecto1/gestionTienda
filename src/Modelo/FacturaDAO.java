@@ -6,7 +6,6 @@
 package Modelo;
 
 
-import com.sun.xml.internal.fastinfoset.EncodingConstants;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

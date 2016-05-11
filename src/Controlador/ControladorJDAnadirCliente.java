@@ -31,26 +31,25 @@ public class ControladorJDAnadirCliente {
         creaVista();
     }
 
-    public void creaVista(){
+    public void creaVista() {
         this.vista = new JDAnadirCliente(null, true);
         vista.setControlador(this);
         vista.setVisible(true);
     }
-    
+
     /**
      * Metodo para comprobar si introdujo un cliente valido y si las contraseñas
      * son iguales, finalmente se agrega el cliente a la BD
      */
     public void comprobador() {
-        //if para comprobaciones de los componentes
-        ClienteDAO clienteDAO = new ClienteDAO();
-        Cliente u1 = new Cliente(vista.getjTextFieldDniCliente().getText(), vista.getjTextFieldNombreCliente().getText(), vista.getjTextFieldApellidosCliente().getText(), Integer.parseInt(vista.getjTextFieldTelefonoCliente().getText()), vista.getjTextFieldDireccionCliente().getText(), vista.getjTextFieldEmailCliente().getText());
         try {
+            ClienteDAO clienteDAO = new ClienteDAO();
+            Cliente u1 = new Cliente(vista.getjTextFieldDniCliente().getText(), vista.getjTextFieldNombreCliente().getText(), vista.getjTextFieldApellidosCliente().getText(), Integer.parseInt(vista.getjTextFieldTelefonoCliente().getText()), vista.getjTextFieldDireccionCliente().getText(), vista.getjTextFieldEmailCliente().getText());
             clienteDAO.anadirCliente(u1);
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Cliente añadido satisfactoriamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido", "Error al Crear el Cliente", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido, ingrese todos los campos correctamente", "Error al Crear el Cliente", JOptionPane.ERROR_MESSAGE);
         }
     }
 
