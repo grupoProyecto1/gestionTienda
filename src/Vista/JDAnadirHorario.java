@@ -4,28 +4,26 @@
  * and open the template in the editor.
  */
 package Vista;
-
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import Controlador.ControladorJFHorario;
+import Controlador.ControladorJDAnadirHorario;
 import javax.swing.JComboBox;
-
 /**
  *
  * @author Joaquin
  */
-public class JFHorario extends javax.swing.JFrame {
-    private ControladorJFHorario controlador;
-
+public class JDAnadirHorario extends javax.swing.JDialog {
+private ControladorJDAnadirHorario controlador;
     /**
-     * Creates new form JFHorario
+     * Creates new form JDHorario
      */
-    public JFHorario() {
+    public JDAnadirHorario(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        controlador = new ControladorJFHorario(this);
-        }
+        controlador = new ControladorJDAnadirHorario(this);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +39,7 @@ public class JFHorario extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButtonCga = new javax.swing.JButton();
+        jButtonAnadir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSpinnerHoraInicio = new javax.swing.JSpinner();
@@ -50,12 +48,12 @@ public class JFHorario extends javax.swing.JFrame {
         jSpinnerHoraFin = new javax.swing.JSpinner();
         jSpinnerMinFin = new javax.swing.JSpinner();
         jSpinnerSecFin = new javax.swing.JSpinner();
-        jComboBoxUsuario = new javax.swing.JComboBox<String>();
+        jComboBoxUsuario = new javax.swing.JComboBox<>();
         jDateChooserFechaFinal = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Fecha Inicio:");
 
@@ -70,10 +68,10 @@ public class JFHorario extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre del Usuario");
 
-        jButtonCga.setText("Bafdsa");
-        jButtonCga.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAnadir.setText("Añadir");
+        jButtonAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCgaActionPerformed(evt);
+                jButtonAnadirActionPerformed(evt);
             }
         });
 
@@ -93,7 +91,7 @@ public class JFHorario extends javax.swing.JFrame {
 
         jSpinnerSecFin.setModel(new javax.swing.SpinnerNumberModel(1, 0, 60, 1));
 
-        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Fecha de finalizacion");
 
@@ -137,29 +135,25 @@ public class JFHorario extends javax.swing.JFrame {
                     .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addComponent(jButtonVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAnadir)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 270, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonVolver)
-                                .addGap(31, 31, 31))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCga)
-                        .addGap(67, 67, 67)))
+                                .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 67, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
@@ -189,39 +183,19 @@ public class JFHorario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(jButtonCga)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonVolver)
-                        .addGap(72, 72, 72))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAnadir)
+                    .addComponent(jButtonVolver))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButtonCgaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCgaActionPerformed
-        // TODO add your handling code here:
-            
-        controlador.getFechaFin();
-        controlador.getFechaInicio();
-    }//GEN-LAST:event_jButtonCgaActionPerformed
-
-    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     public JComboBox<String> getjComboBoxUsuario() {
         return jComboBoxUsuario;
@@ -231,20 +205,20 @@ public class JFHorario extends javax.swing.JFrame {
         this.jComboBoxUsuario = jComboBoxUsuario;
     }
 
-    public JButton getjButton1() {
-        return jButtonCga;
-    }
-
-    public void setjButton1(JButton jButton1) {
-        this.jButtonCga = jButton1;
-    }
-
     public JDateChooser getjDateChooserFecha() {
         return jDateChooserFecha;
     }
 
     public void setjDateChooserFecha(JDateChooser jDateChooserFecha) {
         this.jDateChooserFecha = jDateChooserFecha;
+    }
+
+    public JDateChooser getjDateChooserFechaFinal() {
+        return jDateChooserFechaFinal;
+    }
+
+    public void setjDateChooserFechaFinal(JDateChooser jDateChooserFechaFinal) {
+        this.jDateChooserFechaFinal = jDateChooserFechaFinal;
     }
 
     public JSpinner getjSpinnerHoraFin() {
@@ -303,14 +277,20 @@ public class JFHorario extends javax.swing.JFrame {
         this.jTextField1 = jTextField1;
     }
 
-    public JDateChooser getjDateChooserFechaFinal() {
-        return jDateChooserFechaFinal;
-    }
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
-    public void setjDateChooserFechaFinal(JDateChooser jDateChooserFechaFinal) {
-        this.jDateChooserFechaFinal = jDateChooserFechaFinal;
-    }
+    private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
+        // TODO add your handling code here:
+System.out.println(getjComboBoxUsuario().getSelectedItem().toString());
+        controlador.anadirHorario();
+    }//GEN-LAST:event_jButtonAnadirActionPerformed
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,27 +309,34 @@ public class JFHorario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnadirHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnadirHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnadirHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDAnadirHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFHorario().setVisible(true);
+                JDAnadirHorario dialog = new JDAnadirHorario(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCga;
+    private javax.swing.JButton jButtonAnadir;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxUsuario;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;

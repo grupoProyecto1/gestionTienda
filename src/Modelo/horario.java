@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
-import Controlador.ControladorJFHorario;
+import Controlador.ControladorJDAnadirHorario;
 /**
  *
  * @author Joaquin

@@ -9,7 +9,8 @@ import Modelo.horarioDAO;
 import java.util.Calendar;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
-import Vista.JFHorario;
+import Modelo.horario;
+import Vista.JDAnadirHorario;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -17,9 +18,9 @@ import javax.swing.JOptionPane;
  *
  * @author Joaquin
  */
-public class ControladorJFHorario {
+public class ControladorJDAnadirHorario {
 
-    private JFHorario vista;
+    private JDAnadirHorario vista;
     private boolean editable = false;
     private horarioDAO horario = new horarioDAO();
     private Usuario usuarioLoguedo;
@@ -32,7 +33,7 @@ public class ControladorJFHorario {
         this.usuarioLoguedo = usuarioLoguedo;
     }
 
-    public ControladorJFHorario(JFHorario vista) {
+    public ControladorJDAnadirHorario(JDAnadirHorario vista) {
         this.vista = vista;
         combo();
     }
@@ -53,7 +54,7 @@ public class ControladorJFHorario {
 
     }
 
-    public void getFechaInicio() {
+    public String getFechaInicio() {
 
         int ano = vista.getjDateChooserFecha().getCalendar().get(Calendar.YEAR);
         int mes = vista.getjDateChooserFecha().getCalendar().get(Calendar.MONTH);
@@ -64,9 +65,10 @@ public class ControladorJFHorario {
 
         String fecha = ano + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos;
         System.out.println(fecha);
+        return fecha;
     }
 
-    public void getFechaFin() {
+    public String getFechaFin() {
         int ano = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.YEAR);
         int mes = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.MONTH);
         int dia = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.DAY_OF_MONTH);
@@ -75,7 +77,31 @@ public class ControladorJFHorario {
         int segundos = Integer.parseInt(vista.getjSpinnerSecFin().getValue().toString());
 
         String fecha = ano + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos;
-        System.out.println(fecha);
+        return fecha;
+    }
+    public void anadirHorario(){
+        horarioDAO horarioDAO = new horarioDAO();
+        horario h1 = new horario(getFechaInicio(), getFechaFin(),vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
+        try {
+            horarioDAO.anadirHorario(h1);
+            limpiaDatos();
+            JOptionPane.showMessageDialog(vista, "Horario añadido satisfactoriamente", "Horario creado", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(vista, "Error al añadir el horario", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void limpiaDatos(){
+        vista.getjComboBoxUsuario().setSelectedIndex(0);
+        vista.getjTextField1().setText("");
+        vista.getjDateChooserFecha().setCalendar(null);
+        vista.getjDateChooserFechaFinal().setCalendar(null);
+        vista.getjSpinnerHoraFin().setValue(new Integer(1));
+        vista.getjSpinnerHoraInicio().setValue(new Integer(1));
+        vista.getjSpinnerMinFin().setValue(new Integer(1));
+        vista.getjSpinnerMinsInicio().setValue(new Integer(1));
+        vista.getjSpinnerSecFin().setValue(new Integer(1));
+        vista.getjSpinnerSecInicio().setValue(new Integer(1));
+        
     }
 
 }
