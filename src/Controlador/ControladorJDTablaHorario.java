@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package Controlador;
 
 import javax.swing.table.DefaultTableModel;
 import Vista.JDTablaHorario;
@@ -20,32 +20,26 @@ import javax.swing.JOptionPane;
 public class ControladorJDTablaHorario {
 
     private JDTablaHorario vista;
-    private boolean editable = false;
     private horarioDAO horariodao = new horarioDAO();
     private Usuario usuarioLogueado;
 
-    public Usuario getUsuarioLogueado() {
-        return usuarioLogueado;
-    }
-
-    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+    public ControladorJDTablaHorario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }
 
-    public ControladorJDTablaHorario(JDTablaHorario vista) {
-        this.vista = vista;
+    public void creaVista() {
+        this.vista = new JDTablaHorario(null, true);
+        vista.setControlador(this);
+        if (usuarioLogueado.isAdmin()) {
+            vista.getjButtonBorrar().setVisible(true);
+        }
+        vista.setVisible(true);
     }
+
     public DefaultTableModel miTableModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
-            if (!editable) {
-                return false;
-            } else {
-                if (columnIndex == 0) {
-                    return false;
-                }
-                return true;
-            }
+            return false;
         }
 
         @Override
@@ -89,7 +83,7 @@ public class ControladorJDTablaHorario {
             try {
                 horariodao.cargaHorarios();
                 horariodao.cargaHorarioUsuario(usuarioLogueado);
-            } catch (SQLException e) {               
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(vista, "Error al cargar la lista de horarios en la tabla", "Error al cargar la lista", JOptionPane.ERROR_MESSAGE);
             }
             Object[] datos = new Object[3];
@@ -102,7 +96,8 @@ public class ControladorJDTablaHorario {
             }
         }
     }
-    public void eliminaHorario(){
+
+    public void eliminaHorario() {
         try {
             String fechaInicio = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 0).toString();
             String fechaFin = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 1).toString();
@@ -111,10 +106,14 @@ public class ControladorJDTablaHorario {
             horario h = new horario(fechaInicio, fechaFin, usuario, descripcion);
             horariodao.eliminarHorario(h);
             rellanaTabla();
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun horario", "Error de horario", JOptionPane.ERROR_MESSAGE);
-            
+
         }
+    }
+
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
     }
 
 }

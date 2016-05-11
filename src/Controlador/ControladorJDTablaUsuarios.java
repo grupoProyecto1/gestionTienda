@@ -7,7 +7,7 @@ package Controlador;
 
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
-import Vista.JDTablaUsuariosClientes;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,17 +18,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorJDTablaUsuarios {
 
-    private JDTablaUsuariosClientes vista;
+    private JDTablaUsuariosClientesProveedorArticulo vista;
     private boolean editable = false;
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private Usuario usuarioLogueado;
+    private int botones;
 
-    /**
-     * Constructor parametrizado que establece la vista
-     *
-     * @param vista
-     */
-    public ControladorJDTablaUsuarios(JDTablaUsuariosClientes vista) {
-        this.vista = vista;
+    public ControladorJDTablaUsuarios(Usuario usuarioLogueado, int botones) {
+        this.usuarioLogueado = usuarioLogueado;
+        this.botones = botones;
+        creaVista();
+    }
+
+    public void creaVista() {
+        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 0);
+        vista.setControladorUsuario(this);
+        creaTabla();
+        rellenaTabla();
+        if (botones == 2) {
+            editable = true;
+        }
+        vista.setVisible(true);
     }
 
     /**
@@ -84,7 +94,7 @@ public class ControladorJDTablaUsuarios {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Error al cargar la lista de usuarios en la tabla", "Error al cargar los usuarios", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         Object[] datos = new Object[6];
         for (Usuario u : usuarioDAO.getListaUsuarios()) {
             datos[0] = u.getNombre();
@@ -128,7 +138,7 @@ public class ControladorJDTablaUsuarios {
             Boolean vistaProductos = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
             Boolean vistaProveedores = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4);
             Boolean vistaUsuarios = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5);
-            Usuario u = new Usuario(nombre, null,admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
+            Usuario u = new Usuario(nombre, null, admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
             usuarioDAO.eliminarUsuarios(u);
             rellenaTabla();
         } catch (Exception e) {
@@ -148,7 +158,7 @@ public class ControladorJDTablaUsuarios {
             Boolean vistaProductos = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);
             Boolean vistaProveedores = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4);
             Boolean vistaUsuarios = (Boolean) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5);
-            Usuario u = new Usuario(nombre, null,admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
+            Usuario u = new Usuario(nombre, null, admin, vistaClientes, vistaProductos, vistaProveedores, vistaUsuarios);
             usuarioDAO.modificarUsuarios(u);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun usuario", "Error de usuario", JOptionPane.ERROR_MESSAGE);

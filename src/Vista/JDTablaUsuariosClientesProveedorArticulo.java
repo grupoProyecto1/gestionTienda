@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Mario
  */
-public class JDTablaUsuariosClientes extends javax.swing.JDialog {
+public class JDTablaUsuariosClientesProveedorArticulo extends javax.swing.JDialog {
 
     private ControladorJDTablaUsuarios controladorUsuario;
     private ControladorJDTablaClientes controladorClientes;
@@ -36,7 +36,7 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public JDTablaUsuariosClientes(java.awt.Frame parent, boolean modal) {
+    public JDTablaUsuariosClientesProveedorArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -48,27 +48,10 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
      * @param botones
      * @param ventana
      */
-    public JDTablaUsuariosClientes(int botones, int ventana) {
+    public JDTablaUsuariosClientesProveedorArticulo(int botones, int ventana) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ventana = ventana;
-        if (ventana == 0) {
-            controladorUsuario = new ControladorJDTablaUsuarios(this);
-            controladorUsuario.creaTabla();
-            controladorUsuario.rellenaTabla();
-        } else if (ventana == 1) {
-            controladorClientes = new ControladorJDTablaClientes(this);
-            controladorClientes.creaTabla();
-            controladorClientes.rellenaTabla();
-        } else if (ventana == 2) {
-            controladorProveedor = new ControladorJDTablaProveedor(this);
-            controladorProveedor.creaTabla();
-            controladorProveedor.rellenaTabla();
-        } else if (ventana == 3) {
-            controladorArticulo = new ControladorJDTablaArticulos(this);
-            controladorArticulo.creaTabla();
-            controladorArticulo.rellenaTabla();
-        }
 
         if (botones == 0) {
             jButtonBorrar.setVisible(false);
@@ -82,17 +65,6 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
             jButtonBorrar.setVisible(false);
             jButtonGuardar.setVisible(true);
             jButtonVolver.setVisible(true);
-            //para hacer no modificable la primera linea (ID)
-            if (ventana == 0) {
-                controladorUsuario.setEditable(true);
-            } else if (ventana == 1) {
-                controladorClientes.setEditable(true);
-            } else if (ventana == 2) {
-                controladorProveedor.setEditable(true);
-            } else if (ventana == 3) {
-                controladorArticulo.setEditable(true);
-            }
-
         }
 
     }
@@ -138,6 +110,22 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
      */
     public void setjTextFieldFiltrado(JTextField jTextFieldFiltrado) {
         this.jTextFieldFiltrado = jTextFieldFiltrado;
+    }
+
+    public void setControladorUsuario(ControladorJDTablaUsuarios controladorUsuario) {
+        this.controladorUsuario = controladorUsuario;
+    }
+
+    public void setControladorClientes(ControladorJDTablaClientes controladorClientes) {
+        this.controladorClientes = controladorClientes;
+    }
+
+    public void setControladorProveedor(ControladorJDTablaProveedor controladorProveedor) {
+        this.controladorProveedor = controladorProveedor;
+    }
+
+    public void setControladorArticulo(ControladorJDTablaArticulos controladorArticulo) {
+        this.controladorArticulo = controladorArticulo;
     }
 
     /**
@@ -253,8 +241,6 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
         jTextFieldFiltrado.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent e) {
-
-                //repaint();
                 filtro();
             }
         });
@@ -266,7 +252,6 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (ventana == 0) {
             controladorUsuario.eliminaUsuario();
-
         } else if (ventana == 1) {
             controladorClientes.eliminaCliente();
         } else if (ventana == 2) {
@@ -312,20 +297,21 @@ public class JDTablaUsuariosClientes extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDTablaUsuariosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDTablaUsuariosClientesProveedorArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDTablaUsuariosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDTablaUsuariosClientesProveedorArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDTablaUsuariosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDTablaUsuariosClientesProveedorArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDTablaUsuariosClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDTablaUsuariosClientesProveedorArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDTablaUsuariosClientes dialog = new JDTablaUsuariosClientes(new javax.swing.JFrame(), true);
+                JDTablaUsuariosClientesProveedorArticulo dialog = new JDTablaUsuariosClientesProveedorArticulo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

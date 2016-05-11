@@ -5,7 +5,6 @@
  */
 package Vista;
 
-
 import Controlador.ControladorJDAnadirCliente;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -18,15 +17,16 @@ import javax.swing.JTextField;
 public class JDAnadirCliente extends javax.swing.JDialog {
 
     private ControladorJDAnadirCliente controlador;
+
     /**
      * Creates new form VistaAnadirCliente
+     *
      * @param parent
      * @param modal
      */
     public JDAnadirCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controlador = new ControladorJDAnadirCliente(this);
     }
 
     /**
@@ -182,7 +182,7 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-      this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
@@ -190,59 +190,59 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jTextFieldNombreClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyPressed
-char c = evt.getKeyChar();
-        if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK)  {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldNombreClienteKeyPressed
 
     private void jTextFieldNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteKeyTyped
-  char c = evt.getKeyChar();
-        if(Character.isDigit(c) || !Character.isLetter(c)) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || !Character.isLetter(c)) {
             evt.consume();
-            
+
         }
     }//GEN-LAST:event_jTextFieldNombreClienteKeyTyped
 
     private void jTextFieldApellidosClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidosClienteKeyPressed
-char c = evt.getKeyChar();
-        if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK)  {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldApellidosClienteKeyPressed
 
     private void jTextFieldApellidosClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidosClienteKeyTyped
-char c = evt.getKeyChar();
-        if(Character.isDigit(c) || !Character.isLetter(c)) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) || !Character.isLetter(c)) {
             evt.consume();
-            
+
         }
     }//GEN-LAST:event_jTextFieldApellidosClienteKeyTyped
 
     private void jTextFieldDniClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteKeyTyped
-char c = evt.getKeyChar();
-       
-        if(jTextFieldDniCliente.getText().length()== 9) {
-           evt.consume();
-           JOptionPane.showMessageDialog(this, "El DNI no puede contener mas de 9 caracteres", "ERROR", JOptionPane.ERROR_MESSAGE);
-       }
-       if(jTextFieldDniCliente.getText().length() <8) {
-           
-           if(!Character.isDigit(c)) {
-               evt.consume();
-               
-           }
-       }
-       
-       if(jTextFieldDniCliente.getText().length() == 8) {
-           if(Character.isDigit(c) || !Character.isLetter(c)) {
-               evt.consume();
-           }
-           
-       }
-           
+        char c = evt.getKeyChar();
+
+        if (jTextFieldDniCliente.getText().length() == 9) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "El DNI no puede contener mas de 9 caracteres", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        if (jTextFieldDniCliente.getText().length() < 8) {
+
+            if (!Character.isDigit(c)) {
+                evt.consume();
+
+            }
+        }
+
+        if (jTextFieldDniCliente.getText().length() == 8) {
+            if (Character.isDigit(c) || !Character.isLetter(c)) {
+                evt.consume();
+            }
+
+        }
+
     }//GEN-LAST:event_jTextFieldDniClienteKeyTyped
 
     private void jTextFieldDniClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteActionPerformed
@@ -250,21 +250,21 @@ char c = evt.getKeyChar();
     }//GEN-LAST:event_jTextFieldDniClienteActionPerformed
 
     private void jTextFieldDniClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDniClienteKeyPressed
- char c = evt.getKeyChar();
-        
-        if(jTextFieldDniCliente.getText().length() <8) {
-           
-           if(!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
-               evt.consume();
-               JOptionPane.showMessageDialog(this, "Solo se pueden introducir caracteres numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
-           }
-       }
-        if(jTextFieldDniCliente.getText().length() == 8) {
-            
-            if(Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
-               evt.consume();
-               JOptionPane.showMessageDialog(this, "Debes escribir una letra", "ERROR", JOptionPane.ERROR_MESSAGE);
-           }
+        char c = evt.getKeyChar();
+
+        if (jTextFieldDniCliente.getText().length() < 8) {
+
+            if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Solo se pueden introducir caracteres numericos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if (jTextFieldDniCliente.getText().length() == 8) {
+
+            if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes escribir una letra", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldDniClienteKeyPressed
 
@@ -276,19 +276,19 @@ char c = evt.getKeyChar();
 
     private void jTextFieldTelefonoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyTyped
         char c = evt.getKeyChar();
-        if(!Character.isDigit(c)){
+        if (!Character.isDigit(c)) {
             evt.consume();
-            
+
         }
-        if(jTextFieldTelefonoCliente.getText().length()>8){
+        if (jTextFieldTelefonoCliente.getText().length() > 8) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Solo puede contener 9 digitos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldTelefonoClienteKeyTyped
 
     private void jTextFieldTelefonoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyPressed
- char c = evt.getKeyChar();
-        if(!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
             JOptionPane.showMessageDialog(this, "Solo se pueden introducir numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldTelefonoClienteKeyPressed
@@ -298,7 +298,8 @@ char c = evt.getKeyChar();
     }//GEN-LAST:event_jTextFieldTelefonoClienteActionPerformed
 
     /**
-     *Obtiene el texto del cuadro en el que se escriben los apellidos
+     * Obtiene el texto del cuadro en el que se escriben los apellidos
+     *
      * @return apellidosCliente
      */
     public JTextField getjTextFieldApellidosCliente() {
@@ -306,7 +307,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escriben los apellidos
+     * Modifica el valor del cuadro en el que se escriben los apellidos
+     *
      * @param jTextFieldApellidosCliente
      */
     public void setjTextFieldApellidosCliente(JTextField jTextFieldApellidosCliente) {
@@ -314,7 +316,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Obtiene el texto del cuadro en el que se escriben la direccion
+     * Obtiene el texto del cuadro en el que se escriben la direccion
+     *
      * @return direccionCliente
      */
     public JTextField getjTextFieldDireccionCliente() {
@@ -322,7 +325,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escribe la direccion
+     * Modifica el valor del cuadro en el que se escribe la direccion
+     *
      * @param jTextFieldDireccionCliente
      */
     public void setjTextFieldDireccionCliente(JTextField jTextFieldDireccionCliente) {
@@ -330,7 +334,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Obtiene el texto del cuadro en el que se escriben el dni
+     * Obtiene el texto del cuadro en el que se escriben el dni
+     *
      * @return dniCliente
      */
     public JTextField getjTextFieldDniCliente() {
@@ -338,7 +343,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escribe el dni
+     * Modifica el valor del cuadro en el que se escribe el dni
+     *
      * @param jTextFieldDniCliente
      */
     public void setjTextFieldDniCliente(JTextField jTextFieldDniCliente) {
@@ -346,7 +352,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Obtiene el texto del cuadro en el que se escribe el email
+     * Obtiene el texto del cuadro en el que se escribe el email
+     *
      * @return emailCliente
      */
     public JTextField getjTextFieldEmailCliente() {
@@ -354,7 +361,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escribe el email
+     * Modifica el valor del cuadro en el que se escribe el email
+     *
      * @param jTextFieldEmailCliente
      */
     public void setjTextFieldEmailCliente(JTextField jTextFieldEmailCliente) {
@@ -362,7 +370,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Obtiene el texto del cuadro en el que se escribe el nombre
+     * Obtiene el texto del cuadro en el que se escribe el nombre
+     *
      * @return nombreCliente
      */
     public JTextField getjTextFieldNombreCliente() {
@@ -370,7 +379,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escribe el nombre
+     * Modifica el valor del cuadro en el que se escribe el nombre
+     *
      * @param jTextFieldNombreCliente
      */
     public void setjTextFieldNombreCliente(JTextField jTextFieldNombreCliente) {
@@ -378,7 +388,8 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Obtiene el texto del cuadro en el que se escribe el telefono
+     * Obtiene el texto del cuadro en el que se escribe el telefono
+     *
      * @return telefonoCliente
      */
     public JTextField getjTextFieldTelefonoCliente() {
@@ -386,15 +397,18 @@ char c = evt.getKeyChar();
     }
 
     /**
-     *Modifica el valor del cuadro en el que se escribe el telefono
+     * Modifica el valor del cuadro en el que se escribe el telefono
+     *
      * @param jTextFieldTelefonoCliente
      */
     public void setjTextFieldTelefonoCliente(JTextField jTextFieldTelefonoCliente) {
         this.jTextFieldTelefonoCliente = jTextFieldTelefonoCliente;
     }
 
-    
-    
+    public void setControlador(ControladorJDAnadirCliente controlador) {
+        this.controlador = controlador;
+    }
+
     /**
      * @param args the command line arguments
      */

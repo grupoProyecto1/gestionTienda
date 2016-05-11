@@ -23,18 +23,18 @@ public class ControladorJDAnadirHorario {
     private JDAnadirHorario vista;
     private boolean editable = false;
     private horarioDAO horario = new horarioDAO();
-    private Usuario usuarioLoguedo;
+    private Usuario usuarioLogueado;
 
     public Usuario getUsuarioLoguedo() {
-        return usuarioLoguedo;
+        return usuarioLogueado;
     }
 
-    public void setUsuarioLoguedo(Usuario usuarioLoguedo) {
-        this.usuarioLoguedo = usuarioLoguedo;
+    public void setUsuarioLoguedo(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
     }
 
-    public ControladorJDAnadirHorario(JDAnadirHorario vista) {
-        this.vista = vista;
+    public ControladorJDAnadirHorario(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
         combo();
     }
 

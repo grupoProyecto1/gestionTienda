@@ -36,6 +36,7 @@ public class JFGestionClientes extends javax.swing.JFrame {
         jButtonBorraCliente = new javax.swing.JButton();
         jButtonModificaCliente = new javax.swing.JButton();
         jButtonVerCliente = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestión de Clientes");
@@ -68,6 +69,13 @@ public class JFGestionClientes extends javax.swing.JFrame {
             }
         });
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,9 +84,11 @@ public class JFGestionClientes extends javax.swing.JFrame {
                 .addGap(168, 168, 168)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonVerCliente)
                         .addComponent(jButtonAnadirCliente)
-                        .addComponent(jButtonBorraCliente))
+                        .addComponent(jButtonBorraCliente)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVolver)
+                            .addComponent(jButtonVerCliente)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jButtonModificaCliente)))
@@ -95,7 +105,9 @@ public class JFGestionClientes extends javax.swing.JFrame {
                 .addComponent(jButtonModificaCliente)
                 .addGap(40, 40, 40)
                 .addComponent(jButtonVerCliente)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButtonVolver)
+                .addContainerGap())
         );
 
         pack();
@@ -120,6 +132,11 @@ public class JFGestionClientes extends javax.swing.JFrame {
         controlador.verClientes();
        
     }//GEN-LAST:event_jButtonVerClienteActionPerformed
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+        controlador.volver();
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     public void setControlador(ControladorJFGestionClientes controlador) {
         this.controlador = controlador;
@@ -168,5 +185,6 @@ public class JFGestionClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorraCliente;
     private javax.swing.JButton jButtonModificaCliente;
     private javax.swing.JButton jButtonVerCliente;
+    private javax.swing.JButton jButtonVolver;
     // End of variables declaration//GEN-END:variables
 }

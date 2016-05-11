@@ -6,10 +6,7 @@
 package Controlador;
 
 import Modelo.Usuario;
-import Vista.JDAnadirUsuario;
-import Vista.JDTablaUsuariosClientes;
 import Vista.JFGestionUsuarios;
-import Vista.JFMenu;
 
 /**
  *
@@ -19,6 +16,7 @@ public class ControladorJFGestionUsuarios {
 
     private JFGestionUsuarios vista;
     private Usuario usuarioLogueado;
+    private ControladorJDTablaUsuarios cjdtu;
 
     /**
      * Constructor con un parametro para establecer el usuarioLogueado
@@ -31,7 +29,8 @@ public class ControladorJFGestionUsuarios {
     }
 
     public void creaVista() {
-        this.vista = new JFGestionUsuarios();      
+        this.vista = new JFGestionUsuarios();
+        vista.setControlador(this);
         vista.setVisible(true);
     }
     
@@ -39,34 +38,32 @@ public class ControladorJFGestionUsuarios {
      * Metodo que crea una ventana para añadir el usuario
      */
     public void anadirUsuario() {
-        new JDAnadirUsuario(vista, true).setVisible(true);
+        ControladorJDAnadirUsuario cjdau = new ControladorJDAnadirUsuario(usuarioLogueado);
     }
 
     /**
      * Metodo que crea una ventana para borrar usuarios
      */
     public void borrarUsuarios() {
-        new JDTablaUsuariosClientes(1, 0).setVisible(true);
+        cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 1);
     }
 
     /**
      * Metodo que crea una ventana para modificar los usuarios
      */
     public void modificarUsuarios() {
-        new JDTablaUsuariosClientes(2, 0).setVisible(true);
+        cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 2);
     }
 
     /**
      * Metodo que crea una ventana para ver los usuarios
      */
     public void verUsuarios() {
-        new JDTablaUsuariosClientes(0, 0).setVisible(true);
+        cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 0);
     }
     
     public void volver(){
-        JFMenu jfm = new JFMenu();
-        jfm.getControlador();
-        jfm.setVisible(true);
+        ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
         vista.dispose();
     }
 

@@ -7,7 +7,7 @@ package Controlador;
 
 import Modelo.Usuario;
 import Vista.JFGestionClientes;
-import Vista.JDTablaUsuariosClientes;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
 import Vista.JDAnadirCliente;
 
 
@@ -39,28 +39,33 @@ public class ControladorJFGestionClientes {
      * Metodo que crea una ventana para añadir el cliente
      */
     public void anadirCliente() {
-        new JDAnadirCliente(vista, true).setVisible(true);
+        ControladorJDAnadirCliente cjdac = new ControladorJDAnadirCliente(usuarioLogueado);
     }
     
     /**
      * Metodo que crea una ventana para borrar clientes
      */
     public void borrarClientes() {
-        new JDTablaUsuariosClientes(1, 1).setVisible(true);
+        ControladorJDTablaClientes cjdtc = new ControladorJDTablaClientes(usuarioLogueado, 1);
     }
     
     /**
      * Metodo que crea una ventana para modificar los clientes
      */
     public void modificarClientes() {
-        new JDTablaUsuariosClientes(2, 1).setVisible(true);
+        ControladorJDTablaClientes cjdtc = new ControladorJDTablaClientes(usuarioLogueado, 2);
     }
     
     /**
      * Metodo que crea una ventana para ver los clientes
      */
     public void verClientes() {
-        new JDTablaUsuariosClientes(0, 1).setVisible(true);
+        ControladorJDTablaClientes cjdtc = new ControladorJDTablaClientes(usuarioLogueado, 0);
+    }
+    
+    public void volver(){
+        ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
+        vista.dispose();
     }
     
 }

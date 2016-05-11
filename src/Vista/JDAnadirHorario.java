@@ -22,7 +22,6 @@ private ControladorJDAnadirHorario controlador;
     public JDAnadirHorario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controlador = new ControladorJDAnadirHorario(this);
     }
 
     /**

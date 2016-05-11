@@ -2,7 +2,8 @@ package Controlador;
 
 import Modelo.Articulo;
 import Modelo.ArticuloDAO;
-import Vista.JDTablaUsuariosClientes;
+import Modelo.Usuario;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,13 +13,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorJDTablaArticulos {
 
-    private JDTablaUsuariosClientes vista;
+    private JDTablaUsuariosClientesProveedorArticulo vista;
     private boolean editable = false;
-    private ArticuloDAO clienteDAO = new ArticuloDAO();
+    private ArticuloDAO articuloDAO = new ArticuloDAO();
+    private Usuario usuarioLogueado;
+    private int botones;
 
-    public ControladorJDTablaArticulos(JDTablaUsuariosClientes vista) {
-        this.vista = vista;
+    public ControladorJDTablaArticulos(Usuario usuarioLogueado,int botones) {
+        this.usuarioLogueado = usuarioLogueado;
+        this.botones = botones;
+        creaVista();
     }
+    
+    public void creaVista(){
+        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 3);
+        vista.setControladorArticulo(this);
+        if (botones == 2) {
+            editable = true;
+        }
+        creaTabla();
+        rellenaTabla();
+        vista.setVisible(true);
+    }
+    
     public DefaultTableModel miTableModel = new DefaultTableModel() {
 
         @Override
@@ -40,12 +57,12 @@ public class ControladorJDTablaArticulos {
     };
 
     public void creaTabla() {
-        miTableModel.addColumn("DNI");
+        miTableModel.addColumn("ID");
         miTableModel.addColumn("Nombre");
-        miTableModel.addColumn("Apellidos");
-        miTableModel.addColumn("Telefono");
-        miTableModel.addColumn("Direccion");
-        miTableModel.addColumn("Email");
+        miTableModel.addColumn("Descripcion");
+        miTableModel.addColumn("Stock");
+        miTableModel.addColumn("PrecioUnitario");
+        miTableModel.addColumn("Impuesto");
         vista.setjTableUsuariosClientes(miTableModel);
         vista.getjTableUsuariosClientes().setAutoCreateRowSorter(true);
 
@@ -57,9 +74,9 @@ public class ControladorJDTablaArticulos {
             i -= 1;
         }
         try {
-            clienteDAO.cargaArticulos();
+            articuloDAO.cargaArticulos();
             Object[] datos = new Object[6];
-            for (Articulo a : clienteDAO.getListaArticulos()) {
+            for (Articulo a : articuloDAO.getListaArticulos()) {
                 datos[0] = a.getId();
                 datos[1] = a.getNombre();
                 datos[2] = a.getDescripcion();
@@ -69,7 +86,7 @@ public class ControladorJDTablaArticulos {
                 miTableModel.addRow(datos);
             }
         } catch (Exception SQLException) {
-            JOptionPane.showMessageDialog(vista, "Probelam al cargar la Base de Datos", "Error en la Base de Datos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, "Problema al cargar la lista de la Base de Datos", "Error conexion Base de Datos", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -90,7 +107,7 @@ public class ControladorJDTablaArticulos {
             double precioUnitario = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString());
             double impuesto = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString());
             Articulo a = new Articulo(id, nombre, descripcion, stock, precioUnitario, impuesto);
-            clienteDAO.eliminarArticulo(a);
+            articuloDAO.eliminarArticulo(a);
             rellenaTabla();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun articulo", "Error de articulo", JOptionPane.ERROR_MESSAGE);
@@ -106,7 +123,7 @@ public class ControladorJDTablaArticulos {
             double precioUnitario = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString());
             double impuesto = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString());
             Articulo a = new Articulo(id, nombre, descripcion, stock, precioUnitario, impuesto);
-            clienteDAO.modificarArticulo(a);
+            articuloDAO.modificarArticulo(a);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun articulo", "Error de articulo", JOptionPane.ERROR_MESSAGE);

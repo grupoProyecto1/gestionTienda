@@ -2,7 +2,8 @@ package Controlador;
 
 import Modelo.Proveedor;
 import Modelo.ProveedorDAO;
-import Vista.JDTablaUsuariosClientes;
+import Modelo.Usuario;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,12 +14,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorJDTablaProveedor {
 
-    private JDTablaUsuariosClientes vista;
+    private JDTablaUsuariosClientesProveedorArticulo vista;
     private boolean editable = false;
     private ProveedorDAO proveedorDAO = new ProveedorDAO();
+    private Usuario usuarioLogueado;
+    private int botones;
 
-    public ControladorJDTablaProveedor(JDTablaUsuariosClientes vista) {
-        this.vista = vista;
+    public ControladorJDTablaProveedor(Usuario usuarioLogueado,int botones) {
+        this.usuarioLogueado = usuarioLogueado;
+        this.botones = botones;
+        creaVista();
+    }
+    
+    public void creaVista(){
+        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 2);
+        vista.setControladorProveedor(this);
+        if (botones == 2) {
+            editable = true;
+        }
+        creaTabla();
+        rellenaTabla();
+        vista.setVisible(true);
     }
     public DefaultTableModel miTableModel = new DefaultTableModel() {
 

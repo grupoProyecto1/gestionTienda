@@ -57,6 +57,11 @@ public class JFMenu extends javax.swing.JFrame {
         });
 
         jButtonProveedores.setText("Proveedores");
+        jButtonProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProveedoresActionPerformed(evt);
+            }
+        });
 
         jButtonVentas.setText("Ventas");
         jButtonVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +133,11 @@ public class JFMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         controlador.gestionVentas();
     }//GEN-LAST:event_jButtonVentasActionPerformed
+
+    private void jButtonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProveedoresActionPerformed
+        // TODO add your handling code here:
+        controlador.gestionProveedores();
+    }//GEN-LAST:event_jButtonProveedoresActionPerformed
 
     /**
      *Obtiene el controlador de la clase ControladorJFMenu

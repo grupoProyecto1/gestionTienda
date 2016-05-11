@@ -18,6 +18,7 @@ public class ControladorJFGestionHorario {
 
     private JFGestionHorario vista;
     private Usuario usuarioLogueado;
+    private ControladorJDTablaHorario cjdth;
 
     public ControladorJFGestionHorario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
@@ -31,15 +32,20 @@ public class ControladorJFGestionHorario {
     }
 
     public void anadirHorario() {
-        new JDAnadirHorario(vista, true).setVisible(true);
+        ControladorJDAnadirHorario cjdah = new ControladorJDAnadirHorario(usuarioLogueado);
     }
 
     public void borrarHorario() {
-        new JDTablaHorario(vista, true, 1);//muestra el boton de borrar
+        cjdth = new ControladorJDTablaHorario(usuarioLogueado);
     }
 
     public void verHorario() {
-        new JDTablaHorario(vista, true, 0);//no muestra botones A ESTO HAY QUE PASARLE EL USER PARA QUE FUNCIONE BIEN
+        cjdth = new ControladorJDTablaHorario(usuarioLogueado);
+    }
+    
+    public void volver(){
+        ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
+        vista.dispose();
     }
 
 }

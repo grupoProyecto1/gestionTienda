@@ -27,7 +27,6 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     public JDAnadirUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controlador = new ControladorJDAnadirUsuario(this);
     }
 
     /**
@@ -297,6 +296,12 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
         this.jTextFieldNombre = jTextFieldNombre;
     }
 
+    public void setControlador(ControladorJDAnadirUsuario controlador) {
+        this.controlador = controlador;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */

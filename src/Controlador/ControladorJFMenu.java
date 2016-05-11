@@ -56,7 +56,6 @@ public class ControladorJFMenu {
 
     public void gestionVentas() {
         ControladorJDVentas cjdv = new ControladorJDVentas(usuarioLogueado);
-        vista.dispose();
     }
 
     /**
@@ -65,6 +64,11 @@ public class ControladorJFMenu {
      */
     public void gestionCliente() {
         ControladorJFGestionClientes cjfgc = new ControladorJFGestionClientes(usuarioLogueado);
+        vista.dispose();
+    }
+   
+    public void gestionProveedores(){
+        ControladorJFGestionProveedores cjfgp = new ControladorJFGestionProveedores(usuarioLogueado);
         vista.dispose();
     }
 

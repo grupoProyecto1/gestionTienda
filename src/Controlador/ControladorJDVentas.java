@@ -101,7 +101,7 @@ public class ControladorJDVentas {
         try {
             articuloDAO.cargaArticulos();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(vista, "Ha fallado al cargar los articulos de la BD", "Error en conexion BD", WIDTH);
+            JOptionPane.showMessageDialog(vista, "Ha fallado al cargar los articulos de la BD", "Error en conexion BD", JOptionPane.ERROR_MESSAGE);
         }
         
         Object[] datos = new Object[6];

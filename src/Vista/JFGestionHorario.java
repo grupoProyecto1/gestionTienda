@@ -112,6 +112,7 @@ public class JFGestionHorario extends javax.swing.JFrame {
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         // TODO add your handling code here:
+        controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     public void setControlador(ControladorJFGestionHorario controlador) {

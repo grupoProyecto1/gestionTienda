@@ -190,6 +190,11 @@ public class JDVentas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de Ventas");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jTableArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -431,6 +436,10 @@ public class JDVentas extends javax.swing.JDialog {
     private void jTableVentaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableVentaPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableVentaPropertyChange
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

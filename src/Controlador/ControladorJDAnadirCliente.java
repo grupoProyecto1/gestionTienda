@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
+import Modelo.Usuario;
 import Vista.JDAnadirCliente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -18,16 +19,24 @@ import javax.swing.JOptionPane;
 public class ControladorJDAnadirCliente {
 
     private JDAnadirCliente vista;
+    private Usuario usuarioLogueado;
 
     /**
      * Constructor parametrizado con un objeto para establecer la vista
      *
      * @param vista
      */
-    public ControladorJDAnadirCliente(JDAnadirCliente vista) {
-        this.vista = vista;
+    public ControladorJDAnadirCliente(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
     }
 
+    public void creaVista(){
+        this.vista = new JDAnadirCliente(null, true);
+        vista.setControlador(this);
+        vista.setVisible(true);
+    }
+    
     /**
      * Metodo para comprobar si introdujo un cliente valido y si las contraseñas
      * son iguales, finalmente se agrega el cliente a la BD
@@ -41,7 +50,7 @@ public class ControladorJDAnadirCliente {
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Cliente añadido satisfactoriamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido", "Error al Crear el Usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido", "Error al Crear el Cliente", JOptionPane.ERROR_MESSAGE);
         }
     }
 

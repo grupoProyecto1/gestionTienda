@@ -8,7 +8,8 @@ package Vista;
 
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
-import controlador.ControladorJDTablaHorario;
+import Controlador.ControladorJDTablaHorario;
+import javax.swing.JButton;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -23,21 +24,11 @@ public class JDTablaHorario extends javax.swing.JDialog {
     /**
      * Creates new form JDTablaHorario
      */
-    public JDTablaHorario(java.awt.Frame parent, boolean modal, int botones) {
+    public JDTablaHorario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(this);
-        controlador = new ControladorJDTablaHorario(this);
-       
-        controlador.creaTabla();
-        controlador.rellanaTabla();
-        if(botones ==0){
-            jButtonVolver.setVisible(true);
-            jButtonBorrar.setVisible(false);
-        }else if(botones == 1){
-            jButtonBorrar.setVisible(true);
-            jButtonVolver.setVisible(true);
-        }
+        jButtonBorrar.setVisible(false);        
     }
     
     /**
@@ -141,7 +132,7 @@ public class JDTablaHorario extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDTablaHorario dialog = new JDTablaHorario(new javax.swing.JFrame(), true,0);
+                JDTablaHorario dialog = new JDTablaHorario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -161,6 +152,16 @@ public class JDTablaHorario extends javax.swing.JDialog {
         this.jTableHorario.setModel(tm);
     }
 
+    public JButton getjButtonBorrar() {
+        return jButtonBorrar;
+    }
+
+    public void setControlador(ControladorJDTablaHorario controlador) {
+        this.controlador = controlador;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonVolver;

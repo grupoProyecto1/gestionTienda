@@ -19,14 +19,22 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class ControladorJDAnadirUsuario {
 
     private JDAnadirUsuario vista;
+    private Usuario usuarioLogueado;
 
     /**
      * Constructor parametrizado con un objeto para establecer la vista
      *
      * @param vista
      */
-    public ControladorJDAnadirUsuario(JDAnadirUsuario vista) {
-        this.vista = vista;
+    public ControladorJDAnadirUsuario(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
+    
+    public void creaVista(){
+        this.vista = new JDAnadirUsuario(null, true);
+        vista.setControlador(this);
+        vista.setVisible(true);
     }
 
     /**
