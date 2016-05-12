@@ -34,6 +34,9 @@ public class ControladorJDAnadirHorario {
         creaVista();
     }
 
+    /**
+     *Metodo para crear la vista JDAnadirHorario
+     */
     public void creaVista() {
         this.vista = new JDAnadirHorario(null, true);
         vista.setControlador(this);

@@ -86,6 +86,12 @@ public class ArticuloDAO {
         stm.close();
     }
     
+    /**
+     *Actualiza el stock despues de una venta
+     * @param a
+     * @param cantidad
+     * @throws SQLException
+     */
     public void cambiaStock(Articulo a,int cantidad) throws SQLException{
         Statement stm = con.createStatement();
         String consulta = "update articulo set stock='" + (devuelveStock(a)-cantidad) +  "'where idarticulo = '" + a.getId() + "'";
@@ -93,6 +99,12 @@ public class ArticuloDAO {
         stm.close();
     }
     
+    /**
+     *Devuelve el Stock de un articulo
+     * @param a
+     * @return
+     * @throws SQLException
+     */
     public int devuelveStock(Articulo a)throws SQLException{
         Statement stm = con.createStatement();
         ResultSet rs = stm.executeQuery("select * from articulo where idarticulo ='"+a.getId()+"'");

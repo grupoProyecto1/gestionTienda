@@ -221,6 +221,11 @@ public class ControladorJDVentas {
         }
     }
     
+    /**
+     *Metodo para obtener el stock del articulo seleccionado en la tabla de venta
+     * @param id 
+     * @return
+     */
     public int obtieneStockArticulo(int id){
         int stock;
         for(int i = 0; i< vista.getjTableArticulos().getRowCount();i++){

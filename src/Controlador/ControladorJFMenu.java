@@ -118,6 +118,9 @@ public class ControladorJFMenu {
         vista.dispose();
     }
     
+    /**
+     *Metodo para cerrar la sesion
+     */
     public void cierraSesion(){
         new JFLogin().setVisible(true);
         vista.dispose();
