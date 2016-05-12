@@ -21,6 +21,7 @@ public class JDTablaLineas extends javax.swing.JDialog {
     public JDTablaLineas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

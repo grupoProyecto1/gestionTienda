@@ -24,6 +24,7 @@ public class JFLogin extends javax.swing.JFrame {
      */
     public JFLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controlador = new ControladorJFLogin(this);
     }
 

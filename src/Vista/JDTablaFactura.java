@@ -22,6 +22,7 @@ public class JDTablaFactura extends javax.swing.JDialog {
     public JDTablaFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public JTable getjTableFactura() {

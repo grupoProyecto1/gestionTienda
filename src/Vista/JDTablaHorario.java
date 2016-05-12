@@ -27,7 +27,7 @@ public class JDTablaHorario extends javax.swing.JDialog {
     public JDTablaHorario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(this);
+        this.setLocationRelativeTo(null);
         jButtonBorrar.setVisible(false);        
     }
     

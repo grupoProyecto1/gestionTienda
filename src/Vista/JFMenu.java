@@ -20,6 +20,7 @@ public class JFMenu extends javax.swing.JFrame {
      */
     public JFMenu() { 
         initComponents();
+        this.setLocationRelativeTo(null);
         jButtonUsuarios.setVisible(false);
         jButtonClientes.setVisible(false);
         jButtonProveedores.setVisible(false);
