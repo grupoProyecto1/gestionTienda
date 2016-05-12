@@ -138,7 +138,6 @@ public class ControladorJDTablaHorario {
             horariodao.eliminarHorario(h);
             rellanaTabla();
         } catch (SQLException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun horario", "Error de horario", JOptionPane.ERROR_MESSAGE);
 
         }
