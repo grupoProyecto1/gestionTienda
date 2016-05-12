@@ -22,6 +22,7 @@ public class JFGestionHorario extends javax.swing.JFrame {
     public JFGestionHorario() {
         initComponents();
         jButtonBorrarHorario.setVisible(false);
+        jButtonAnadirHorario.setVisible(false);
     }
 
     /**
