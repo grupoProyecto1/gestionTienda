@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mario
  */
 public class ControladorJDVentas {
-    
+
     private JDVentas vista;
     private Usuario usuarioLogueado;
     private ArticuloDAO articuloDAO = new ArticuloDAO();
@@ -55,12 +55,12 @@ public class ControladorJDVentas {
      * getColumnClas para poder utilizar checkbox
      */
     public DefaultTableModel modeloArticulos = new DefaultTableModel() {
-        
+
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return false;
         }
-        
+
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
@@ -73,12 +73,12 @@ public class ControladorJDVentas {
      * getColumnClas para poder utilizar checkbox
      */
     public DefaultTableModel modeloVentas = new DefaultTableModel() {
-        
+
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return false;
         }
-        
+
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
@@ -129,7 +129,7 @@ public class ControladorJDVentas {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Ha fallado al cargar los articulos de la BD", "Error en conexion BD", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         Object[] datos = new Object[6];
         for (Articulo a : articuloDAO.getListaArticulos()) {
             datos[0] = a.getId();
@@ -166,7 +166,7 @@ public class ControladorJDVentas {
         } else {
             JOptionPane.showMessageDialog(vista, "El articulo ya se añadio a la tabla de venta", "Error al volver agregar un articulo", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }
 
     /**
@@ -199,19 +199,38 @@ public class ControladorJDVentas {
      * ventas
      */
     public void cambiaCantidad() {
-        //Cojo articulos debido a que tu agregas y acto seguido lo cambias sin tocar la venta.
-        if (vista.getjTableArticulos().isRowSelected(WIDTH)) {
+        try {
+            int id = (Integer) vista.getjTableVenta().getValueAt(vista.getjTableVenta().getSelectedRow(), 0);
+            int stockMaximo = obtieneStockArticulo(id);
             int fila = vista.getjTableVenta().getSelectedRow();
             int cantidad = (Integer) vista.getjSpinnerCantidad().getValue();
             double impuesto = (Double) vista.getjTableVenta().getValueAt(fila, 4);
             double precioUnid = (Double) vista.getjTableVenta().getValueAt(fila, 5);
             double precioTotal = cantidad * precioUnid;
-            vista.getjTableVenta().setValueAt(cantidad, vista.getjTableVenta().getSelectedRow(), 3);
-            vista.getjTableVenta().setValueAt(precioTotal, fila, 6);
-            vista.getjTableVenta().setValueAt(precioTotal * impuesto, fila, 7);
-        } else {
+            if (cantidad <= stockMaximo) {
+                vista.getjTableVenta().setValueAt(cantidad, vista.getjTableVenta().getSelectedRow(), 3);
+                vista.getjTableVenta().setValueAt(precioTotal, fila, 6);
+                vista.getjTableVenta().setValueAt(precioTotal * impuesto, fila, 7);
+            } else {
+                vista.getjSpinnerCantidad().setValue(stockMaximo);
+                JOptionPane.showMessageDialog(vista, "No hay stock sufuciente del articulo", "Stock Insuficiente", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(vista, "Debes seleccionar un elemento de la tabla ventas", "Error al variar la cantidad", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    public int obtieneStockArticulo(int id){
+        int stock;
+        for(int i = 0; i< vista.getjTableArticulos().getRowCount();i++){
+            int idArticulo = (Integer) vista.getjTableArticulos().getValueAt(i, 0);
+            if(idArticulo == id){
+                stock = (Integer) vista.getjTableArticulos().getValueAt(i, 3);
+                return stock;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -255,7 +274,7 @@ public class ControladorJDVentas {
                 int cantidad = (Integer) vista.getjTableVenta().getValueAt(i, 3);
                 Articulo a1 = new Articulo((Integer) vista.getjTableVenta().getValueAt(i, 0), null, null, 0, (Double) vista.getjTableVenta().getValueAt(i, 5), 0);
                 ldao.creaLineasFactura(a1, cantidad);
-                adao.cambiaStock(a1, cantidad );
+                adao.cambiaStock(a1, cantidad);
             }
             limpiaTabla();
             rellenaTabla();
@@ -301,5 +320,5 @@ public class ControladorJDVentas {
         }
         return totalNeto;
     }
-    
+
 }
