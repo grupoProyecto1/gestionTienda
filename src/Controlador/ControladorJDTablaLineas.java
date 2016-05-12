@@ -79,7 +79,7 @@ public class ControladorJDTablaLineas {
         miTableModel.addColumn("IdArticulo");
         miTableModel.addColumn("Precio de venta");
         miTableModel.addColumn("Cantidad");
-        vista.setjTable1(miTableModel);
+        vista.setjTableLineas(miTableModel);
     }
 
     /**
@@ -87,7 +87,7 @@ public class ControladorJDTablaLineas {
      * datos
      */
     public void rellenaTabla() {
-        for (int i = 0; i < vista.getjTable1().getRowCount(); i++) {
+        for (int i = 0; i < vista.getjTableLineas().getRowCount(); i++) {
             miTableModel.removeRow(i);
             i -= 1;
         }

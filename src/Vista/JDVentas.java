@@ -28,6 +28,7 @@ public class JDVentas extends javax.swing.JDialog {
 
     /**
      * Creates new form JDVentas
+     *
      * @param parent
      * @param modal
      */
@@ -37,110 +38,225 @@ public class JDVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Devuelve el objeto de jbutton vender
+     *
+     * @return
+     */
     public JButton getjButtonVender() {
         return jButtonVender;
     }
 
-    public void setjButtonVender(JButton jButtonVender) {
-        this.jButtonVender = jButtonVender;
-    }
-
+    /**
+     * Devuelve el objeto combobox filtrado
+     *
+     * @return
+     */
     public JComboBox getjComboBoxFiltrado() {
         return jComboBoxFiltrado;
     }
 
+    /**
+     * Establece el objeto combobox filtrado
+     *
+     * @param jComboBoxFiltrado
+     */
     public void setjComboBoxFiltrado(JComboBox jComboBoxFiltrado) {
         this.jComboBoxFiltrado = jComboBoxFiltrado;
     }
 
+    /**
+     * Devuelve objeto spinner cantidad
+     *
+     * @return
+     */
     public JSpinner getjSpinnerCantidad() {
         return jSpinnerCantidad;
     }
 
+    /**
+     * Establece el spinner cantidad
+     *
+     * @param jSpinnerCantidad
+     */
     public void setjSpinnerCantidad(JSpinner jSpinnerCantidad) {
         this.jSpinnerCantidad = jSpinnerCantidad;
     }
 
+    /**
+     * Devuelve el objeto jtable de articulos
+     *
+     * @return
+     */
     public JTable getjTableArticulos() {
         return jTableArticulos;
     }
 
+    /**
+     * Establece el jtable articulos al modelo pasado por parametro
+     *
+     * @param tm tablemodel
+     */
     public void setjTableArticulos(TableModel tm) {
         this.jTableArticulos.setModel(tm);
     }
 
+    /**
+     * Devuelve el objeto jtable venta
+     *
+     * @return
+     */
     public JTable getjTableVenta() {
         return jTableVenta;
     }
 
+    /**
+     * Establece el modelo de jtable venta
+     *
+     * @param tm tablemodel
+     */
     public void setjTableVenta(TableModel tm) {
         this.jTableVenta.setModel(tm);
     }
 
+    /**
+     * Devuelve el jtextfield descripcion
+     *
+     * @return
+     */
     public JTextField getjTextFieldDescripcion() {
         return jTextFieldDescripcion;
     }
 
+    /**
+     * Establece el jtextfield descripcion
+     *
+     * @param jTextFieldDescripcion
+     */
     public void setjTextFieldDescripcion(JTextField jTextFieldDescripcion) {
         this.jTextFieldDescripcion = jTextFieldDescripcion;
     }
 
+    /**
+     * Devuelve el jtextfield filtrado
+     *
+     * @return
+     */
     public JTextField getjTextFieldFiltrado() {
         return jTextFieldFiltrado;
     }
 
+    /**
+     * Establece el jtextfield filtrado
+     *
+     * @param jTextFieldFiltrado
+     */
     public void setjTextFieldFiltrado(JTextField jTextFieldFiltrado) {
         this.jTextFieldFiltrado = jTextFieldFiltrado;
     }
 
+    /**
+     * Devuelve el jtextfield dni
+     *
+     * @return
+     */
     public JTextField getjTextFieldDni() {
         return jTextFieldDni;
     }
 
+    /**
+     * Establece el jtextfield dni
+     *
+     * @param jTextFieldDni
+     */
     public void setjTextFieldDni(JTextField jTextFieldDni) {
         this.jTextFieldDni = jTextFieldDni;
     }
 
+    /**
+     * Devuelve el jtextfield id
+     *
+     * @return
+     */
     public JTextField getjTextFieldId() {
         return jTextFieldId;
     }
 
+    /**
+     * Establece el jtextfield id
+     *
+     * @param jTextFieldId
+     */
     public void setjTextFieldId(JTextField jTextFieldId) {
         this.jTextFieldId = jTextFieldId;
     }
 
+    /**
+     * Devuelve el jtextfield impuesto
+     *
+     * @return
+     */
     public JTextField getjTextFieldImpuesto() {
         return jTextFieldImpuesto;
     }
 
+    /**
+     * Establece el jtextfield impuesto
+     *
+     * @param jTextFieldImpuesto
+     */
     public void setjTextFieldImpuesto(JTextField jTextFieldImpuesto) {
         this.jTextFieldImpuesto = jTextFieldImpuesto;
     }
 
+    /**
+     * Devuelve el jtextfield nombre
+     *
+     * @return
+     */
     public JTextField getjTextFieldNombre() {
         return jTextFieldNombre;
     }
 
+    /**
+     * Establece el jtextfield nombre
+     *
+     * @param jTextFieldNombre
+     */
     public void setjTextFieldNombre(JTextField jTextFieldNombre) {
         this.jTextFieldNombre = jTextFieldNombre;
     }
 
+    /**
+     * Devuelve el jtextfield precio
+     *
+     * @return
+     */
     public JTextField getjTextFieldPrecio() {
         return jTextFieldPrecio;
     }
 
+    /**
+     * Establece el jtextfield precio
+     *
+     * @param jTextFieldPrecio
+     */
     public void setjTextFieldPrecio(JTextField jTextFieldPrecio) {
         this.jTextFieldPrecio = jTextFieldPrecio;
     }
 
-    public ControladorJDVentas getControlador() {
-        return controlador;
-    }
-
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDVentas controlador) {
         this.controlador = controlador;
     }
 
+    /**
+     * Metodo para filtrar segun la columna seleccionada
+     */
     public void filtro() {
         int columnaABuscar = 0;
         if (jComboBoxFiltrado.getSelectedItem() == "ID") {

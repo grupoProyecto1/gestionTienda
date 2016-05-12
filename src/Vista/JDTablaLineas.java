@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Controlador.ControladorJDTablaLineas;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -13,10 +14,14 @@ import javax.swing.table.TableModel;
  * @author Joaquin
  */
 public class JDTablaLineas extends javax.swing.JDialog {
+
     private ControladorJDTablaLineas controlador;
 
     /**
      * Creates new form JDTablaLineas
+     *
+     * @param parent
+     * @param modal
      */
     public JDTablaLineas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -34,13 +39,13 @@ public class JDTablaLineas extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableLineas = new javax.swing.JTable();
         jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Factura Detallada");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLineas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +56,7 @@ public class JDTablaLineas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableLineas);
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -88,18 +93,31 @@ public class JDTablaLineas extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
-  
-
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDTablaLineas controlador) {
         this.controlador = controlador;
     }
 
-    public JTable getjTable1() {
-        return jTable1;
+    /**
+     * Devuelve el jtable lineas
+     *
+     * @return
+     */
+    public JTable getjTableLineas() {
+        return jTableLineas;
     }
 
-    public void setjTable1(TableModel tm) {
-        this.jTable1.setModel(tm);
+    /**
+     * Establece el modelo del jtable lineas
+     *
+     * @param tm table model
+     */
+    public void setjTableLineas(TableModel tm) {
+        this.jTableLineas.setModel(tm);
     }
 
     /**
@@ -148,6 +166,6 @@ public class JDTablaLineas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableLineas;
     // End of variables declaration//GEN-END:variables
 }

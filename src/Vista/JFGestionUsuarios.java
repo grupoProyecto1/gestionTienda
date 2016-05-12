@@ -14,6 +14,7 @@ import Controlador.ControladorJFGestionUsuarios;
 public class JFGestionUsuarios extends javax.swing.JFrame {
 
     private ControladorJFGestionUsuarios controlador;
+
     /**
      * Creates new form JFGestionUsuarios
      */
@@ -141,10 +142,15 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJFGestionUsuarios controlador) {
         this.controlador = controlador;
     }
-    
+
     /**
      * @param args the command line arguments
      */

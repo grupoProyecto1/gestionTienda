@@ -129,20 +129,33 @@ public class JFGestionHorario extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    /**
+     * Estable el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJFGestionHorario controlador) {
         this.controlador = controlador;
     }
 
+    /**
+     * Devuelve el jbuton horario
+     *
+     * @return
+     */
     public JButton getjButtonBorrarHorario() {
         return jButtonBorrarHorario;
     }
 
+    /**
+     * Devuelve el jbutton horario
+     *
+     * @return
+     */
     public JButton getjButtonAnadirHorario() {
         return jButtonAnadirHorario;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */

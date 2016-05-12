@@ -7,7 +7,6 @@ package Vista;
 
 import Controlador.ControladorJFGestionClientes;
 
-
 /**
  *
  * @author Mario
@@ -15,9 +14,9 @@ import Controlador.ControladorJFGestionClientes;
 public class JFGestionClientes extends javax.swing.JFrame {
 
     private ControladorJFGestionClientes controlador;
-    
+
     /**
-     *Constructor parametrizado que inicializa los componentes
+     * Constructor parametrizado que inicializa los componentes
      */
     public JFGestionClientes() {
         initComponents();
@@ -121,22 +120,22 @@ public class JFGestionClientes extends javax.swing.JFrame {
 
     private void jButtonAnadirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirClienteActionPerformed
         controlador.anadirCliente();
-        
+
     }//GEN-LAST:event_jButtonAnadirClienteActionPerformed
 
     private void jButtonBorraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorraClienteActionPerformed
         controlador.borrarClientes();
-        
+
     }//GEN-LAST:event_jButtonBorraClienteActionPerformed
 
     private void jButtonModificaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificaClienteActionPerformed
-       controlador.modificarClientes();
-        
+        controlador.modificarClientes();
+
     }//GEN-LAST:event_jButtonModificaClienteActionPerformed
 
     private void jButtonVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerClienteActionPerformed
         controlador.verClientes();
-       
+
     }//GEN-LAST:event_jButtonVerClienteActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
@@ -144,12 +143,15 @@ public class JFGestionClientes extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJFGestionClientes controlador) {
         this.controlador = controlador;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */

@@ -15,10 +15,11 @@ import javax.swing.JButton;
 public class JFMenu extends javax.swing.JFrame {
 
     private ControladorJFMenu controlador;
+
     /**
      * Creates new form JFMenu
      */
-    public JFMenu() { 
+    public JFMenu() {
         initComponents();
         this.setLocationRelativeTo(null);
         jButtonUsuarios.setVisible(false);
@@ -162,12 +163,12 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUsuariosActionPerformed
 
     private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
-       controlador.gestionCliente();
+        controlador.gestionCliente();
     }//GEN-LAST:event_jButtonClientesActionPerformed
 
     private void jButtonHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHorariosActionPerformed
         // TODO add your handling code here:
-        controlador .gestionHorarios();
+        controlador.gestionHorarios();
     }//GEN-LAST:event_jButtonHorariosActionPerformed
 
     private void jButtonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVentasActionPerformed
@@ -195,48 +196,78 @@ public class JFMenu extends javax.swing.JFrame {
         controlador.cierraSesion();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
-    
-    
     /**
-     *Obtiene el controlador de la clase ControladorJFMenu
-     * @return controlador
+     * Establece el controlador de la vista
+     *
+     * @param controlador
      */
-    public ControladorJFMenu getControlador() {
-        return controlador;
-    }
-
     public void setControlador(ControladorJFMenu controlador) {
         this.controlador = controlador;
     }
-    
+
+    /**
+     * Devuelve el jbutton clientes
+     *
+     * @return
+     */
     public JButton getjButtonClientes() {
         return jButtonClientes;
     }
 
+    /**
+     * Devuelve el jbutton horarios
+     *
+     * @return
+     */
     public JButton getjButtonHorarios() {
         return jButtonHorarios;
     }
 
+    /**
+     * Devuelve el jbutton proveedores
+     *
+     * @return
+     */
     public JButton getjButtonProveedores() {
         return jButtonProveedores;
     }
 
+    /**
+     * Devuelve el jbutton usuarios
+     *
+     * @return
+     */
     public JButton getjButtonUsuarios() {
         return jButtonUsuarios;
     }
 
+    /**
+     * Devuelve el jbutton ventas
+     *
+     * @return
+     */
     public JButton getjButtonVentas() {
         return jButtonVentas;
     }
 
+    /**
+     * Devuelve el jbutton facturas
+     *
+     * @return
+     */
     public JButton getjButtonFacturas() {
         return jButtonFacturas;
     }
 
+    /**
+     * Devuelve el jbutton articulos
+     *
+     * @return
+     */
     public JButton getjButtonArticulos() {
         return jButtonArticulos;
-    }  
-    
+    }
+
     /**
      * @param args the command line arguments
      */

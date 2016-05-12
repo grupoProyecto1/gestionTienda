@@ -195,7 +195,8 @@ public class JFLogin extends javax.swing.JFrame {
     }
 
     /**
-     *Obtiene la contraseña del campo contraseña
+     * Obtiene la contraseña del campo contraseña
+     *
      * @return contraseña
      */
     public JPasswordField getjPasswordFieldContrasena() {
@@ -203,7 +204,8 @@ public class JFLogin extends javax.swing.JFrame {
     }
 
     /**
-     *Modifica la contraseña
+     * Modifica la contraseña
+     *
      * @param jPasswordFieldContrasena
      */
     public void setjPasswordFieldContrasena(JPasswordField jPasswordFieldContrasena) {
@@ -211,7 +213,8 @@ public class JFLogin extends javax.swing.JFrame {
     }
 
     /**
-     *Obtiene el usuario
+     * Obtiene el usuario
+     *
      * @return usuario
      */
     public JTextField getjTextFieldUsuario() {
@@ -219,7 +222,8 @@ public class JFLogin extends javax.swing.JFrame {
     }
 
     /**
-     *Modifica el usuario
+     * Modifica el usuario
+     *
      * @param jTextFieldUsuario
      */
     public void setjTextFieldUsuario(JTextField jTextFieldUsuario) {

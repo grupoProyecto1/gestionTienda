@@ -14,6 +14,7 @@ import Controlador.ControladorJFGestionProveedores;
 public class JFGestionProveedores extends javax.swing.JFrame {
 
     private ControladorJFGestionProveedores controlador;
+
     /**
      * Creates new form JFGestionProveedores
      */
@@ -141,10 +142,15 @@ public class JFGestionProveedores extends javax.swing.JFrame {
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJFGestionProveedores controlador) {
         this.controlador = controlador;
     }
-    
+
     /**
      * @param args the command line arguments
      */

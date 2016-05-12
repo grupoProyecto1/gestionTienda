@@ -71,7 +71,7 @@ public class JDTablaUsuariosClientesProveedorArticulo extends javax.swing.JDialo
     }
 
     /**
-     *
+     * Metodo para filtrar el contenido de la tabla
      */
     public void filtro() {
         trsfiltro.setRowFilter(RowFilter.regexFilter(jTextFieldFiltrado.getText(), 0));
@@ -113,18 +113,38 @@ public class JDTablaUsuariosClientesProveedorArticulo extends javax.swing.JDialo
         this.jTextFieldFiltrado = jTextFieldFiltrado;
     }
 
+    /**
+     * Establece el controlador para la vista con usuario
+     *
+     * @param controladorUsuario
+     */
     public void setControladorUsuario(ControladorJDTablaUsuarios controladorUsuario) {
         this.controladorUsuario = controladorUsuario;
     }
 
+    /**
+     * Establece el controlador para la vista con clientes
+     *
+     * @param controladorClientes
+     */
     public void setControladorClientes(ControladorJDTablaClientes controladorClientes) {
         this.controladorClientes = controladorClientes;
     }
 
+    /**
+     * Establece el controlador para la vista proveedor
+     *
+     * @param controladorProveedor
+     */
     public void setControladorProveedor(ControladorJDTablaProveedor controladorProveedor) {
         this.controladorProveedor = controladorProveedor;
     }
 
+    /**
+     * Establece el controlador para la vista articulo
+     *
+     * @param controladorArticulo
+     */
     public void setControladorArticulo(ControladorJDTablaArticulos controladorArticulo) {
         this.controladorArticulo = controladorArticulo;
     }
