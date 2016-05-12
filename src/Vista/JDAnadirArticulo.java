@@ -56,6 +56,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         jButtonAceptar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Añadir Articulo");
@@ -146,6 +148,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane1.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,7 +171,9 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
                             .addComponent(jTextFieldStockArticulo)
                             .addComponent(jTextFieldPrecioUnitarioArticulo)
                             .addComponent(jTextFieldImpuestoArticulo))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,7 +188,9 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldDescripcionArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldStockArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldStockArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldPrecioUnitarioArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -481,10 +489,12 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldDescripcionArticulo;
     private javax.swing.JTextField jTextFieldImpuestoArticulo;
     private javax.swing.JTextField jTextFieldNombreArticulo1;
     private javax.swing.JTextField jTextFieldPrecioUnitarioArticulo;
     private javax.swing.JTextField jTextFieldStockArticulo;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
