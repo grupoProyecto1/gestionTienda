@@ -43,6 +43,7 @@ public class JFMenu extends javax.swing.JFrame {
         jButtonHorarios = new javax.swing.JButton();
         jButtonFacturas = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButtonArticulos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestión");
@@ -94,6 +95,13 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Menu Principal");
 
+        jButtonArticulos.setText("Articulos");
+        jButtonArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonArticulosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,6 +110,7 @@ public class JFMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButtonUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,7 +137,9 @@ public class JFMenu extends javax.swing.JFrame {
                 .addComponent(jButtonHorarios)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonFacturas)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonArticulos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,6 +173,11 @@ public class JFMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         controlador.gestionFacturas();
     }//GEN-LAST:event_jButtonFacturasActionPerformed
+
+    private void jButtonArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArticulosActionPerformed
+        // TODO add your handling code here:
+        controlador.gestionArticulos();
+    }//GEN-LAST:event_jButtonArticulosActionPerformed
 
     /**
      *Obtiene el controlador de la clase ControladorJFMenu
@@ -239,6 +255,7 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonArticulos;
     private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonFacturas;
     private javax.swing.JButton jButtonHorarios;

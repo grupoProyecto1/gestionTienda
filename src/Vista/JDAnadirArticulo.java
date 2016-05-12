@@ -56,7 +56,6 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         jButtonAceptar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Añadir Articulo");
@@ -134,10 +133,18 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         });
 
         jButtonBorrar.setText("Borrar Todo");
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setText("Cancelar");
-
-        jLabel2.setText("Borra esto :)");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,18 +172,12 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addComponent(jTextFieldNombreArticulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldDescripcionArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,6 +330,16 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         controlador.anadirArticulo();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        // TODO add your handling code here:
+        controlador.limpiaDatos();
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
     /**
      * Devuelve el objeto jtextfield descripcion
      *
@@ -467,7 +478,6 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextFieldDescripcionArticulo;
     private javax.swing.JTextField jTextFieldImpuestoArticulo;
     private javax.swing.JTextField jTextFieldNombreArticulo1;

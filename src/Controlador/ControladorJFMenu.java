@@ -107,4 +107,13 @@ public class ControladorJFMenu {
     public void gestionFacturas() {
         ControladorJDTablaFactura cjdtf = new ControladorJDTablaFactura(usuarioLogueado);
     }
+    
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion articulos
+     */
+    public void gestionArticulos() {
+        ControladorJFGestionArticulos cjfga = new ControladorJFGestionArticulos(usuarioLogueado);
+        vista.dispose();
+    }
 }

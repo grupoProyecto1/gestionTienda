@@ -26,9 +26,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jLabel7" alignment="0" pref="294" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButtonArticulos" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
                   <Component id="jButtonFacturas" min="-2" pref="103" max="-2" attributes="0"/>
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jButtonUsuarios" max="32767" attributes="0"/>
@@ -59,7 +60,9 @@
               <Component id="jButtonHorarios" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonFacturas" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonArticulos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,6 +124,14 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Menu Principal"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonArticulos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Articulos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonArticulosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
