@@ -201,8 +201,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private void jTextFieldStockArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyPressed
         char c = evt.getKeyChar();
 
-        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.') {
+        if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
@@ -213,8 +213,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldStockArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyTyped
         char c = evt.getKeyChar();
-        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != '.') {
-            if (c == '.') {
+        if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != '.') {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
@@ -226,18 +226,26 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private void jTextFieldNombreArticulo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        System.out.println(evt.getKeyCode());
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_DELETE && evt.getKeyCode() != 8 && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+            } else {
+                evt.consume();
+
+            }
         }
     }//GEN-LAST:event_jTextFieldNombreArticulo1KeyPressed
 
     private void jTextFieldNombreArticulo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_DELETE && evt.getKeyCode() != 8 && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+                //esto esta hecho porque si lo metemos en el if anterior no funciona por alguna extraña razon
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldNombreArticulo1KeyTyped
 
@@ -248,24 +256,24 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
         if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.') {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
-                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
 
     private void jTextFieldPrecioUnitarioArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
         // TODO add your handling code here:char c = evt.getKeyChar();
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
         if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.') {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
@@ -276,10 +284,10 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldImpuestoArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyPressed
         // TODO add your handling code here:
-  char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
         if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.') {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
@@ -290,10 +298,10 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldImpuestoArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyTyped
         // TODO add your handling code here:
-          char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
         if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.') {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
 
             } else {
                 evt.consume();
@@ -305,9 +313,13 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private void jTextFieldDescripcionArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionArticuloKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_DELETE && evt.getKeyCode() != 8 && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+                //esto esta hecho porque si lo metemos en el if anterior no funciona por alguna extraña razon
+            } else {
+                evt.consume();
+
+            }
         }
 
     }//GEN-LAST:event_jTextFieldDescripcionArticuloKeyPressed
@@ -315,9 +327,13 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private void jTextFieldDescripcionArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionArticuloKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (!Character.isAlphabetic(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_DELETE && evt.getKeyCode() != 8 && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
+            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+                //esto esta hecho porque si lo metemos en el if anterior no funciona por alguna extraña razon
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldDescripcionArticuloKeyTyped
 
@@ -327,6 +343,7 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
+        controlador.compruebaCampos();
         controlador.anadirArticulo();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 

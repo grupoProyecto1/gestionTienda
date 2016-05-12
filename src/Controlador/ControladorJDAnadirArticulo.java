@@ -39,6 +39,16 @@ public class ControladorJDAnadirArticulo {
         vista.setControlador(this);
         vista.setVisible(true);
     }
+    /**
+     *Metodo que comprueba si los campos estan vacios 
+    */
+    public void compruebaCampos(){
+        if(vista.getjTextFieldDescripcionArticulo().getText().isEmpty()||vista.getjTextFieldImpuestoArticulo().getText().isEmpty()
+                ||vista.getjTextFieldNombreArticulo1().getText().isEmpty()||vista.getjTextFieldPrecioUnitarioArticulo().getText().isEmpty()
+                ||vista.getjTextFieldStockArticulo().getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "Asegurese de que ningun campo esta vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * Metodo para añadir el articulo a la base de datos
