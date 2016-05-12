@@ -37,8 +37,11 @@ public class JFGestionHorario extends javax.swing.JFrame {
         jButtonBorrarHorario = new javax.swing.JButton();
         jButtonVerHorario = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú de Gestión de Horarios");
+        setResizable(false);
 
         jButtonAnadirHorario.setText("Añadir Horario");
         jButtonAnadirHorario.addActionListener(new java.awt.event.ActionListener() {
@@ -68,31 +71,37 @@ public class JFGestionHorario extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Horarios");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonBorrarHorario, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(jButtonBorrarHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAnadirHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonVerHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addComponent(jLabel7)
+                .addGap(41, 41, 41)
                 .addComponent(jButtonAnadirHorario)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonBorrarHorario)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVerHorario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonVolver)
-                .addGap(34, 34, 34))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,5 +175,6 @@ public class JFGestionHorario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBorrarHorario;
     private javax.swing.JButton jButtonVerHorario;
     private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

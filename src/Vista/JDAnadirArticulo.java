@@ -58,6 +58,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Añadir Articulo");
+        setResizable(false);
 
         jTextFieldStockArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
         jTextFieldStockArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -133,29 +135,34 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldNombreArticulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(jTextFieldStockArticulo)
-                    .addComponent(jTextFieldPrecioUnitarioArticulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(jTextFieldImpuestoArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(jTextFieldDescripcionArticulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonAceptar)
-                        .addGap(83, 83, 83)
+                        .addGap(37, 37, 37)
                         .addComponent(jButtonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar)))
-                .addContainerGap())
+                        .addGap(37, 37, 37)
+                        .addComponent(jButtonCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldNombreArticulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                            .addComponent(jTextFieldDescripcionArticulo)
+                            .addComponent(jTextFieldStockArticulo)
+                            .addComponent(jTextFieldPrecioUnitarioArticulo)
+                            .addComponent(jTextFieldImpuestoArticulo))))
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jTextFieldNombreArticulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldDescripcionArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,20 +172,21 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
                 .addComponent(jTextFieldPrecioUnitarioArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldImpuestoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar)
                     .addComponent(jButtonBorrar)
                     .addComponent(jButtonCancelar))
-                .addGap(20, 20, 20))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldStockArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyPressed
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+      char c = evt.getKeyChar();
+     
+        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && c != '.') {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -186,16 +194,16 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldStockArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyTyped
         char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c)) {
+        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA && c != '.') {
             evt.consume();
-
+            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldStockArticuloKeyTyped
 
     private void jTextFieldNombreArticulo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyPressed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+    char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -203,8 +211,8 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldNombreArticulo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -217,17 +225,17 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
 
     private void jTextFieldPrecioUnitarioArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
-        // TODO add your handling code here:
+        // TODO add your handling code here:char c = evt.getKeyChar();
         char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -235,17 +243,13 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldImpuestoArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyPressed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }//GEN-LAST:event_jTextFieldImpuestoArticuloKeyPressed
 
     private void jTextFieldImpuestoArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -254,16 +258,17 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     private void jTextFieldDescripcionArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionArticuloKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+       
     }//GEN-LAST:event_jTextFieldDescripcionArticuloKeyPressed
 
     private void jTextFieldDescripcionArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionArticuloKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
+        if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }

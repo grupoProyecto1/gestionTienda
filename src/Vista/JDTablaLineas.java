@@ -37,6 +37,7 @@ public class JDTablaLineas extends javax.swing.JDialog {
         jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Factura Detallada");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

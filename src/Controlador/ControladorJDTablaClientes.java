@@ -43,6 +43,7 @@ public class ControladorJDTablaClientes {
     public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 1);
         vista.setControladorClientes(this);
+        vista.setTitle("Clientes");
         if (botones == 2) {
             editable = true;
         }

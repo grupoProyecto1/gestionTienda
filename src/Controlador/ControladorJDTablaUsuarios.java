@@ -42,6 +42,7 @@ public class ControladorJDTablaUsuarios {
     public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 0);
         vista.setControladorUsuario(this);
+        vista.setTitle("Usuarios");
         creaTabla();
         rellenaTabla();
         if (botones == 2) {

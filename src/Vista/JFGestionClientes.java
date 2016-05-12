@@ -37,9 +37,11 @@ public class JFGestionClientes extends javax.swing.JFrame {
         jButtonModificaCliente = new javax.swing.JButton();
         jButtonVerCliente = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestión de Clientes");
+        setResizable(false);
 
         jButtonAnadirCliente.setText("Añadir Cliente");
         jButtonAnadirCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -76,38 +78,45 @@ public class JFGestionClientes extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Clientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonVerCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonModificaCliente)
+                    .addComponent(jButtonAnadirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonAnadirCliente)
-                        .addComponent(jButtonBorraCliente)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonVolver)
-                            .addComponent(jButtonVerCliente)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jButtonModificaCliente)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jButtonBorraCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap(100, Short.MAX_VALUE)
+                            .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonAnadirCliente)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonBorraCliente)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonModificaCliente)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonVerCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonVolver)
-                .addContainerGap())
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,5 +195,6 @@ public class JFGestionClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModificaCliente;
     private javax.swing.JButton jButtonVerCliente;
     private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

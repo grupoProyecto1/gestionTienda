@@ -35,8 +35,11 @@ public class JFGestionProveedores extends javax.swing.JFrame {
         jButtonModificarProveedor = new javax.swing.JButton();
         jButtonVerProveedores = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú de Gestion de Proveedores");
+        setResizable(false);
 
         jButtonAnadirProveedor.setText("Añadir Proveedor");
         jButtonAnadirProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -73,28 +76,30 @@ public class JFGestionProveedores extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Proveedores");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonVerProveedores)
-                            .addComponent(jButtonModificarProveedor)
-                            .addComponent(jButtonBorrarProveedor)
-                            .addComponent(jButtonAnadirProveedor)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(jButtonVolver)))
-                .addContainerGap(116, Short.MAX_VALUE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonModificarProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonBorrarProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonAnadirProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVerProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGap(28, 28, 28)
                 .addComponent(jButtonAnadirProveedor)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonBorrarProveedor)
@@ -102,9 +107,9 @@ public class JFGestionProveedores extends javax.swing.JFrame {
                 .addComponent(jButtonModificarProveedor)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVerProveedores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonVolver)
-                .addGap(27, 27, 27))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,5 +185,6 @@ public class JFGestionProveedores extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModificarProveedor;
     private javax.swing.JButton jButtonVerProveedores;
     private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
