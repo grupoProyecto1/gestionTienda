@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.Factura;
 import Modelo.FacturaDAO;
 import Modelo.Usuario;
-import Vista.JDTablaLineas;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -25,17 +24,34 @@ public class ControladorJDTablaFactura {
     private FacturaDAO facturaDAO = new FacturaDAO();
     private Usuario usuarioLogueado;
 
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablafactura
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+    public ControladorJDTablaFactura(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
+
+    /**
+     * Metodo que crea la vista de jdtablafactura
+     */
     public void creaVista() {
         this.vista = new JDTablaFactura(null, true);
         vista.setControlador(this);
+        creaTabla();
+        rellenaTabla();
         vista.setVisible(true);
 
     }
 
-    public ControladorJDTablaFactura(JDTablaFactura vista) {
-        this.vista = vista;
-
-    }
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
     public DefaultTableModel miTableModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -50,6 +66,9 @@ public class ControladorJDTablaFactura {
         }
     };
 
+    /**
+     * Metodo que establece las columnas de la tabla y el modelo
+     */
     public void creaTabla() {
         miTableModel.addColumn("ID");
         miTableModel.addColumn("DNI Cliente");
@@ -57,11 +76,14 @@ public class ControladorJDTablaFactura {
         miTableModel.addColumn("Total Neto");
         miTableModel.addColumn("Total Bruto");
         miTableModel.addColumn("Fecha");
-        vista.setjTable1(miTableModel);
+        vista.setjTableFactura(miTableModel);
     }
 
+    /**
+     * Metodo que rellena la tabla con las facturas de la base de datos
+     */
     public void rellenaTabla() {
-        for (int i = 0; i < vista.getjTable1().getRowCount(); i++) {
+        for (int i = 0; i < vista.getjTableFactura().getRowCount(); i++) {
             miTableModel.removeRow(i);
             i -= 1;
         }
@@ -83,15 +105,23 @@ public class ControladorJDTablaFactura {
 
     }
 
+    /**
+     * Metodo que llama al controlador de jdtablalineas pasandole la factura
+     * seleccionada y el usuario logueado, para mostrar las lineas de la factura
+     */
     public void seleccionarFactura() {
-        String id = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 0).toString();
-        String dni = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 1).toString();
-        String usuario = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 2).toString();
-        String totalNeto = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 3).toString();
-        String totalBruto = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 4).toString();
-        String fecha = vista.getjTable1().getValueAt(vista.getjTable1().getSelectedRow(), 5).toString();
+        try{
+        String id = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 0).toString();
+        String dni = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 1).toString();
+        String usuario = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 2).toString();
+        String totalNeto = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 3).toString();
+        String totalBruto = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 4).toString();
+        String fecha = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 5).toString();
         Factura f = new Factura(Integer.parseInt(id), dni, usuario, Double.parseDouble(totalNeto), Double.parseDouble(totalBruto), fecha);
         ControladorJDTablaLineas cjdtl = new ControladorJDTablaLineas(f, usuarioLogueado);
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(vista, "Debe seleccionar la factura de la cual quiere ver las lineas", "Error Ninguna Factura Seleccionada", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

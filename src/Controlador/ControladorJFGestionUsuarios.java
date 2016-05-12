@@ -21,59 +21,69 @@ public class ControladorJFGestionUsuarios {
     /**
      * Constructor con un parametro para establecer el usuarioLogueado
      *
-     * @param usuarioLogueado
+     * @param usuarioLogueado objeto de tipo Usuario
      */
     public ControladorJFGestionUsuarios(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         creaVista();
     }
 
+    /**
+     * Metodo que crea la vista para gestion del usuario
+     */
     public void creaVista() {
         this.vista = new JFGestionUsuarios();
         vista.setControlador(this);
         vista.setVisible(true);
     }
-    
+
     /**
-     * Metodo que crea una ventana para añadir el usuario
+     * Metodo que crea el controlador que se encarga de crear la vista de añadir
+     * usuario
      */
     public void anadirUsuario() {
         ControladorJDAnadirUsuario cjdau = new ControladorJDAnadirUsuario(usuarioLogueado);
     }
 
     /**
-     * Metodo que crea una ventana para borrar usuarios
+     * Metodo que crea el controlador que se encarga de crear la vista de borrar
+     * usuario
      */
     public void borrarUsuarios() {
         cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 1);
     }
 
     /**
-     * Metodo que crea una ventana para modificar los usuarios
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * modificar usuario
      */
     public void modificarUsuarios() {
         cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 2);
     }
 
     /**
-     * Metodo que crea una ventana para ver los usuarios
+     * Metodo que crea el controlador que se encarga de crear la vista de ver
+     * usuarios
      */
     public void verUsuarios() {
         cjdtu = new ControladorJDTablaUsuarios(usuarioLogueado, 0);
     }
-    
-    public void volver(){
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de menu
+     */
+    public void volver() {
         ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
         vista.dispose();
     }
 
-    public Usuario getUsuarioLogueado() {
-        return usuarioLogueado;
-    }
-
+    /**
+     * Establece el usuario que se ha logueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }
-    
-    
+
 }

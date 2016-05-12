@@ -8,6 +8,8 @@ package Controlador;
 import Modelo.Articulo;
 import Modelo.ArticuloDAO;
 import Modelo.Cliente;
+import Modelo.FacturaDAO;
+import Modelo.LineafacturaDAO;
 import Modelo.Usuario;
 import Vista.JDVentas;
 import static java.awt.image.ImageObserver.WIDTH;
@@ -20,16 +22,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Mario
  */
 public class ControladorJDVentas {
-
+    
     private JDVentas vista;
     private Usuario usuarioLogueado;
     private ArticuloDAO articuloDAO = new ArticuloDAO();
-    
+
+    /**
+     * Constructor parametrizado que crea un objeto de tipo controlador con el
+     * usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
     public ControladorJDVentas(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         creaVista();
     }
 
+    /**
+     * Metodo que crea la vista de ventas
+     */
     public void creaVista() {
         this.vista = new JDVentas(null, true);
         vista.setControlador(this);
@@ -38,25 +49,36 @@ public class ControladorJDVentas {
         vista.setVisible(true);
     }
 
+    /**
+     * Metodo que instancia y crea un modelo de tabla, sobrescribiendo los
+     * metodos isCellEditable para que no sean editables las filas y
+     * getColumnClas para poder utilizar checkbox
+     */
     public DefaultTableModel modeloArticulos = new DefaultTableModel() {
-
+        
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return false;
         }
-
+        
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
     };
-    public DefaultTableModel modeloVentas = new DefaultTableModel() {
 
+    /**
+     * Metodo que instancia y crea un modelo de tabla, sobrescribiendo los
+     * metodos isCellEditable para que no sean editables las filas y
+     * getColumnClas para poder utilizar checkbox
+     */
+    public DefaultTableModel modeloVentas = new DefaultTableModel() {
+        
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return false;
         }
-
+        
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
@@ -93,6 +115,10 @@ public class ControladorJDVentas {
         vista.getjComboBoxFiltrado().addItem("Descripcion");
     }
 
+    /**
+     * Metodo que rellena la tabla articulos con los articulos de la base de
+     * datos
+     */
     public void rellenaTabla() {
         for (int i = 0; i < vista.getjTableArticulos().getRowCount(); i++) {
             modeloArticulos.removeRow(i);
@@ -116,9 +142,12 @@ public class ControladorJDVentas {
         }
     }
 
+    /**
+     * Metodo para añadir un articulo a la tabla de ventas
+     */
     public void anadeArticulo() {
         if (!compruebaDatoColumna()) {
-            Object[] obj = new Object[8];          
+            Object[] obj = new Object[8];
             int linea = vista.getjTableArticulos().getSelectedRow();
             double precio = (Double) vista.getjTableArticulos().getValueAt(linea, 4);
             double impuesto = (Double) vista.getjTableArticulos().getValueAt(linea, 5);
@@ -137,9 +166,15 @@ public class ControladorJDVentas {
         } else {
             JOptionPane.showMessageDialog(vista, "El articulo ya se añadio a la tabla de venta", "Error al volver agregar un articulo", JOptionPane.INFORMATION_MESSAGE);
         }
-
+        
     }
 
+    /**
+     * Metodo para comprobar que el articulo no este añadido ya en la tabla
+     * venta
+     *
+     * @return boolean
+     */
     public Boolean compruebaDatoColumna() {
         int datoSeleccionado = (Integer) vista.getjTableArticulos().getValueAt(vista.getjTableArticulos().getSelectedRow(), 0);
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
@@ -150,14 +185,19 @@ public class ControladorJDVentas {
         return false;
     }
 
-    public Usuario getUsuarioLogueado() {
-        return usuarioLogueado;
-    }
-
+    /**
+     * Establece el usuarioLogueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }
 
+    /**
+     * Metodo para variar la cantidad del articulo seleccionado en la tabla
+     * ventas
+     */
     public void cambiaCantidad() {
         //Cojo articulos debido a que tu agregas y acto seguido lo cambias sin tocar la venta.
         if (vista.getjTableArticulos().isRowSelected(WIDTH)) {
@@ -174,10 +214,17 @@ public class ControladorJDVentas {
         }
     }
 
-    public void eliminaArticulo(){
+    /**
+     * Metodo que elimina el articulo seleccionado de la tabla ventas
+     */
+    public void eliminaArticulo() {
         modeloVentas.removeRow(vista.getjTableVenta().getSelectedRow());
     }
-    
+
+    /**
+     * Metodo que establece la informacion basica del articulo seleccionado en
+     * los jTextField
+     */
     public void establecerInformacion() {
         int fila = vista.getjTableVenta().getSelectedRow();
         vista.getjTextFieldId().setText(String.valueOf(vista.getjTableVenta().getValueAt(fila, 0)));
@@ -188,27 +235,49 @@ public class ControladorJDVentas {
         vista.getjSpinnerCantidad().setValue(vista.getjTableVenta().getValueAt(fila, 3));
     }
 
+    /**
+     * Metodo que crea la factura en la base de datos una vez realizada la venta
+     * correctamente
+     */
     public void creaFactura() {
         try {
-            ArticuloDAO adao = new ArticuloDAO();
+            FacturaDAO fdao = new FacturaDAO();
+            LineafacturaDAO ldao = new LineafacturaDAO();
             Cliente c;
             if (vista.getjTextFieldDni().getText().length() == 0) {
                 c = new Cliente("00000000A", null, null, 000000000, null, null);
             } else {
                 c = new Cliente(vista.getjTextFieldDni().getText(), null, null, 000000000, null, null);
             }
-            adao.creaFactura(usuarioLogueado, c, totalNeto(), totalBruto());
+            fdao.creaFactura(usuarioLogueado, c, totalNeto(), totalBruto());
             for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
                 Articulo a1 = new Articulo((Integer) vista.getjTableVenta().getValueAt(i, 0), null, null, 0, (Double) vista.getjTableVenta().getValueAt(i, 5), 0);
-                adao.creaLineasFactura(a1, (Integer) vista.getjTableVenta().getValueAt(i, 3));
+                ldao.creaLineasFactura(a1, (Integer) vista.getjTableVenta().getValueAt(i, 3));
             }
+            limpiaTabla();
             JOptionPane.showMessageDialog(vista, "Venta realizada correctamente.", "Información Venta", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(vista, "Ha fallado al crear la factura,repita la acción", "Error en factura", JOptionPane.ERROR_MESSAGE);
-            //e.printStackTrace();
         }
     }
 
+    /**
+     * Metodo que limpia la informacion de la tabla ventas
+     */
+    public void limpiaTabla() {
+        for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
+            modeloVentas.removeRow(i);
+            i -= 1;
+        }
+        vista.getjTextFieldDni().setText("");
+    }
+
+    /**
+     * Metodo que devuelve el total neto de los articulos de la tabla venta
+     *
+     * @return totalNeto
+     */
     public double totalNeto() {
         double totalNeto = 0;
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
@@ -217,6 +286,11 @@ public class ControladorJDVentas {
         return totalNeto;
     }
 
+    /**
+     * Metodo que devuelve el total neto de los articulos de la tabla venta
+     *
+     * @return totalBruto
+     */
     public double totalBruto() {
         double totalNeto = 0;
         for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
@@ -224,5 +298,5 @@ public class ControladorJDVentas {
         }
         return totalNeto;
     }
-
+    
 }

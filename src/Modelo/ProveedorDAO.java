@@ -24,6 +24,7 @@ public class ProveedorDAO {
      * Metodo que carga los proveedores desde la base de datros en el atributo
      * listaProveedores
      *
+     * @throws java.sql.SQLException
      */
     public void cargaProveedorDAO() throws SQLException {
         listaProveedores.removeAll(listaProveedores);
@@ -46,6 +47,7 @@ public class ProveedorDAO {
      * Metodo para añadir un nuevo proveedor
      *
      * @param p Objeto de tipo Proveedor
+     * @throws java.sql.SQLException
      */
     public void anadirProveedor(Proveedor p) throws SQLException {
         Statement stm = con.createStatement();
@@ -68,7 +70,8 @@ public class ProveedorDAO {
     /**
      * Metodo para eliminar un proveedor a partir de su NIF
      *
-     * @param nif
+     * @param datosProveedor
+     * @throws java.sql.SQLException
      */
     public void eliminarProveedores(Proveedor datosProveedor) throws SQLException {
         Statement stm = con.createStatement();
@@ -81,6 +84,7 @@ public class ProveedorDAO {
      * Metodo para modificar un proveedor
      *
      * @param p
+     * @throws java.sql.SQLException
      */
     public void modificarProveedor(Proveedor p) throws SQLException {
         Statement stm = con.createStatement();

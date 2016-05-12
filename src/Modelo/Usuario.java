@@ -21,7 +21,7 @@ public class Usuario {
 
     /**
      * Constructor parametrizado para crearte un usuario con todos sus atributos
-     * 
+     *
      * @param nombre
      * @param pass
      * @param admin
@@ -39,10 +39,10 @@ public class Usuario {
         this.vistaProveedores = proveedor;
         this.vistaUsuarios = usuarios;
     }
-    
+
     /**
      * Devuelve el nombre del usuario
-     * 
+     *
      * @return
      */
     public String getNombre() {
@@ -51,7 +51,7 @@ public class Usuario {
 
     /**
      * Establece el nombre del usuario
-     * 
+     *
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -60,7 +60,7 @@ public class Usuario {
 
     /**
      * Devuelve la pass del usuario
-     * 
+     *
      * @return
      */
     public String getPass() {
@@ -69,7 +69,7 @@ public class Usuario {
 
     /**
      * Establece la pass del usuario
-     * 
+     *
      * @param pass
      */
     public void setPass(String pass) {
@@ -78,7 +78,7 @@ public class Usuario {
 
     /**
      * Devuelve si es admin el usuario
-     * 
+     *
      * @return
      */
     public boolean isAdmin() {
@@ -87,7 +87,7 @@ public class Usuario {
 
     /**
      * Establece como admin al usuario
-     * 
+     *
      * @param admin
      */
     public void setAdmin(boolean admin) {
@@ -96,7 +96,7 @@ public class Usuario {
 
     /**
      * Devuelve si tiene acceso a la VistaClientes el usuario
-     * 
+     *
      * @return
      */
     public boolean isVistaClientes() {
@@ -105,7 +105,7 @@ public class Usuario {
 
     /**
      * Establece el acceso a la VistaClientes del usuario
-     * 
+     *
      * @param vistaClientes
      */
     public void setVistaClientes(boolean vistaClientes) {
@@ -114,7 +114,7 @@ public class Usuario {
 
     /**
      * Devuelve si tiene acceso a la VistaProductos el usuario
-     * 
+     *
      * @return
      */
     public boolean isVistaProductos() {
@@ -123,7 +123,7 @@ public class Usuario {
 
     /**
      * Establece el acceso a la VistaProductos del usuario
-     * 
+     *
      * @param vistaProductos
      */
     public void setVistaProductos(boolean vistaProductos) {
@@ -132,7 +132,7 @@ public class Usuario {
 
     /**
      * Devuelve si tiene acceso a la VistaProveedores el usuario
-     * 
+     *
      * @return
      */
     public boolean isVistaProveedores() {
@@ -141,7 +141,7 @@ public class Usuario {
 
     /**
      * Establece el acceso a la VistaProveedores del usuario
-     * 
+     *
      * @param vistaProveedores
      */
     public void setVistaProveedores(boolean vistaProveedores) {
@@ -150,7 +150,7 @@ public class Usuario {
 
     /**
      * Devuelve si tiene acceso a la VistaUsuarios el usuario
-     * 
+     *
      * @return
      */
     public boolean isVistaUsuarios() {
@@ -159,11 +159,11 @@ public class Usuario {
 
     /**
      * Establece el acceso a la VistaUsuarios del usuario
-     * 
+     *
      * @param vistaUsuarios
      */
     public void setVistaUsuarios(boolean vistaUsuarios) {
         this.vistaUsuarios = vistaUsuarios;
     }
-    
+
 }

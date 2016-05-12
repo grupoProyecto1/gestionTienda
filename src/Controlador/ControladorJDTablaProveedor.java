@@ -20,13 +20,23 @@ public class ControladorJDTablaProveedor {
     private Usuario usuarioLogueado;
     private int botones;
 
-    public ControladorJDTablaProveedor(Usuario usuarioLogueado,int botones) {
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablaproveedor
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     * @param botones int para mostrar los botones
+     */
+    public ControladorJDTablaProveedor(Usuario usuarioLogueado, int botones) {
         this.usuarioLogueado = usuarioLogueado;
         this.botones = botones;
         creaVista();
     }
-    
-    public void creaVista(){
+
+    /**
+     * Metodo que crea la vista para jdtablaproveedor
+     */
+    public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 2);
         vista.setControladorProveedor(this);
         if (botones == 2) {
@@ -36,6 +46,12 @@ public class ControladorJDTablaProveedor {
         rellenaTabla();
         vista.setVisible(true);
     }
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
     public DefaultTableModel miTableModel = new DefaultTableModel() {
 
         @Override
@@ -70,6 +86,10 @@ public class ControladorJDTablaProveedor {
 
     }
 
+    /**
+     * Metodo que rellena la tabla con los datos de los proveedores de la base
+     * de datos
+     */
     public void rellenaTabla() {
         for (int i = 0; i < vista.getjTableUsuariosClientes().getRowCount(); i++) {
             miTableModel.removeRow(i);
@@ -93,14 +113,28 @@ public class ControladorJDTablaProveedor {
 
     }
 
+    /**
+     * Devuelve si es editable toda la tabla
+     *
+     * @return boolean
+     */
     public boolean isEditable() {
         return editable;
     }
 
+    /**
+     * Establece si es editable toda la tabla
+     *
+     * @param editable boolean
+     */
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
 
+    /**
+     * Metodo para eliminar el proveedor seleccionado en la tabla, de la base de
+     * datos
+     */
     public void eliminaProveedor() {
         try {
             String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();
@@ -117,6 +151,10 @@ public class ControladorJDTablaProveedor {
         }
     }
 
+    /**
+     * Metodo para modificar en la base de datos el proveedor seleccionado en la
+     * tabla
+     */
     public void modificaProveedor() {
         try {
             String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();

@@ -5,13 +5,11 @@
  */
 package Modelo;
 
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.concurrent.locks.StampedLock;
 
 /**
  *
@@ -22,6 +20,12 @@ public class LineafacturaDAO {
     private ArrayList<LineaFactura> listaLineas = new ArrayList<LineaFactura>();
     private Connection con = ConexionBBDD.getConnection();
 
+    /**
+     * Carga las lineas de factura de la base de datos
+     *
+     * @param f
+     * @throws SQLException
+     */
     public void cargaLineas(Factura f) throws SQLException {
         listaLineas.removeAll(listaLineas);
         Statement stm = con.createStatement();
@@ -41,6 +45,13 @@ public class LineafacturaDAO {
 
     }
 
+    /**
+     * Añade a la base de datos una lineaFactura
+     *
+     * @param a
+     * @param cantidad
+     * @throws SQLException
+     */
     public void creaLineasFactura(Articulo a, int cantidad) throws SQLException {
         Statement stm = con.createStatement();
         String consulta = "select id from factura order by id desc limit 1";
@@ -54,14 +65,22 @@ public class LineafacturaDAO {
         stm.close();
     }
 
+    /**
+     * Devuelve la lista de lineas
+     *
+     * @return
+     */
     public ArrayList<LineaFactura> getListaLineas() {
         return listaLineas;
     }
 
+    /**
+     * Establece la lista de lineas a otra lista
+     *
+     * @param listaLineas
+     */
     public void setListaLineas(ArrayList<LineaFactura> listaLineas) {
         this.listaLineas = listaLineas;
     }
-    
-    
 
 }

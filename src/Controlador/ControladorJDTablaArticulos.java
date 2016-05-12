@@ -19,13 +19,22 @@ public class ControladorJDTablaArticulos {
     private Usuario usuarioLogueado;
     private int botones;
 
-    public ControladorJDTablaArticulos(Usuario usuarioLogueado,int botones) {
+    /**
+     * Constructor parametrizado que establece el usuario logueado y los botones
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     * @param botones int para mostrar los botones
+     */
+    public ControladorJDTablaArticulos(Usuario usuarioLogueado, int botones) {
         this.usuarioLogueado = usuarioLogueado;
         this.botones = botones;
         creaVista();
     }
-    
-    public void creaVista(){
+
+    /**
+     * Metodo que crea la vista de jdtablaarticulos
+     */
+    public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 3);
         vista.setControladorArticulo(this);
         if (botones == 2) {
@@ -35,7 +44,12 @@ public class ControladorJDTablaArticulos {
         rellenaTabla();
         vista.setVisible(true);
     }
-    
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
     public DefaultTableModel miTableModel = new DefaultTableModel() {
 
         @Override
@@ -56,6 +70,9 @@ public class ControladorJDTablaArticulos {
         }
     };
 
+    /**
+     * Metodo que crea estable las columnas y establece el modelo de la tabla
+     */
     public void creaTabla() {
         miTableModel.addColumn("ID");
         miTableModel.addColumn("Nombre");
@@ -68,6 +85,9 @@ public class ControladorJDTablaArticulos {
 
     }
 
+    /**
+     * Metodo que rellena la tabla con los articulos de la base de datos
+     */
     public void rellenaTabla() {
         for (int i = 0; i < vista.getjTableUsuariosClientes().getRowCount(); i++) {
             miTableModel.removeRow(i);
@@ -90,14 +110,27 @@ public class ControladorJDTablaArticulos {
         }
     }
 
+    /**
+     * Devuelve si es editable la tabla
+     *
+     * @return boolean 
+     */
     public boolean isEditable() {
         return editable;
     }
 
+    /**
+     * Establece si es editable la tabla
+     *
+     * @param editable boolean
+     */
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
 
+    /**
+     * Eliminar el articulo seleccionado en la tabla de la base de datos
+     */
     public void eliminaArticulo() {
         try {
             int id = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString());
@@ -114,6 +147,9 @@ public class ControladorJDTablaArticulos {
         }
     }
 
+    /**
+     * Modifica en la base de datos el articulo seleccionado en la tabla
+     */
     public void modificaArticulo() {
         try {
             int id = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString());

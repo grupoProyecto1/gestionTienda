@@ -22,6 +22,9 @@ public class JFMenu extends javax.swing.JFrame {
         initComponents();
         jButtonUsuarios.setVisible(false);
         jButtonClientes.setVisible(false);
+        jButtonProveedores.setVisible(false);
+        jButtonFacturas.setVisible(false);
+        jButtonVentas.setVisible(false);
     }
 
     /**
@@ -38,6 +41,7 @@ public class JFMenu extends javax.swing.JFrame {
         jButtonProveedores = new javax.swing.JButton();
         jButtonVentas = new javax.swing.JButton();
         jButtonHorarios = new javax.swing.JButton();
+        jButtonFacturas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestión");
@@ -77,39 +81,48 @@ public class JFMenu extends javax.swing.JFrame {
             }
         });
 
+        jButtonFacturas.setText("Facturas");
+        jButtonFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFacturasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(jButtonClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonHorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(152, 152, 152)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonHorarios, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                    .addComponent(jButtonFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(145, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonProveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(47, 47, 47)
                 .addComponent(jButtonUsuarios)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonClientes)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonProveedores)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVentas)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonHorarios)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonFacturas)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,6 +151,11 @@ public class JFMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         controlador.gestionProveedores();
     }//GEN-LAST:event_jButtonProveedoresActionPerformed
+
+    private void jButtonFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFacturasActionPerformed
+        // TODO add your handling code here:
+        controlador.gestionFacturas();
+    }//GEN-LAST:event_jButtonFacturasActionPerformed
 
     /**
      *Obtiene el controlador de la clase ControladorJFMenu
@@ -169,6 +187,10 @@ public class JFMenu extends javax.swing.JFrame {
 
     public JButton getjButtonVentas() {
         return jButtonVentas;
+    }
+
+    public JButton getjButtonFacturas() {
+        return jButtonFacturas;
     }
 
     
@@ -212,6 +234,7 @@ public class JFMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClientes;
+    private javax.swing.JButton jButtonFacturas;
     private javax.swing.JButton jButtonHorarios;
     private javax.swing.JButton jButtonProveedores;
     private javax.swing.JButton jButtonUsuarios;

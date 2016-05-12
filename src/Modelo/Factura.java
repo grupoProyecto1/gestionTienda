@@ -10,6 +10,7 @@ package Modelo;
  * @author Joaquin
  */
 public class Factura {
+
     private int id;
     private String DNICliente;
     private String nombreUsuario;
@@ -66,8 +67,6 @@ public class Factura {
         this.nombreUsuario = nombreUsuario;
     }
 
-  
-
     public String getFecha() {
         return fecha;
     }
@@ -75,9 +74,5 @@ public class Factura {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
 
-            
-      
-    
 }

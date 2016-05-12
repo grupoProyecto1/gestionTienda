@@ -24,7 +24,7 @@ public class ControladorJFLogin {
     /**
      * Constructor que establece la vista
      *
-     * @param vista
+     * @param vista objeto de tipo JFLogin
      */
     public ControladorJFLogin(JFLogin vista) {
         this.vista = vista;

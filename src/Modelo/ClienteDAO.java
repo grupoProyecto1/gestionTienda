@@ -25,6 +25,7 @@ public class ClienteDAO {
      * Inserta un nuevo cliente en la base de datos de la aplicacion
      *
      * @param datosCliente
+     * @throws java.sql.SQLException
      */
     public void anadirCliente(Cliente datosCliente) throws SQLException {
         String sql = "INSERT into cliente values (" + "'" + datosCliente.getDni() + "'" + "," + "'" + datosCliente.getNombre() + "'" + "," + "'" + datosCliente.getApellidos() + "'" + "," + "'" + datosCliente.getTelefono() + "'" + "," + "'" + datosCliente.getDireccion() + "'" + "," + "'" + datosCliente.getEmail() + "'" + ")";
@@ -37,6 +38,7 @@ public class ClienteDAO {
      * Elimina un cliente de la base de datos de la aplicacion
      *
      * @param datosCliente
+     * @throws java.sql.SQLException
      */
     public void eliminarCliente(Cliente datosCliente) throws SQLException {
         Statement stm = conn.createStatement();
@@ -49,6 +51,7 @@ public class ClienteDAO {
      * Modifica los datos de un cliente de la base de datos de la aplicacion
      *
      * @param datosCliente
+     * @throws java.sql.SQLException
      */
     public void modificarCliente(Cliente datosCliente) throws SQLException {
         String sql = "update cliente set DNI = '" + datosCliente.getDni() + "',nombre='"
@@ -70,6 +73,8 @@ public class ClienteDAO {
     /**
      * Muestra todos los clientes almacenados en la base de datos de nuestra
      * aplicacion
+     *
+     * @throws java.sql.SQLException
      */
     public void cargaCliente() throws SQLException {
         listaClientes.removeAll(listaClientes);

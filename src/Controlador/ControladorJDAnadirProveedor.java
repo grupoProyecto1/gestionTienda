@@ -21,18 +21,25 @@ public class ControladorJDAnadirProveedor {
     private JDAnadirProveedor vista;
     private Usuario usuarioLogueado;
 
-  
+    /**
+     * Constructor parametrizado que establece el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
     public ControladorJDAnadirProveedor(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         creaVista();
     }
 
-    public void creaVista(){
+    /**
+     * Metodo que crea la vista para jdanadirproveedor
+     */
+    public void creaVista() {
         this.vista = new JDAnadirProveedor(null, true);
         vista.setControlador(this);
         vista.setVisible(true);
     }
-    
+
     /**
      * Metodo para comprobar si introdujo un cliente valido y si las contraseñas
      * son iguales, finalmente se agrega el cliente a la BD

@@ -22,16 +22,19 @@ public class ControladorJDAnadirUsuario {
     private Usuario usuarioLogueado;
 
     /**
-     * Constructor parametrizado con un objeto para establecer la vista
+     * Constructor parametrizado para establecer el usuario logueado
      *
-     * @param vista
+     * @param usuarioLogueado objeto de tipo usuario
      */
     public ControladorJDAnadirUsuario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         creaVista();
     }
-    
-    public void creaVista(){
+
+    /**
+     * Metodo que crea la vista para jdanadirusuario
+     */
+    public void creaVista() {
         this.vista = new JDAnadirUsuario(null, true);
         vista.setControlador(this);
         vista.setVisible(true);

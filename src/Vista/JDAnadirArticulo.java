@@ -18,19 +18,24 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private ControladorJDAnadirArticulo controlador;
 
-    public ControladorJDAnadirArticulo getControlador() {
-        return controlador;
-    }
-
-    public void setControlador(ControladorJDAnadirArticulo controlador) {
-        this.controlador = controlador;
-    }
     /**
      * Creates new form JDAnadirArticulo
+     *
+     * @param parent
+     * @param modal
      */
     public JDAnadirArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
+    public void setControlador(ControladorJDAnadirArticulo controlador) {
+        this.controlador = controlador;
     }
 
     /**
@@ -207,7 +212,7 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldNombreArticulo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jTextFieldNombreArticulo1ActionPerformed
 
     private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
@@ -268,56 +273,106 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDescripcionArticuloActionPerformed
 
-    
+    /**
+     * Devuelve el objeto jtextfield descripcion
+     *
+     * @return
+     */
     public JTextField getjTextFieldDescripcionArticulo() {
         return jTextFieldDescripcionArticulo;
     }
 
+    /**
+     * Establece el valor del objeto jtextfield descripcion
+     *
+     * @param jTextFieldDescripcionArticulo
+     */
     public void setjTextFieldDescripcionArticulo(JTextField jTextFieldDescripcionArticulo) {
         this.jTextFieldDescripcionArticulo = jTextFieldDescripcionArticulo;
     }
 
+    /**
+     * Devuelve el objeto jtextfield impuesto
+     *
+     * @return
+     */
     public JTextField getjTextFieldImpuestoArticulo() {
         return jTextFieldImpuestoArticulo;
     }
 
+    /**
+     * Establece el valor del objeto jtextfield impuesto
+     *
+     * @param jTextFieldImpuestoArticulo
+     */
     public void setjTextFieldImpuestoArticulo(JTextField jTextFieldImpuestoArticulo) {
         this.jTextFieldImpuestoArticulo = jTextFieldImpuestoArticulo;
     }
 
+    /**
+     * Devuelve el objeto jtextfield nombre
+     *
+     * @return
+     */
     public JTextField getjTextFieldNombreArticulo1() {
         return jTextFieldNombreArticulo1;
     }
 
+    /**
+     * Establece el valor del objeto jtextfield nombre
+     *
+     * @param jTextFieldNombreArticulo1
+     */
     public void setjTextFieldNombreArticulo1(JTextField jTextFieldNombreArticulo1) {
         this.jTextFieldNombreArticulo1 = jTextFieldNombreArticulo1;
     }
 
+    /**
+     * Devuelve el objeto jtextfield precioUnitario
+     *
+     * @return
+     */
     public JTextField getjTextFieldPrecioUnitarioArticulo() {
         return jTextFieldPrecioUnitarioArticulo;
     }
 
+    /**
+     * Establece el valor del objeto jtextfield precioUnitario
+     *
+     * @param jTextFieldPrecioUnitarioArticulo
+     */
     public void setjTextFieldPrecioUnitarioArticulo(JTextField jTextFieldPrecioUnitarioArticulo) {
         this.jTextFieldPrecioUnitarioArticulo = jTextFieldPrecioUnitarioArticulo;
     }
 
+    /**
+     * Devuelve el objeto jtextfield stock
+     *
+     * @return
+     */
     public JTextField getjTextFieldStockArticulo() {
         return jTextFieldStockArticulo;
     }
 
     /**
-     * @param args the command line arguments
+     * Establece el valor del objeto jtextfield stock
+     *
+     * @param jTextFieldStockArticulo
      */
-    public void setjTextFieldStockArticulo(JTextField jTextFieldStockArticulo) {    
+    public void setjTextFieldStockArticulo(JTextField jTextFieldStockArticulo) {
         this.jTextFieldStockArticulo = jTextFieldStockArticulo;
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-        */
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -6,10 +6,7 @@
 package Controlador;
 
 import Modelo.Usuario;
-import Vista.JDTablaHorario;
-import Vista.JDVentas;
 import Vista.JFMenu;
-import Vista.JFGestionClientes;
 
 /**
  *
@@ -23,53 +20,90 @@ public class ControladorJFMenu {
     /**
      * Constructor que establece la vista
      *
-     * @param vista
+     * @param usuarioLogueado objeto de tipo Usuario
      */
     public ControladorJFMenu(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         creaVista();
     }
 
+    /**
+     * Metodo que crea la vista de menu
+     */
     public void creaVista() {
         this.vista = new JFMenu();
         vista.setControlador(this);
         if (usuarioLogueado.isAdmin()) {
             vista.getjButtonUsuarios().setVisible(true);
             vista.getjButtonClientes().setVisible(true);
+            vista.getjButtonProveedores().setVisible(true);
+            vista.getjButtonFacturas().setVisible(true);
+        } else {
+            if (usuarioLogueado.isVistaClientes()) {
+                vista.getjButtonClientes().setVisible(true);
+            }
+            if (usuarioLogueado.isVistaUsuarios()) {
+                vista.getjButtonUsuarios().setVisible(true);
+            }
+            if (usuarioLogueado.isVistaProveedores()) {
+                vista.getjButtonProveedores().setVisible(true);
+            }
+            if (usuarioLogueado.isVistaProductos()) {
+                vista.getjButtonVentas().setVisible(true);
+            }
         }
         vista.setVisible(true);
     }
 
     /**
-     * Metodo que crea una ventana JFGestionUsuarios, la hace visible y elimina
-     * la ventana en la que nos encontramos
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion usuarios
      */
     public void gestionUsuarios() {
         ControladorJFGestionUsuarios cjfgu = new ControladorJFGestionUsuarios(usuarioLogueado);
         vista.dispose();
     }
 
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion horario
+     */
     public void gestionHorarios() {
-       ControladorJFGestionHorario cjfgh = new ControladorJFGestionHorario(usuarioLogueado);
-       vista.dispose();       
+        ControladorJFGestionHorario cjfgh = new ControladorJFGestionHorario(usuarioLogueado);
+        vista.dispose();
     }
 
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion ventas
+     */
     public void gestionVentas() {
         ControladorJDVentas cjdv = new ControladorJDVentas(usuarioLogueado);
     }
 
     /**
-     * Metedo que crea una ventana JFGestionCliente, la hace visible y elmina la
-     * ventana en la que nos encontramos
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion cliente
      */
     public void gestionCliente() {
         ControladorJFGestionClientes cjfgc = new ControladorJFGestionClientes(usuarioLogueado);
         vista.dispose();
     }
-   
-    public void gestionProveedores(){
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion proveedores
+     */
+    public void gestionProveedores() {
         ControladorJFGestionProveedores cjfgp = new ControladorJFGestionProveedores(usuarioLogueado);
         vista.dispose();
     }
 
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion facturas
+     */
+    public void gestionFacturas() {
+        ControladorJDTablaFactura cjdtf = new ControladorJDTablaFactura(usuarioLogueado);
+    }
 }

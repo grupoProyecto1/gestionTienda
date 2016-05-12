@@ -22,16 +22,13 @@ public class JDTablaFactura extends javax.swing.JDialog {
     public JDTablaFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        controlador = new ControladorJDTablaFactura(this);
-        controlador.creaTabla();
-        controlador.rellenaTabla();
     }
 
-    public JTable getjTable1() {
+    public JTable getjTableFactura() {
         return jTable1;
     }
 
-    public void setjTable1(TableModel tm) {
+    public void setjTableFactura(TableModel tm) {
         this.jTable1.setModel(tm);
     }
 
@@ -109,6 +106,7 @@ public class JDTablaFactura extends javax.swing.JDialog {
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed

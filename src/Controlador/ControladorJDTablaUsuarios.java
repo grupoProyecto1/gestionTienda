@@ -24,12 +24,21 @@ public class ControladorJDTablaUsuarios {
     private Usuario usuarioLogueado;
     private int botones;
 
+    /**
+     * Constructor que crea un objeto de tipo controladorjdtablausuarios
+     * 
+     * @param usuarioLogueado objeto de tipo Usuario
+     * @param botones int para mostrar los botones
+     */
     public ControladorJDTablaUsuarios(Usuario usuarioLogueado, int botones) {
         this.usuarioLogueado = usuarioLogueado;
         this.botones = botones;
         creaVista();
     }
 
+    /**
+     * Metodo que crea la vista para jdtablausuarios
+     */
     public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 0);
         vista.setControladorUsuario(this);
@@ -111,7 +120,7 @@ public class ControladorJDTablaUsuarios {
      * Devuelve si las columnas son editables excepto la primera, o ninguna es
      * editable
      *
-     * @return
+     * @return boolean
      */
     public boolean isEditable() {
         return editable;
@@ -121,14 +130,15 @@ public class ControladorJDTablaUsuarios {
      * Establece si las columnas son editables excepto la primera, o ninguna es
      * editable
      *
-     * @param editable
+     * @param editable boolean
      */
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
 
     /**
-     * Metodo que elimina el usuario seleccionado en la tabla
+     * Metodo que elimina el usuario seleccionado en la tabla de la base de
+     * datos
      */
     public void eliminaUsuario() {
         try {

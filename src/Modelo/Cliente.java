@@ -10,6 +10,7 @@ package Modelo;
  * @author Alejandroo
  */
 public class Cliente {
+
     private String dni;
     private String nombre;
     private String apellidos;
@@ -19,12 +20,13 @@ public class Cliente {
 
     /**
      * Contructor parametrizado que inicializa los atributos de la clase
+     *
      * @param dni
      * @param nombre
      * @param apellidos
      * @param telefono
      * @param direccion
-     * @param email 
+     * @param email
      */
     public Cliente(String dni, String nombre, String apellidos, int telefono, String direccion, String email) {
         this.dni = dni;
@@ -34,11 +36,10 @@ public class Cliente {
         this.direccion = direccion;
         this.email = email;
     }
-    
-    
 
     /**
-     *Obtiene el valor del atributo dni del cliente
+     * Obtiene el valor del atributo dni del cliente
+     *
      * @return DNICliente
      */
     public String getDni() {
@@ -46,7 +47,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo dni del cliente
+     * Modifica el valor del atributo dni del cliente
+     *
      * @param dni
      */
     public void setDni(String dni) {
@@ -54,7 +56,8 @@ public class Cliente {
     }
 
     /**
-     *Obtiene el valor del atributo nombre del cliente
+     * Obtiene el valor del atributo nombre del cliente
+     *
      * @return nombreCliente
      */
     public String getNombre() {
@@ -62,7 +65,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo nombre del cliente
+     * Modifica el valor del atributo nombre del cliente
+     *
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -70,7 +74,8 @@ public class Cliente {
     }
 
     /**
-     *Obtiene el valor del atributo apellidos del cliente
+     * Obtiene el valor del atributo apellidos del cliente
+     *
      * @return apellidosCliente
      */
     public String getApellidos() {
@@ -78,7 +83,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo apellidos del cliente
+     * Modifica el valor del atributo apellidos del cliente
+     *
      * @param apellidos
      */
     public void setApellidos(String apellidos) {
@@ -86,7 +92,8 @@ public class Cliente {
     }
 
     /**
-     *Obtiene el valor del atributo telefono del cliente
+     * Obtiene el valor del atributo telefono del cliente
+     *
      * @return telefonoCliente
      */
     public int getTelefono() {
@@ -94,7 +101,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo telefono del cliente
+     * Modifica el valor del atributo telefono del cliente
+     *
      * @param telefono
      */
     public void setTelefono(int telefono) {
@@ -102,7 +110,8 @@ public class Cliente {
     }
 
     /**
-     *Obtiene el valor del atributo direccion del cliente
+     * Obtiene el valor del atributo direccion del cliente
+     *
      * @return direccionCliente
      */
     public String getDireccion() {
@@ -110,7 +119,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo direccion del cliente
+     * Modifica el valor del atributo direccion del cliente
+     *
      * @param direccion
      */
     public void setDireccion(String direccion) {
@@ -118,7 +128,8 @@ public class Cliente {
     }
 
     /**
-     *Obtiene el valor del atributo email del cliente
+     * Obtiene el valor del atributo email del cliente
+     *
      * @return emailCliente
      */
     public String getEmail() {
@@ -126,7 +137,8 @@ public class Cliente {
     }
 
     /**
-     *Modifica el valor del atributo email del cliente
+     * Modifica el valor del atributo email del cliente
+     *
      * @param email
      */
     public void setEmail(String email) {

@@ -25,6 +25,7 @@ public class UsuarioDAO {
     /**
      * Metodo que carga los usuarios desde la base de datos en el atributo
      * privado listaUsuarios
+     *
      * @throws java.sql.SQLException
      */
     public void cargaUsuarios() throws SQLException {

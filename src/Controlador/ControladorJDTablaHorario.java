@@ -23,10 +23,19 @@ public class ControladorJDTablaHorario {
     private horarioDAO horariodao = new horarioDAO();
     private Usuario usuarioLogueado;
 
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablahorario
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
     public ControladorJDTablaHorario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }
 
+    /**
+     * Metodo para crear la vista de jdtablahorario
+     */
     public void creaVista() {
         this.vista = new JDTablaHorario(null, true);
         vista.setControlador(this);
@@ -36,6 +45,11 @@ public class ControladorJDTablaHorario {
         vista.setVisible(true);
     }
 
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
     public DefaultTableModel miTableModel = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -48,15 +62,20 @@ public class ControladorJDTablaHorario {
         }
     };
 
+    /**
+     * Metodo para crear las columnas de la tabla y establecer el modelo
+     */
     public void creaTabla() {
         miTableModel.addColumn("Fecha de Incio");
         miTableModel.addColumn("Fecha Finalizacion");
         miTableModel.addColumn("Descripcion");
         vista.setjTableHorario(miTableModel);
         vista.getjTableHorario().setAutoCreateRowSorter(true);
-
     }
 
+    /**
+     * Metodo para rellenar la tabla con los horarios de la base de datos
+     */
     public void rellanaTabla() {
         for (int i = 0; i < vista.getjTableHorario().getRowCount(); i++) {
             miTableModel.removeRow(i);
@@ -97,6 +116,9 @@ public class ControladorJDTablaHorario {
         }
     }
 
+    /**
+     * Metodo para eliminar el horario seleccionado de la base de datos
+     */
     public void eliminaHorario() {
         try {
             String fechaInicio = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 0).toString();
@@ -112,6 +134,11 @@ public class ControladorJDTablaHorario {
         }
     }
 
+    /**
+     * Establece el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
     }

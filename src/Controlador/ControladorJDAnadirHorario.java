@@ -25,19 +25,29 @@ public class ControladorJDAnadirHorario {
     private horarioDAO horario = new horarioDAO();
     private Usuario usuarioLogueado;
 
-    public Usuario getUsuarioLoguedo() {
-        return usuarioLogueado;
-    }
-
-    public void setUsuarioLoguedo(Usuario usuarioLogueado) {
-        this.usuarioLogueado = usuarioLogueado;
-    }
-
+    /**
+     * Constructor parametrizado para establecer el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
     public ControladorJDAnadirHorario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
         combo();
     }
 
+    /**
+     * Establece el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+    public void setUsuarioLoguedo(Usuario usuarioLogueado) {
+        this.usuarioLogueado = usuarioLogueado;
+    }
+
+    /**
+     * Metodo para añadir al jcombobox los nombres de usuarios de la base de
+     * datos
+     */
     public void combo() {
         UsuarioDAO usuariodao = new UsuarioDAO();
         try {
@@ -45,7 +55,7 @@ public class ControladorJDAnadirHorario {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Error al cargar la lista de usuarios", "Error al cargar el usuario", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         vista.getjComboBoxUsuario().removeAllItems();
 
         for (Usuario u : usuariodao.getListaUsuarios()) {
@@ -54,20 +64,27 @@ public class ControladorJDAnadirHorario {
 
     }
 
+    /**
+     * Metodo que devuelve la fecha de inicio con los datos de la vista
+     *
+     * @return String fecha
+     */
     public String getFechaInicio() {
-
         int ano = vista.getjDateChooserFecha().getCalendar().get(Calendar.YEAR);
         int mes = vista.getjDateChooserFecha().getCalendar().get(Calendar.MONTH);
         int dia = vista.getjDateChooserFecha().getCalendar().get(Calendar.DAY_OF_MONTH);
         int hora = Integer.parseInt(vista.getjSpinnerHoraInicio().getValue().toString());
         int minutos = Integer.parseInt(vista.getjSpinnerMinsInicio().getValue().toString());
         int segundos = Integer.parseInt(vista.getjSpinnerSecInicio().getValue().toString());
-
         String fecha = ano + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos;
-        System.out.println(fecha);
         return fecha;
     }
 
+    /**
+     * Metodo que devuelve la fecha de finalizacion con los datos de la vista
+     *
+     * @return String fecha
+     */
     public String getFechaFin() {
         int ano = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.YEAR);
         int mes = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.MONTH);
@@ -79,9 +96,13 @@ public class ControladorJDAnadirHorario {
         String fecha = ano + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos;
         return fecha;
     }
-    public void anadirHorario(){
+
+    /**
+     * Metodo para añadir a la base de datos el horario establecido en la vista
+     */
+    public void anadirHorario() {
         horarioDAO horarioDAO = new horarioDAO();
-        horario h1 = new horario(getFechaInicio(), getFechaFin(),vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
+        horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
         try {
             horarioDAO.anadirHorario(h1);
             limpiaDatos();
@@ -90,7 +111,11 @@ public class ControladorJDAnadirHorario {
             JOptionPane.showMessageDialog(vista, "Error al añadir el horario", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void limpiaDatos(){
+
+    /**
+     * Metodo para limpiar los datos de la vista
+     */
+    public void limpiaDatos() {
         vista.getjComboBoxUsuario().setSelectedIndex(0);
         vista.getjTextField1().setText("");
         vista.getjDateChooserFecha().setCalendar(null);
@@ -101,7 +126,7 @@ public class ControladorJDAnadirHorario {
         vista.getjSpinnerMinsInicio().setValue(new Integer(1));
         vista.getjSpinnerSecFin().setValue(new Integer(1));
         vista.getjSpinnerSecInicio().setValue(new Integer(1));
-        
+
     }
 
 }

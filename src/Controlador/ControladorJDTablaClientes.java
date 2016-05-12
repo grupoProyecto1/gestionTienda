@@ -26,17 +26,21 @@ public class ControladorJDTablaClientes {
     private int botones;
 
     /**
-     * Constructor parametrizado que establece la vista
+     * Constructor parametrizado que establece el usuario logueado y los botones
      *
-     * @param vista
+     * @param usuarioLogueado objeto de tipo usuario
+     * @param botones int para mostrar los botones
      */
-    public ControladorJDTablaClientes(Usuario usuarioLogueado,int botones) {
+    public ControladorJDTablaClientes(Usuario usuarioLogueado, int botones) {
         this.usuarioLogueado = usuarioLogueado;
         this.botones = botones;
         creaVista();
     }
-    
-    public void creaVista(){
+
+    /**
+     * Metodo que crea la vista para jdtablaclientes
+     */
+    public void creaVista() {
         this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 1);
         vista.setControladorClientes(this);
         if (botones == 2) {
@@ -88,7 +92,8 @@ public class ControladorJDTablaClientes {
     }
 
     /**
-     * Metodo para rellenar la tabla creada
+     * Metodo para rellenar la tabla con los datos de cliente de la base de
+     * datos
      */
     public void rellenaTabla() {
         for (int i = 0; i < vista.getjTableUsuariosClientes().getRowCount(); i++) {
@@ -100,7 +105,7 @@ public class ControladorJDTablaClientes {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Error al cargar los clientes en la tabla", "Error al cargar los clientes", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         Object[] datos = new Object[6];
         for (Cliente c : clienteDAO.getListaClientes()) {
             datos[0] = c.getDni();
@@ -114,27 +119,26 @@ public class ControladorJDTablaClientes {
     }
 
     /**
-     * Devuelve si las columnas son editables excepto la primera, o ninguna es
-     * editable
+     * Devuelve si las columnas son editables
      *
-     * @return
+     * @return boolean
      */
     public boolean isEditable() {
         return editable;
     }
 
     /**
-     * Establece si las columnas son editables excepto la primera, o ninguna es
-     * editable
+     * Establece si las columnas son editables
      *
-     * @param editable
+     * @param editable boolean
      */
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
 
     /**
-     * Metodo que elimina el cliente seleccionado en la tabla
+     * Metodo que elimina el cliente seleccionado en la tabla de la base de
+     * datos
      */
     public void eliminaCliente() {
         try {
@@ -153,8 +157,8 @@ public class ControladorJDTablaClientes {
     }
 
     /**
-     * Metodo que actualiza el cliente de la base de datos con el modificado en
-     * la tabla
+     * Metodo que actualiza el cliente de la base de datos con el seleccionado
+     * en la tabla
      */
     public void modificaCliente() {
         try {

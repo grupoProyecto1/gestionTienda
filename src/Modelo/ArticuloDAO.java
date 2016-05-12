@@ -20,6 +20,11 @@ public class ArticuloDAO {
     private ArrayList<Articulo> listaArticulos = new ArrayList<Articulo>();
     private Connection con = ConexionBBDD.getConnection();
 
+    /**
+     * Carga los articulos de la base de datos
+     *
+     * @throws SQLException
+     */
     public void cargaArticulos() throws SQLException {
         listaArticulos.removeAll(listaArticulos);
         Statement stm = con.createStatement();
@@ -38,15 +43,27 @@ public class ArticuloDAO {
         stm.close();
     }
 
+    /**
+     * Añade el articulo pasado como parametro a la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
     public void anadirArticulo(Articulo a) throws SQLException {
         Statement stm = con.createStatement();
         String consulta = "Insert into articulo "
                 + "(nombre,descripcion,stock,preciounitario,impuesto)"
-                + "values('"+ a.getNombre() + "','" + a.getDescripcion() + "','" + a.getStock() + "','" + a.getPrecioUnitario() + "','" + a.getImpuesto() + "')";
+                + "values('" + a.getNombre() + "','" + a.getDescripcion() + "','" + a.getStock() + "','" + a.getPrecioUnitario() + "','" + a.getImpuesto() + "')";
         stm.executeUpdate(consulta);
         stm.close();
     }
 
+    /**
+     * Elimina el articulo pasado como parametro de la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
     public void eliminarArticulo(Articulo a) throws SQLException {
         Statement stm = con.createStatement();
         String consulta = "Delete from articulo where idarticulo='" + a.getId() + "'";
@@ -54,6 +71,12 @@ public class ArticuloDAO {
         stm.close();
     }
 
+    /**
+     * Modifica el articulo pasado como parametro de la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
     public void modificarArticulo(Articulo a) throws SQLException {
         Statement stm = con.createStatement();
         String consulta = "update articulo set nombre='" + a.getNombre() + "',descripcion='" + a.getDescripcion()
@@ -63,27 +86,12 @@ public class ArticuloDAO {
         stm.close();
     }
 
+    /**
+     * Devuelve una lista de articulos
+     *
+     * @return
+     */
     public ArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
-    }
-
-    public void creaFactura(Usuario u, Cliente c, double totalNeto, double totalBruto) throws SQLException {
-        Statement stm = con.createStatement();
-        String consulta = "insert into factura(dnicliente,nombreusuario,totalneto,totalbruto)values('" + c.getDni() + "','" + u.getNombre() + "','" + totalNeto + "','" + totalBruto + "')";
-        stm.executeUpdate(consulta);
-        stm.close();
-    }
-
-    public void creaLineasFactura(Articulo a, int cantidad) throws SQLException {
-        Statement stm = con.createStatement();
-        String consulta = "select id from factura order by id desc limit 1";
-        ResultSet rs = stm.executeQuery(consulta);
-        int facturaId = 0;
-        if (rs.next()) {
-            facturaId = rs.getInt("id");
-        }
-        String consulta2 = "insert into lineafactura(factura_id,articulo_idlineafactura,precioventa,cantidad)values('" + facturaId + "','" + a.getId() + "','" + a.getPrecioUnitario() + "','" + cantidad + "')";
-        stm.executeUpdate(consulta2);
-        stm.close();
     }
 }
