@@ -53,7 +53,7 @@ public class ControladorJDAnadirProveedor {
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Proveedor añadido satisfactoriamente", "Proovedor creado", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(vista, "El Proveedor no ha podido ser añadido", "Error al Crear el Proveedor", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, "El Proveedor no ha podido ser añadido o ya existe", "Error al Crear el Proveedor", JOptionPane.ERROR_MESSAGE);
         }
     }
 

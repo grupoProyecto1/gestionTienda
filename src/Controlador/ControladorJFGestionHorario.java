@@ -37,7 +37,7 @@ public class ControladorJFGestionHorario {
         vista.setControlador(this);
         if(usuarioLogueado.isAdmin()){
             vista.getjButtonBorrarHorario().setVisible(true);
-            vista.getjButtonBorrarHorario().setVisible(true);
+            vista.getjButtonAnadirHorario().setVisible(true);
         }
         
         vista.setVisible(true);

@@ -115,6 +115,11 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
         jLabel1.setText("Añadir Proveedor");
 
         jTextFieldEmailProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jTextFieldEmailProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEmailProveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -240,12 +245,11 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         controlador.checkNif();
         controlador.comprobador();
-        controlador.limpiaDatos();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextFieldTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoProveedorKeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c)|| !(jTextFieldTelefonoProveedor.getText().length() < 6)) {
+        if (!Character.isDigit(c) || !(jTextFieldTelefonoProveedor.getText().length() < 9)) {
             evt.consume();
 
         }
@@ -253,23 +257,27 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
 
     private void jTextFieldTelefonoProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoProveedorKeyPressed
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || !(jTextFieldTelefonoProveedor.getText().length() < 6)) {
+        if (!Character.isDigit(c) || !(jTextFieldTelefonoProveedor.getText().length() < 9)) {
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Solo digitos y maximo 6", "Error al instroducir telefono", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Solo digitos y maximo 9", "Error al instroducir telefono", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldTelefonoProveedorKeyPressed
 
+    private void jTextFieldEmailProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmailProveedorActionPerformed
+
     /**
-     * Obtiene el texto del cuadro en el que se escriben la direccion
+     * Devuelve el objeto jtextfield de direccion
      *
-     * @return direccionProveedor
+     * @return
      */
     public JTextField getjTextFieldDireccionProveedor() {
         return jTextFieldDireccionProveedor;
     }
 
     /**
-     * Modifica el valor del cuadro en el que se escribe la direccion
+     * Establece el objeto jtextfield de direccion
      *
      * @param jTextFieldDireccionProveedor
      */
@@ -278,16 +286,34 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
     }
 
     /**
-     * Obtiene el texto del cuadro en el que se escriben el dni
+     * Devuelve el objeto jtextfield de email
      *
-     * @return nifProveedor
+     * @return
+     */
+    public JTextField getjTextFieldEmailProveedor() {
+        return jTextFieldEmailProveedor;
+    }
+
+    /**
+     * Establece el objeto jtextfield de email
+     *
+     * @param jTextFieldEmailProveedor
+     */
+    public void setjTextFieldEmailProveedor(JTextField jTextFieldEmailProveedor) {
+        this.jTextFieldEmailProveedor = jTextFieldEmailProveedor;
+    }
+
+    /**
+     * Devuelve el objeto jtextfield de nif
+     *
+     * @return
      */
     public JTextField getjTextFieldNifProveedor() {
         return jTextFieldNifProveedor;
     }
 
     /**
-     * Modifica el valor del cuadro en el que se escribe el dni
+     * Establece el objeto jtextfield de nif
      *
      * @param jTextFieldNifProveedor
      */
@@ -296,34 +322,16 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
     }
 
     /**
-     * Obtiene el texto del cuadro en el que se escribe el email
+     * Devuelve el objeto jtextfield de nombre
      *
-     * @return jTextFieldEmailProveedor
-     */
-    public JTextField getjTextFieldEmailProveedor() {
-        return jTextFieldTelefonoProveedor;
-    }
-
-    /**
-     * Modifica el valor del cuadro en el que se escribe el email
-     *
-     * @param jTextFieldEmailProveedor
-     */
-    public void setjTextFieldEmailProveedor(JTextField jTextFieldEmailProveedor) {
-        this.jTextFieldTelefonoProveedor = jTextFieldEmailProveedor;
-    }
-
-    /**
-     * Obtiene el texto del cuadro en el que se escribe el nombre
-     *
-     * @return jTextFieldNombreProveedor
+     * @return
      */
     public JTextField getjTextFieldNombreProveedor() {
         return jTextFieldNombreProveedor;
     }
 
     /**
-     * Modifica el valor del cuadro en el que se escribe el nombre
+     * Establece el objeto jtextfield de nombre
      *
      * @param jTextFieldNombreProveedor
      */
@@ -331,14 +339,30 @@ public class JDAnadirProveedor extends javax.swing.JDialog {
         this.jTextFieldNombreProveedor = jTextFieldNombreProveedor;
     }
 
+    /**
+     * Devuelve el objeto jtextfield de telefono
+     *
+     * @return
+     */
     public JTextField getjTextFieldTelefonoProveedor() {
         return jTextFieldTelefonoProveedor;
     }
 
+    /**
+     * Establece el objeto jtextfield de telefono
+     *
+     * @param jTextFieldTelefonoProveedor
+     */
     public void setjTextFieldTelefonoProveedor(JTextField jTextFieldTelefonoProveedor) {
         this.jTextFieldTelefonoProveedor = jTextFieldTelefonoProveedor;
     }
 
+    /**
+     * Establece el controlador de tipo controlador jdanadirproveedor de la
+     * vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDAnadirProveedor controlador) {
         this.controlador = controlador;
     }

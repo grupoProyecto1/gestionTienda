@@ -243,6 +243,7 @@ public class ControladorJDVentas {
         try {
             FacturaDAO fdao = new FacturaDAO();
             LineafacturaDAO ldao = new LineafacturaDAO();
+            ArticuloDAO adao = new ArticuloDAO();
             Cliente c;
             if (vista.getjTextFieldDni().getText().length() == 0) {
                 c = new Cliente("00000000A", null, null, 000000000, null, null);
@@ -251,13 +252,15 @@ public class ControladorJDVentas {
             }
             fdao.creaFactura(usuarioLogueado, c, totalNeto(), totalBruto());
             for (int i = 0; i < vista.getjTableVenta().getRowCount(); i++) {
+                int cantidad = (Integer) vista.getjTableVenta().getValueAt(i, 3);
                 Articulo a1 = new Articulo((Integer) vista.getjTableVenta().getValueAt(i, 0), null, null, 0, (Double) vista.getjTableVenta().getValueAt(i, 5), 0);
-                ldao.creaLineasFactura(a1, (Integer) vista.getjTableVenta().getValueAt(i, 3));
+                ldao.creaLineasFactura(a1, cantidad);
+                adao.cambiaStock(a1, cantidad );
             }
             limpiaTabla();
+            rellenaTabla();
             JOptionPane.showMessageDialog(vista, "Venta realizada correctamente.", "Información Venta", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(vista, "Ha fallado al crear la factura,repita la acción", "Error en factura", JOptionPane.ERROR_MESSAGE);
         }
     }

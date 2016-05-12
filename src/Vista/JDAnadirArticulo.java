@@ -200,26 +200,22 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldStockArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyPressed
         char c = evt.getKeyChar();
-
         if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
-
-            } else {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, "Solo se pueden introducir numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_jTextFieldStockArticuloKeyPressed
 
     private void jTextFieldStockArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyTyped
+      
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != '.') {
-            if (evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+        if (!Character.isDigit(c)) {
+            evt.consume();
 
-            } else {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
+        }
+        if (jTextFieldStockArticulo.getText().length() > 8) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede contener 9 digitos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTextFieldStockArticuloKeyTyped
 
@@ -253,34 +249,6 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jTextFieldNombreArticulo1ActionPerformed
-
-    private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-
-        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
-
-            } else {
-                evt.consume();
-
-            }
-        }
-    }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
-
-    private void jTextFieldPrecioUnitarioArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
-        // TODO add your handling code here:char c = evt.getKeyChar();
-        char c = evt.getKeyChar();
-
-        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
-
-            } else {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
 
     private void jTextFieldImpuestoArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyPressed
         // TODO add your handling code here:
@@ -356,6 +324,34 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextFieldPrecioUnitarioArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
+        // TODO add your handling code here:char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
+
+    private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.' || evt.getKeyCode() != 8 || evt.getKeyCode() != 16) {
+
+            } else {
+                evt.consume();
+
+            }
+        }
+    }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
 
     /**
      * Devuelve el objeto jtextfield descripcion

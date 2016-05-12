@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Usuario;
+import Vista.JFLogin;
 import Vista.JFMenu;
 
 /**
@@ -114,6 +115,11 @@ public class ControladorJFMenu {
      */
     public void gestionArticulos() {
         ControladorJFGestionArticulos cjfga = new ControladorJFGestionArticulos(usuarioLogueado);
+        vista.dispose();
+    }
+    
+    public void cierraSesion(){
+        new JFLogin().setVisible(true);
         vista.dispose();
     }
 }

@@ -61,12 +61,6 @@ public class ClienteDAO {
                 + "'";
         Statement stm = conn.createStatement();
         int result = stm.executeUpdate(sql);
-
-        if (result > 0) {
-            System.out.println("Se ha modificado correctamente el cliente");
-        } else {
-            System.out.println("Ha ocurrido un error al intentar modificar un cliente");
-        }
         stm.close();
     }
 

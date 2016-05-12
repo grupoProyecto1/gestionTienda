@@ -85,6 +85,24 @@ public class ArticuloDAO {
         stm.executeUpdate(consulta);
         stm.close();
     }
+    
+    public void cambiaStock(Articulo a,int cantidad) throws SQLException{
+        Statement stm = con.createStatement();
+        String consulta = "update articulo set stock='" + (devuelveStock(a)-cantidad) +  "'where idarticulo = '" + a.getId() + "'";
+        stm.executeUpdate(consulta);
+        stm.close();
+    }
+    
+    public int devuelveStock(Articulo a)throws SQLException{
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery("select * from articulo where idarticulo ='"+a.getId()+"'");
+        int cantidad=-1;
+        if(rs.next()){
+            cantidad=rs.getInt("stock");
+        }
+        stm.close();
+        return cantidad;
+    }
 
     /**
      * Devuelve una lista de articulos

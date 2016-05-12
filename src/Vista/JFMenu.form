@@ -28,16 +28,15 @@
           <Component id="jLabel7" alignment="0" pref="294" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jButtonArticulos" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
-                  <Component id="jButtonFacturas" min="-2" pref="103" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonUsuarios" max="32767" attributes="0"/>
-                      <Component id="jButtonClientes" max="32767" attributes="0"/>
-                      <Component id="jButtonProveedores" max="32767" attributes="0"/>
-                      <Component id="jButtonVentas" max="32767" attributes="0"/>
-                      <Component id="jButtonHorarios" min="-2" pref="103" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jButtonFacturas" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonArticulos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonCerrarSesion" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonHorarios" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonVentas" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonProveedores" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonClientes" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonUsuarios" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -62,7 +61,9 @@
               <Component id="jButtonFacturas" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonArticulos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonCerrarSesion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,6 +132,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonArticulosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonCerrarSesion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCerrarSesionActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

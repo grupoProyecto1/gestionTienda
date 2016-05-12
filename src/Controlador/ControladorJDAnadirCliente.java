@@ -53,7 +53,7 @@ public class ControladorJDAnadirCliente {
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Cliente añadido satisfactoriamente", "Cliente creado", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido, ingrese todos los campos correctamente", "Error al Crear el Cliente", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, "El cliente no ha podido ser añadido, ingrese todos los campos correctamente o verifique que no existe", "Error al Crear el Cliente", JOptionPane.ERROR_MESSAGE);
         }
     }
 

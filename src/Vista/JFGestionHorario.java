@@ -136,6 +136,12 @@ public class JFGestionHorario extends javax.swing.JFrame {
         return jButtonBorrarHorario;
     }
 
+    public JButton getjButtonAnadirHorario() {
+        return jButtonAnadirHorario;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */

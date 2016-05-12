@@ -273,7 +273,6 @@ public class JDAnadirCliente extends javax.swing.JDialog {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         controlador.checkDni();
         controlador.comprobador();
-        controlador.limpiaDatos();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextFieldTelefonoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoClienteKeyTyped
