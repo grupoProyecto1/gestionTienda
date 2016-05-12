@@ -6,7 +6,6 @@
 package Vista;
 
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import Controlador.ControladorJDAnadirHorario;
@@ -24,6 +23,9 @@ public class JDAnadirHorario extends javax.swing.JDialog {
 
     /**
      * Creates new form JDHorario
+     *
+     * @param parent
+     * @param modal
      */
     public JDAnadirHorario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -208,91 +210,213 @@ public class JDAnadirHorario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Devuelve el JComboBoxUsuario
+     *
+     * @return
+     */
     public JComboBox<String> getjComboBoxUsuario() {
         return jComboBoxUsuario;
     }
+
+    /**
+     * Devuelve el JComboBoxUsuario
+     *
+     * @param jComboBoxUsuario
+     */
 
     public void setjComboBoxUsuario(JComboBox<String> jComboBoxUsuario) {
         this.jComboBoxUsuario = jComboBoxUsuario;
     }
 
+    /**
+     * Devuelve el JDateChooseFecha
+     *
+     * @return
+     */
     public JDateChooser getjDateChooserFecha() {
         return jDateChooserFecha;
     }
+
+    /**
+     * Establece el JDateChooserFecha
+     *
+     * @param jDateChooserFecha
+     */
 
     public void setjDateChooserFecha(JDateChooser jDateChooserFecha) {
         this.jDateChooserFecha = jDateChooserFecha;
     }
 
+    /**
+     * Devuelve el JDateChooserFechaFinal
+     *
+     * @return
+     */
+
     public JDateChooser getjDateChooserFechaFinal() {
         return jDateChooserFechaFinal;
     }
 
+    /**
+     * Establece el JDateChooserFechaFinal
+     *
+     * @param jDateChooserFechaFinal
+     */
     public void setjDateChooserFechaFinal(JDateChooser jDateChooserFechaFinal) {
         this.jDateChooserFechaFinal = jDateChooserFechaFinal;
     }
+
+    /**
+     * Devuelve el JSpinnerHoraFin
+     *
+     * @return
+     */
 
     public JSpinner getjSpinnerHoraFin() {
         return jSpinnerHoraFin;
     }
 
+    /**
+     * Establece SpinnerHoraFin
+     *
+     * @param jSpinnerHoraFin
+     */
+
     public void setjSpinnerHoraFin(JSpinner jSpinnerHoraFin) {
         this.jSpinnerHoraFin = jSpinnerHoraFin;
     }
 
+    /**
+     * Devuelve jSpinnerHoraInicio
+     *
+     * @return
+     */
     public JSpinner getjSpinnerHoraInicio() {
         return jSpinnerHoraInicio;
     }
 
+    /**
+     * Establece el jSpinnerHoraInicio
+     *
+     * @param jSpinnerHoraInicio
+     */
     public void setjSpinnerHoraInicio(JSpinner jSpinnerHoraInicio) {
         this.jSpinnerHoraInicio = jSpinnerHoraInicio;
     }
+
+    /**
+     * Devuelve el jSpinnerMinFin
+     *
+     * @return
+     */
 
     public JSpinner getjSpinnerMinFin() {
         return jSpinnerMinFin;
     }
 
+    /**
+     * Establece el jSpinnerMinFin
+     *
+     * @param jSpinnerMinFin
+     */
+
     public void setjSpinnerMinFin(JSpinner jSpinnerMinFin) {
         this.jSpinnerMinFin = jSpinnerMinFin;
     }
 
+    /**
+     * Devuelve el jSpinnerMinsInicio
+     *
+     * @return
+     */
     public JSpinner getjSpinnerMinsInicio() {
         return jSpinnerMinsInicio;
     }
 
+    /**
+     * Establece jSpinnerMinsInicio
+     *
+     * @param jSpinnerMinsInicio
+     */
     public void setjSpinnerMinsInicio(JSpinner jSpinnerMinsInicio) {
         this.jSpinnerMinsInicio = jSpinnerMinsInicio;
     }
+
+    /**
+     * Devuelve el jSpinnerSecFin
+     *
+     * @return
+     */
 
     public JSpinner getjSpinnerSecFin() {
         return jSpinnerSecFin;
     }
 
+    /**
+     * Esteblece jSpinnerSecFin
+     *
+     * @param jSpinnerSecFin
+     */
+
     public void setjSpinnerSecFin(JSpinner jSpinnerSecFin) {
         this.jSpinnerSecFin = jSpinnerSecFin;
     }
+
+    /**
+     * Devuelve el jSpinnerSecInicio
+     *
+     * @return
+     */
 
     public JSpinner getjSpinnerSecInicio() {
         return jSpinnerSecInicio;
     }
 
+    /**
+     * Establece jSpinnerSecInicio
+     *
+     * @param jSpinnerSecInicio
+     */
+
     public void setjSpinnerSecInicio(JSpinner jSpinnerSecInicio) {
         this.jSpinnerSecInicio = jSpinnerSecInicio;
     }
 
-    public JTextField getjTextField1() {
+    /**
+     * Devuelve el jTextFieldDescripcion
+     *
+     * @return
+     */
+
+    public JTextField getjTextFieldDescripcion() {
         return jTextFieldDescripcion;
     }
 
-    public void setjTextField1(JTextField jTextField1) {
-        this.jTextFieldDescripcion = jTextField1;
+    /**
+     * Establece jTextFieldDescripcion
+     *
+     * @param jTextFieldDescripcion
+     */
+
+    public void setjTextFieldDescripcion(JTextField jTextFieldDescripcion) {
+        this.jTextFieldDescripcion = jTextFieldDescripcion;
     }
+
+    /**
+     * Establece el controlador para la vista
+     *
+     * @param controlador
+     */
 
     public void setControlador(ControladorJDAnadirHorario controlador) {
         this.controlador = controlador;
     }
-    
 
+    /**
+     *
+     * @param evt
+     */
     private void jTextFieldDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDescripcionActionPerformed
@@ -308,13 +432,13 @@ public class JDAnadirHorario extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jTextFieldDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionKeyTyped
-  char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
 
         if (!Character.isLetter(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
-             
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Debes introducir letras", "ERROR", JOptionPane.ERROR_MESSAGE);
-            
+
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debes introducir letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDescripcionKeyTyped
 

@@ -407,12 +407,18 @@ public class JDAnadirCliente extends javax.swing.JDialog {
         this.jTextFieldTelefonoCliente = jTextFieldTelefonoCliente;
     }
 
+    /**
+     * Establece el controlador para la vista
+     *
+     * @param controlador
+     */
+
     public void setControlador(ControladorJDAnadirCliente controlador) {
         this.controlador = controlador;
     }
 
     /**
-     * @param args the command line arguments
+     * @param args
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -14,10 +14,14 @@ import Controlador.ControladorJDTablaFactura;
  * @author Joaquin
  */
 public class JDTablaFactura extends javax.swing.JDialog {
+
     private ControladorJDTablaFactura controlador;
 
     /**
      * Creates new form JDTablaFactura
+     *
+     * @param parent
+     * @param modal
      */
     public JDTablaFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -25,10 +29,20 @@ public class JDTablaFactura extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Devuelve jTableFactura
+     *
+     * @return
+     */
     public JTable getjTableFactura() {
         return jTable1;
     }
 
+    /**
+     * Establece el TableModel de jTableFactura
+     *
+     * @param tm
+     */
     public void setjTableFactura(TableModel tm) {
         this.jTable1.setModel(tm);
     }
@@ -113,9 +127,14 @@ public class JDTablaFactura extends javax.swing.JDialog {
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
         // TODO add your handling code here:
         controlador.seleccionarFactura();
-        
+
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
+    /**
+     * Establece el controlador de la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDTablaFactura controlador) {
         this.controlador = controlador;
     }

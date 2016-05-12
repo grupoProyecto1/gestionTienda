@@ -110,7 +110,7 @@ public class ControladorJDAnadirHorario {
     public void anadirHorario() {
         try {
             horarioDAO horarioDAO = new horarioDAO();
-            horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
+            horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextFieldDescripcion().getText());
             horarioDAO.anadirHorario(h1);
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Horario añadido satisfactoriamente", "Horario creado", JOptionPane.INFORMATION_MESSAGE);
@@ -124,7 +124,7 @@ public class ControladorJDAnadirHorario {
      */
     public void limpiaDatos() {
         vista.getjComboBoxUsuario().setSelectedIndex(0);
-        vista.getjTextField1().setText("");
+        vista.getjTextFieldDescripcion().setText("");
         vista.getjDateChooserFecha().setCalendar(null);
         vista.getjDateChooserFechaFinal().setCalendar(null);
         vista.getjSpinnerHoraFin().setValue(new Integer(1));

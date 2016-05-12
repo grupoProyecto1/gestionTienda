@@ -212,6 +212,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_jPasswordFieldContrasenaActionPerformed
 
     /**
+     * Devuelve el JChechBoxAdmin
      *
      * @return
      */
@@ -220,6 +221,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece jCheckBoxAdmin
      *
      * @param jCheckBoxAdmin
      */
@@ -228,6 +230,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve JCheckBoxClinte
      *
      * @return
      */
@@ -236,6 +239,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece jCheckBoxCliente
      *
      * @param jCheckBoxCliente
      */
@@ -244,6 +248,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve JCheckBoxProductos
      *
      * @return
      */
@@ -252,6 +257,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece JCheckBoxProductos
      *
      * @param jCheckBoxProductos
      */
@@ -260,6 +266,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve el JCheckBoxProveedore
      *
      * @return
      */
@@ -268,6 +275,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece el JCheckBoxProveedores
      *
      * @param jCheckBoxProveedores
      */
@@ -276,6 +284,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve el JCheckBoxUsuarios
      *
      * @return
      */
@@ -284,6 +293,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece JCheckBoxUsuarios
      *
      * @param jCheckBoxUsuarios
      */
@@ -292,6 +302,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve JPasswordFieldContrasena
      *
      * @return
      */
@@ -300,6 +311,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece jPasswordFieldContrasena
      *
      * @param jPasswordFieldContrasena
      */
@@ -308,6 +320,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve jPasswordContrasena2
      *
      * @return
      */
@@ -316,6 +329,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece JPasswordFieldContrasena2
      *
      * @param jPasswordFieldContrasena2
      */
@@ -324,6 +338,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Devuelve JTextFieldNombre
      *
      * @return
      */
@@ -332,6 +347,7 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
     }
 
     /**
+     * Establece jTextFieldNombre
      *
      * @param jTextFieldNombre
      */
@@ -339,12 +355,15 @@ public class JDAnadirUsuario extends javax.swing.JDialog {
         this.jTextFieldNombre = jTextFieldNombre;
     }
 
+    /**
+     * Establece el controlador para la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDAnadirUsuario controlador) {
         this.controlador = controlador;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */

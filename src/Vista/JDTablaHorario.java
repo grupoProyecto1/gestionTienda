@@ -5,7 +5,6 @@
  */
 package Vista;
 
-
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import Controlador.ControladorJDTablaHorario;
@@ -17,20 +16,23 @@ import javax.swing.table.TableRowSorter;
  * @author Joaquin
  */
 public class JDTablaHorario extends javax.swing.JDialog {
+
     private ControladorJDTablaHorario controlador;
     private TableRowSorter trsfiltro;
-    
 
     /**
      * Creates new form JDTablaHorario
+     *
+     * @param parent
+     * @param modal
      */
     public JDTablaHorario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        jButtonBorrar.setVisible(false);        
+        jButtonBorrar.setVisible(false);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,24 +157,43 @@ public class JDTablaHorario extends javax.swing.JDialog {
         });
     }
 
+    /**
+     * Devuelve JTableHorario
+     *
+     * @return
+     */
     public JTable getjTableHorario() {
         return jTableHorario;
     }
 
+    /**
+     * Establece el TableModel de JTablaHorario
+     *
+     * @param tm
+     */
     public void setjTableHorario(TableModel tm) {
         this.jTableHorario.setModel(tm);
     }
 
+    /**
+     * Devuelve JButtonBorrar
+     *
+     * @return
+     */
     public JButton getjButtonBorrar() {
         return jButtonBorrar;
     }
 
+    /**
+     * Establece el controlador para la vista
+     *
+     * @param controlador
+     */
     public void setControlador(ControladorJDTablaHorario controlador) {
         this.controlador = controlador;
     }
 
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrar;
     private javax.swing.JButton jButtonVolver;
