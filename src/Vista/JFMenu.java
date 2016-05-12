@@ -24,7 +24,7 @@ public class JFMenu extends javax.swing.JFrame {
         jButtonClientes.setVisible(false);
         jButtonProveedores.setVisible(false);
         jButtonFacturas.setVisible(false);
-        jButtonVentas.setVisible(false);
+        jButtonArticulos.setVisible(false);
     }
 
     /**
@@ -215,9 +215,9 @@ public class JFMenu extends javax.swing.JFrame {
         return jButtonFacturas;
     }
 
-    
-    
-    
+    public JButton getjButtonArticulos() {
+        return jButtonArticulos;
+    }  
     
     /**
      * @param args the command line arguments

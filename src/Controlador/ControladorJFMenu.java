@@ -38,7 +38,7 @@ public class ControladorJFMenu {
             vista.getjButtonClientes().setVisible(true);
             vista.getjButtonProveedores().setVisible(true);
             vista.getjButtonFacturas().setVisible(true);
-            vista.getjButtonVentas().setVisible(true);
+            vista.getjButtonArticulos().setVisible(true);
         } else {
             if (usuarioLogueado.isVistaClientes()) {
                 vista.getjButtonClientes().setVisible(true);
@@ -50,7 +50,7 @@ public class ControladorJFMenu {
                 vista.getjButtonProveedores().setVisible(true);
             }
             if (usuarioLogueado.isVistaProductos()) {
-                vista.getjButtonVentas().setVisible(true);
+                vista.getjButtonArticulos().setVisible(true);
             }
         }
         vista.setVisible(true);
