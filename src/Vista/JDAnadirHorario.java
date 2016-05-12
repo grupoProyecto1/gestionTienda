@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import Controlador.ControladorJDAnadirHorario;
 import javax.swing.JComboBox;
+
 /**
  *
  * @author Joaquin
  */
 public class JDAnadirHorario extends javax.swing.JDialog {
-private ControladorJDAnadirHorario controlador;
+
+    private ControladorJDAnadirHorario controlador;
+
     /**
      * Creates new form JDHorario
      */
@@ -35,7 +39,7 @@ private ControladorJDAnadirHorario controlador;
 
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldDescripcion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButtonAnadir = new javax.swing.JButton();
@@ -47,7 +51,7 @@ private ControladorJDAnadirHorario controlador;
         jSpinnerHoraFin = new javax.swing.JSpinner();
         jSpinnerMinFin = new javax.swing.JSpinner();
         jSpinnerSecFin = new javax.swing.JSpinner();
-        jComboBoxUsuario = new javax.swing.JComboBox<>();
+        jComboBoxUsuario = new javax.swing.JComboBox<String>();
         jDateChooserFechaFinal = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButtonVolver = new javax.swing.JButton();
@@ -56,10 +60,9 @@ private ControladorJDAnadirHorario controlador;
 
         jLabel1.setText("Fecha Inicio:");
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldDescripcionActionPerformed(evt);
             }
         });
 
@@ -90,7 +93,7 @@ private ControladorJDAnadirHorario controlador;
 
         jSpinnerSecFin.setModel(new javax.swing.SpinnerNumberModel(1, 0, 60, 1));
 
-        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Fecha de finalizacion");
 
@@ -124,7 +127,7 @@ private ControladorJDAnadirHorario controlador;
                         .addComponent(jSpinnerMinsInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSpinnerSecInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1)
+                    .addComponent(jTextFieldDescripcion)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSpinnerHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,17 +145,17 @@ private ControladorJDAnadirHorario controlador;
                         .addComponent(jButtonAnadir)
                         .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 67, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jDateChooserFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 67, Short.MAX_VALUE)))
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
@@ -180,7 +183,7 @@ private ControladorJDAnadirHorario controlador;
                     .addComponent(jSpinnerSecFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -269,26 +272,30 @@ private ControladorJDAnadirHorario controlador;
     }
 
     public JTextField getjTextField1() {
-        return jTextField1;
+        return jTextFieldDescripcion;
     }
 
     public void setjTextField1(JTextField jTextField1) {
-        this.jTextField1 = jTextField1;
+        this.jTextFieldDescripcion = jTextField1;
     }
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    public void setControlador(ControladorJDAnadirHorario controlador) {
+        this.controlador = controlador;
+    }
+    
+
+    private void jTextFieldDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldDescripcionActionPerformed
 
     private void jButtonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirActionPerformed
         // TODO add your handling code here:
-System.out.println(getjComboBoxUsuario().getSelectedItem().toString());
         controlador.anadirHorario();
     }//GEN-LAST:event_jButtonAnadirActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         // TODO add your handling code here:
-
+        controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     /**
@@ -352,6 +359,6 @@ System.out.println(getjComboBoxUsuario().getSelectedItem().toString());
     private javax.swing.JSpinner jSpinnerMinsInicio;
     private javax.swing.JSpinner jSpinnerSecFin;
     private javax.swing.JSpinner jSpinnerSecInicio;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldDescripcion;
     // End of variables declaration//GEN-END:variables
 }

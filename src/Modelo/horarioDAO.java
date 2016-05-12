@@ -53,9 +53,9 @@ public class horarioDAO {
         ResultSet rs = stm.executeQuery("select * from horario");
         String[] datos = new String[4];
         while (rs.next()) {
-            datos[0] = rs.getString("nombreusuario");
-            datos[1] = rs.getString("fechainicio");
-            datos[2] = rs.getString("fechafinal");
+            datos[0] = rs.getString("fechainicio");
+            datos[1] = rs.getString("fechafinal");
+            datos[2] = rs.getString("nombreusuario");
             datos[3] = rs.getString("descripcion");
             horario h1 = new horario(datos[0], datos[1], datos[2], datos[3]);
             listaHorarios.add(h1);
@@ -85,7 +85,7 @@ public class horarioDAO {
      */
     public void eliminarHorario(horario h) throws SQLException {
         Statement stm = con.createStatement();
-        String consulta = "delete from horario where nombre='" + h.getUsuario() + "'and fechainicio ='" + h.getFechaInicio() + "'";
+        String consulta = "delete from horario where nombreusuario='" + h.getUsuario() + "'and fechainicio ='" + h.getFechaInicio() + "'";
         stm.executeUpdate(consulta);
         stm.close();
     }

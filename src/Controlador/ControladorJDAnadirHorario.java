@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 public class ControladorJDAnadirHorario {
 
     private JDAnadirHorario vista;
-    private boolean editable = false;
     private horarioDAO horario = new horarioDAO();
     private Usuario usuarioLogueado;
 
@@ -32,7 +31,14 @@ public class ControladorJDAnadirHorario {
      */
     public ControladorJDAnadirHorario(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
+        creaVista();
+    }
+
+    public void creaVista() {
+        this.vista = new JDAnadirHorario(null, true);
+        vista.setControlador(this);
         combo();
+        vista.setVisible(true);
     }
 
     /**
@@ -49,17 +55,15 @@ public class ControladorJDAnadirHorario {
      * datos
      */
     public void combo() {
-        UsuarioDAO usuariodao = new UsuarioDAO();
+        vista.getjComboBoxUsuario().removeAllItems();
         try {
+            UsuarioDAO usuariodao = new UsuarioDAO();
             usuariodao.cargaUsuarios();
+            for (Usuario u : usuariodao.getListaUsuarios()) {
+                vista.getjComboBoxUsuario().addItem(u.getNombre());
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(vista, "Error al cargar la lista de usuarios", "Error al cargar el usuario", JOptionPane.ERROR_MESSAGE);
-        }
-
-        vista.getjComboBoxUsuario().removeAllItems();
-
-        for (Usuario u : usuariodao.getListaUsuarios()) {
-            vista.getjComboBoxUsuario().addItem(u.getNombre());
         }
 
     }
@@ -101,14 +105,14 @@ public class ControladorJDAnadirHorario {
      * Metodo para añadir a la base de datos el horario establecido en la vista
      */
     public void anadirHorario() {
-        horarioDAO horarioDAO = new horarioDAO();
-        horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
         try {
+            horarioDAO horarioDAO = new horarioDAO();
+            horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextField1().getText());
             horarioDAO.anadirHorario(h1);
             limpiaDatos();
             JOptionPane.showMessageDialog(vista, "Horario añadido satisfactoriamente", "Horario creado", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(vista, "Error al añadir el horario", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException | NullPointerException e) {
+            JOptionPane.showMessageDialog(vista, "Error al añadir el horario, asegurate de añadir todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -127,6 +131,13 @@ public class ControladorJDAnadirHorario {
         vista.getjSpinnerSecFin().setValue(new Integer(1));
         vista.getjSpinnerSecInicio().setValue(new Integer(1));
 
+    }
+
+    /**
+     * Metodo para cerrar la ventana
+     */
+    public void volver() {
+        vista.dispose();
     }
 
 }

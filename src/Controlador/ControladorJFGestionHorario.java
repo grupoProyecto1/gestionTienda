@@ -35,6 +35,10 @@ public class ControladorJFGestionHorario {
     public void creaVista() {
         this.vista = new JFGestionHorario();
         vista.setControlador(this);
+        if(usuarioLogueado.isAdmin()){
+            vista.getjButtonBorrarHorario().setVisible(true);
+        }
+        
         vista.setVisible(true);
     }
 
@@ -51,7 +55,7 @@ public class ControladorJFGestionHorario {
      * horario
      */
     public void borrarHorario() {
-        cjdth = new ControladorJDTablaHorario(usuarioLogueado);
+        cjdth = new ControladorJDTablaHorario(usuarioLogueado,1);
     }
 
     /**
@@ -59,7 +63,7 @@ public class ControladorJFGestionHorario {
      * horario
      */
     public void verHorario() {
-        cjdth = new ControladorJDTablaHorario(usuarioLogueado);
+        cjdth = new ControladorJDTablaHorario(usuarioLogueado,0);
     }
 
     /**

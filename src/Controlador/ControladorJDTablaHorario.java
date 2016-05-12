@@ -22,15 +22,19 @@ public class ControladorJDTablaHorario {
     private JDTablaHorario vista;
     private horarioDAO horariodao = new horarioDAO();
     private Usuario usuarioLogueado;
+    private int botonBorrar;
 
     /**
      * Constructor parametrizado que crea un objeto de tipo
      * controladorjdtablahorario
      *
      * @param usuarioLogueado objeto de tipo usuario
+     * @param botonBorrar int 1 para mostrar el boton
      */
-    public ControladorJDTablaHorario(Usuario usuarioLogueado) {
+    public ControladorJDTablaHorario(Usuario usuarioLogueado, int botonBorrar) {
         this.usuarioLogueado = usuarioLogueado;
+        this.botonBorrar = botonBorrar;
+        creaVista();
     }
 
     /**
@@ -39,7 +43,9 @@ public class ControladorJDTablaHorario {
     public void creaVista() {
         this.vista = new JDTablaHorario(null, true);
         vista.setControlador(this);
-        if (usuarioLogueado.isAdmin()) {
+        creaTabla();
+        rellanaTabla();
+        if (usuarioLogueado.isAdmin() && botonBorrar == 1) {
             vista.getjButtonBorrar().setVisible(true);
         }
         vista.setVisible(true);
@@ -68,6 +74,9 @@ public class ControladorJDTablaHorario {
     public void creaTabla() {
         miTableModel.addColumn("Fecha de Incio");
         miTableModel.addColumn("Fecha Finalizacion");
+        if (usuarioLogueado.isAdmin()) {
+            miTableModel.addColumn("Usuario");
+        }
         miTableModel.addColumn("Descripcion");
         vista.setjTableHorario(miTableModel);
         vista.getjTableHorario().setAutoCreateRowSorter(true);
@@ -91,9 +100,9 @@ public class ControladorJDTablaHorario {
             Object[] datos = new Object[4];
 
             for (horario h : horariodao.getListaHorarios()) {
+                datos[2] = h.getUsuario();
                 datos[0] = h.getFechaInicio();
                 datos[1] = h.getFechaFin();
-                datos[2] = h.getUsuario();
                 datos[3] = h.getDescripcion();
                 miTableModel.addRow(datos);
             }
@@ -128,7 +137,8 @@ public class ControladorJDTablaHorario {
             horario h = new horario(fechaInicio, fechaFin, usuario, descripcion);
             horariodao.eliminarHorario(h);
             rellanaTabla();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(vista, "No has seleccionado ningun horario", "Error de horario", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -141,6 +151,13 @@ public class ControladorJDTablaHorario {
      */
     public void setUsuarioLogueado(Usuario usuarioLogueado) {
         this.usuarioLogueado = usuarioLogueado;
+    }
+
+    /**
+     * Metodo para crear una ventana de tipo jfgestionhorario
+     */
+    public void volver() {
+        vista.dispose();
     }
 
 }

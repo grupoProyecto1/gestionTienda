@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 package Vista;
-import Controlador.ControladorJFGestionHorario;
 
+import Controlador.ControladorJFGestionHorario;
+import javax.swing.JButton;
 
 /**
  *
  * @author Joaquin
  */
 public class JFGestionHorario extends javax.swing.JFrame {
+
     private ControladorJFGestionHorario controlador;
 
     /**
@@ -19,6 +21,7 @@ public class JFGestionHorario extends javax.swing.JFrame {
      */
     public JFGestionHorario() {
         initComponents();
+        jButtonBorrarHorario.setVisible(false);
     }
 
     /**
@@ -118,7 +121,11 @@ public class JFGestionHorario extends javax.swing.JFrame {
     public void setControlador(ControladorJFGestionHorario controlador) {
         this.controlador = controlador;
     }
-    
+
+    public JButton getjButtonBorrarHorario() {
+        return jButtonBorrarHorario;
+    }
+
     /**
      * @param args the command line arguments
      */

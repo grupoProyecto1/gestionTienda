@@ -38,6 +38,7 @@ public class ControladorJFMenu {
             vista.getjButtonClientes().setVisible(true);
             vista.getjButtonProveedores().setVisible(true);
             vista.getjButtonFacturas().setVisible(true);
+            vista.getjButtonVentas().setVisible(true);
         } else {
             if (usuarioLogueado.isVistaClientes()) {
                 vista.getjButtonClientes().setVisible(true);
