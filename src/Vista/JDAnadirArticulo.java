@@ -184,25 +184,33 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldStockArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyPressed
-      char c = evt.getKeyChar();
-     
-        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && c != '.') {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldStockArticuloKeyPressed
 
     private void jTextFieldStockArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldStockArticuloKeyTyped
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA && c != '.') {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != '.') {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldStockArticuloKeyTyped
 
     private void jTextFieldNombreArticulo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyPressed
         // TODO add your handling code here:
-    char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -211,7 +219,7 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldNombreArticulo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreArticulo1KeyTyped
         // TODO add your handling code here:
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (!Character.isDigit(c) || !Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -225,33 +233,57 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
 
     private void jTextFieldPrecioUnitarioArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
         // TODO add your handling code here:
-       char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+         char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyPressed
 
     private void jTextFieldPrecioUnitarioArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
         // TODO add your handling code here:char c = evt.getKeyChar();
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+         char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldPrecioUnitarioArticuloKeyTyped
 
     private void jTextFieldImpuestoArticuloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyPressed
         // TODO add your handling code here:
-        
+  char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jTextFieldImpuestoArticuloKeyPressed
 
     private void jTextFieldImpuestoArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldImpuestoArticuloKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || Character.isLetter(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE && evt.getKeyCode() != KeyEvent.VK_CAPS_LOCK && evt.getKeyCode() != KeyEvent.VK_COMMA) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+          char c = evt.getKeyChar();
+
+        if (Character.isLetter(c) || !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+            if (c == '.') {
+
+            } else {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jTextFieldImpuestoArticuloKeyTyped
 
@@ -262,7 +294,7 @@ public class JDAnadirArticulo extends javax.swing.JDialog {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Debes introducir letras o numeros", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-       
+
     }//GEN-LAST:event_jTextFieldDescripcionArticuloKeyPressed
 
     private void jTextFieldDescripcionArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionArticuloKeyTyped

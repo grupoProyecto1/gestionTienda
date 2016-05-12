@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import Controlador.ControladorJDAnadirHorario;
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +68,11 @@ public class JDAnadirHorario extends javax.swing.JDialog {
         jTextFieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDescripcionActionPerformed(evt);
+            }
+        });
+        jTextFieldDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDescripcionKeyTyped(evt);
             }
         });
 
@@ -298,6 +305,17 @@ public class JDAnadirHorario extends javax.swing.JDialog {
         // TODO add your handling code here:
         controlador.volver();
     }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void jTextFieldDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionKeyTyped
+  char c = evt.getKeyChar();
+
+        if (!Character.isLetter(c) && !Character.isDigit(c) && evt.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
+             
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Debes introducir letras", "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDescripcionKeyTyped
 
     /**
      * @param args the command line arguments
