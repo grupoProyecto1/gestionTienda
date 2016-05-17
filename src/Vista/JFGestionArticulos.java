@@ -40,6 +40,7 @@ public class JFGestionArticulos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/image/icon.png")).getImage());
 
         jButtonAnadirArticulo.setText("Añadir Articulo");
         jButtonAnadirArticulo.addActionListener(new java.awt.event.ActionListener() {

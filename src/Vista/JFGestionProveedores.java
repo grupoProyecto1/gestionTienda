@@ -41,6 +41,7 @@ public class JFGestionProveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestion de Proveedores");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/image/icon.png")).getImage());
         setResizable(false);
 
         jButtonAnadirProveedor.setText("Añadir Proveedor");

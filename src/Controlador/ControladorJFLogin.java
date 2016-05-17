@@ -43,7 +43,7 @@ public class ControladorJFLogin {
                 ControladorJFMenu cjfm = new ControladorJFMenu(usuarioLogueado);
                 vista.dispose();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrecta", "Error al Iniciar Sesion", JOptionPane.ERROR_MESSAGE);
         }
 

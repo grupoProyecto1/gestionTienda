@@ -41,6 +41,7 @@ public class JFGestionUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Gestión de Usuarios");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/image/icon.png")).getImage());
         setResizable(false);
 
         jButtonAnadirCliente.setText("Añadir Usuario");
