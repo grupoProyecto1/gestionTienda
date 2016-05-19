@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDAnadirCliente.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDAnadirCliente.java</span></div><h1>ControladorJDAnadirCliente.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.Cliente;
+import Modelo.ClienteDAO;
+import Modelo.Usuario;
+import Vista.JDAnadirCliente;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Mario
+ */
+public class ControladorJDAnadirCliente {
+
+    private JDAnadirCliente vista;
+    private Usuario usuarioLogueado;
+
+    /**
+     * Constructor parametrizado con un objeto para establecer el usuario
+     * logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
+<span class="nc" id="L30">    public ControladorJDAnadirCliente(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L31">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L32">        creaVista();</span>
+<span class="nc" id="L33">    }</span>
+
+    /**
+     * Metodo que crea la vista para jdanadircliente
+     */
+    public void creaVista() {
+<span class="nc" id="L39">        this.vista = new JDAnadirCliente(null, true);</span>
+<span class="nc" id="L40">        vista.setControlador(this);</span>
+<span class="nc" id="L41">        vista.setVisible(true);</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Metodo para comprobar si introdujo un cliente valido y si las contraseñas
+     * son iguales, finalmente se agrega el cliente a la BD
+     */
+    public void comprobador() {
+        try {
+<span class="nc" id="L50">            ClienteDAO clienteDAO = new ClienteDAO();</span>
+<span class="nc" id="L51">            Cliente u1 = new Cliente(vista.getjTextFieldDniCliente().getText(), vista.getjTextFieldNombreCliente().getText(), vista.getjTextFieldApellidosCliente().getText(), Integer.parseInt(vista.getjTextFieldTelefonoCliente().getText()), vista.getjTextFieldDireccionCliente().getText(), vista.getjTextFieldEmailCliente().getText());</span>
+<span class="nc" id="L52">            clienteDAO.anadirCliente(u1);</span>
+<span class="nc" id="L53">            limpiaDatos();</span>
+<span class="nc" id="L54">            JOptionPane.showMessageDialog(vista, &quot;Cliente añadido satisfactoriamente&quot;, &quot;Cliente creado&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L55">        } catch (SQLException | NumberFormatException e) {</span>
+<span class="nc" id="L56">            JOptionPane.showMessageDialog(vista, &quot;El cliente no ha podido ser añadido, ingrese todos los campos correctamente o verifique que no existe&quot;, &quot;Error al Crear el Cliente&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L57">        }</span>
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Metodo que comprueba la valided del DNI
+     *
+     */
+    public void checkDni() {
+<span class="nc" id="L65">        String dni = vista.getjTextFieldDniCliente().getText();</span>
+        try {
+<span class="nc" id="L67">            int numDni = Integer.valueOf(dni.substring(0, 8));</span>
+<span class="nc" id="L68">            char letraDni = dni.charAt(8);</span>
+<span class="nc" id="L69">            int resto = numDni % 23;</span>
+<span class="nc" id="L70">            String letrasMayus = &quot;TRWAGMYFPDXBNJZSQVHLCKE&quot;;</span>
+<span class="nc" id="L71">            String letrasMin = &quot;trwagmyfpdxbnjzsqvhlcke&quot;;</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">            if (letraDni != letrasMayus.charAt(resto) &amp;&amp; letraDni != letrasMin.charAt(resto)) {</span>
+<span class="nc" id="L73">                JOptionPane.showMessageDialog(vista, &quot;El DNI no es correcto&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+            }
+<span class="nc" id="L75">        } catch (StringIndexOutOfBoundsException e) {</span>
+<span class="nc" id="L76">            JOptionPane.showMessageDialog(vista, &quot;DNI vacio&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+
+<span class="nc" id="L78">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L79">            JOptionPane.showMessageDialog(vista, &quot;Longitud del DNI invalida&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L80">        }</span>
+
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Metodo para limpiar los datos que hay rellenos en el formulario
+     */
+    public void limpiaDatos() {
+<span class="nc" id="L88">        vista.getjTextFieldNombreCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L89">        vista.getjTextFieldApellidosCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L90">        vista.getjTextFieldDniCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L91">        vista.getjTextFieldTelefonoCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L92">        vista.getjTextFieldDireccionCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L93">        vista.getjTextFieldEmailCliente().setText(&quot;&quot;);</span>
+<span class="nc" id="L94">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDAnadirUsuario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDAnadirUsuario.java</span></div><h1>ControladorJDAnadirUsuario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.Usuario;
+import Modelo.UsuarioDAO;
+import Vista.JDAnadirUsuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
+
+/**
+ *
+ * @author Mario
+ */
+public class ControladorJDAnadirUsuario {
+
+    private JDAnadirUsuario vista;
+    private Usuario usuarioLogueado;
+
+    /**
+     * Constructor parametrizado para establecer el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
+<span class="nc" id="L29">    public ControladorJDAnadirUsuario(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L30">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L31">        creaVista();</span>
+<span class="nc" id="L32">    }</span>
+
+    /**
+     * Metodo que crea la vista para jdanadirusuario
+     */
+    public void creaVista() {
+<span class="nc" id="L38">        this.vista = new JDAnadirUsuario(null, true);</span>
+<span class="nc" id="L39">        vista.setControlador(this);</span>
+<span class="nc" id="L40">        vista.setVisible(true);</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * Metodo para comprobar si introdujo un usuario valido y si las contraseñas
+     * son iguales, finalmente se agrega el usuario a la BD
+     */
+    public void comprobador() {
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (vista.getjTextFieldNombre().getText().isEmpty()) {</span>
+<span class="nc" id="L49">            JOptionPane.showMessageDialog(vista, &quot;El nombre es obligatorio&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">        } else if (new String(vista.getjPasswordFieldContrasena().getPassword()).isEmpty() || new String(vista.getjPasswordFieldContrasena2().getPassword()).isEmpty()) {</span>
+<span class="nc" id="L51">            JOptionPane.showMessageDialog(vista, &quot;No puede haber una contraseña vacia&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        } else if (new String(vista.getjPasswordFieldContrasena().getPassword()).equals(new String(vista.getjPasswordFieldContrasena2().getPassword()))) {</span>
+            try {
+<span class="nc" id="L54">                String pass = DigestUtils.sha512Hex(new String(vista.getjPasswordFieldContrasena().getPassword()));</span>
+<span class="nc" id="L55">                UsuarioDAO usuarioDAO = new UsuarioDAO();</span>
+<span class="nc" id="L56">                Usuario u1 = new Usuario(vista.getjTextFieldNombre().getText(), pass,</span>
+<span class="nc" id="L57">                        vista.getjCheckBoxAdmin().isSelected(), vista.getjCheckBoxCliente().isSelected(),</span>
+<span class="nc" id="L58">                        vista.getjCheckBoxProductos().isEnabled(), vista.getjCheckBoxProveedores().isSelected(),</span>
+<span class="nc" id="L59">                        vista.getjCheckBoxUsuarios().isSelected());</span>
+<span class="nc" id="L60">                usuarioDAO.anadirUsuario(u1);</span>
+<span class="nc" id="L61">                limpiaDatos();</span>
+<span class="nc" id="L62">                JOptionPane.showMessageDialog(vista, &quot;Usuario añadido satisfactoriamente&quot;, &quot;Usuario creado&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L63">            } catch (SQLException e) {</span>
+<span class="nc" id="L64">                JOptionPane.showMessageDialog(vista, &quot;El usuario no ha podido ser creado&quot;, &quot;Error al Crear el Usuario&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L65">            }</span>
+
+        } else {
+<span class="nc" id="L68">            JOptionPane.showMessageDialog(vista, &quot;Las contraseña son diferentes&quot;, &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="nc" id="L70">    }</span>
+
+    /**
+     * Metodo para limpiar los datos que hay rellenos en el formulario
+     */
+    public void limpiaDatos() {
+<span class="nc" id="L76">        vista.getjTextFieldNombre().setText(&quot;&quot;);</span>
+<span class="nc" id="L77">        vista.getjPasswordFieldContrasena().setText(&quot;&quot;);</span>
+<span class="nc" id="L78">        vista.getjPasswordFieldContrasena2().setText(&quot;&quot;);</span>
+<span class="nc" id="L79">        vista.getjCheckBoxAdmin().setSelected(false);</span>
+<span class="nc" id="L80">        vista.getjCheckBoxCliente().setSelected(false);</span>
+<span class="nc" id="L81">        vista.getjCheckBoxProductos().setSelected(false);</span>
+<span class="nc" id="L82">        vista.getjCheckBoxProveedores().setSelected(false);</span>
+<span class="nc" id="L83">        vista.getjCheckBoxUsuarios().setSelected(false);</span>
+<span class="nc" id="L84">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

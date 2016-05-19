@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaLineas.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaLineas.java</span></div><h1>ControladorJDTablaLineas.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Vista.JDTablaLineas;
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import Modelo.LineaFactura;
+import Modelo.LineafacturaDAO;
+import Modelo.Factura;
+import Modelo.Usuario;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDTablaLineas {
+
+    private Factura f;
+    private Usuario usuarioLogueado;
+    private JDTablaLineas vista;
+    private LineafacturaDAO lineaFacturaDAO;
+
+    /**
+     * Constructo parametrizado que crea un objeto de tipo
+     * controladorjdtablalineas
+     *
+     * @param f objeto de tipo Factura
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+<span class="nc" id="L35">    public ControladorJDTablaLineas(Factura f, Usuario usuarioLogueado) {</span>
+<span class="nc" id="L36">        this.f = f;</span>
+<span class="nc" id="L37">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L38">        this.lineaFacturaDAO = new LineafacturaDAO();</span>
+<span class="nc" id="L39">        creaVista();</span>
+<span class="nc" id="L40">    }</span>
+
+    /**
+     * Metodo para crea la vista de jdtablalineas
+     */
+    public void creaVista() {
+<span class="nc" id="L46">        this.vista = new JDTablaLineas(null, true);</span>
+<span class="nc" id="L47">        vista.setControlador(this);</span>
+<span class="nc" id="L48">        creaTabla();</span>
+<span class="nc" id="L49">        rellenaTabla();</span>
+<span class="nc" id="L50">        vista.setVisible(true);</span>
+
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L59">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+
+<span class="nc" id="L63">            return false;</span>
+
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L69">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que crea las columnas de la tabla y establece el modelo
+     */
+    public void creaTabla() {
+<span class="nc" id="L77">        miTableModel.addColumn(&quot;IdLinea&quot;);</span>
+<span class="nc" id="L78">        miTableModel.addColumn(&quot;IdFactura&quot;);</span>
+<span class="nc" id="L79">        miTableModel.addColumn(&quot;IdArticulo&quot;);</span>
+<span class="nc" id="L80">        miTableModel.addColumn(&quot;Precio de venta&quot;);</span>
+<span class="nc" id="L81">        miTableModel.addColumn(&quot;Cantidad&quot;);</span>
+<span class="nc" id="L82">        vista.setjTableLineas(miTableModel);</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Metodo que rellena la tabla con los datos lineafactura de la base de
+     * datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableLineas().getRowCount(); i++) {</span>
+<span class="nc" id="L91">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L92">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L95">            lineaFacturaDAO.cargaLineas(f);</span>
+<span class="nc" id="L96">        } catch (SQLException e) {</span>
+<span class="nc" id="L97">            JOptionPane.showMessageDialog(vista, &quot;Error al cargar las lineas&quot;, &quot;Error al cargar&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L98">        }</span>
+<span class="nc" id="L99">        Object[] datos = new Object[5];</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for (LineaFactura l : lineaFacturaDAO.getListaLineas()) {</span>
+<span class="nc" id="L101">            datos[0] = l.getId();</span>
+<span class="nc" id="L102">            datos[1] = l.getFacturaId();</span>
+<span class="nc" id="L103">            datos[2] = l.getArticuloId();</span>
+<span class="nc" id="L104">            datos[3] = l.getPrecioVenta();</span>
+<span class="nc" id="L105">            datos[4] = l.getCantidad();</span>
+<span class="nc" id="L106">            miTableModel.addRow(datos);</span>
+<span class="nc" id="L107">        }</span>
+<span class="nc" id="L108">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

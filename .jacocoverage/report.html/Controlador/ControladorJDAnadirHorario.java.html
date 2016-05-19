@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDAnadirHorario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDAnadirHorario.java</span></div><h1>ControladorJDAnadirHorario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.horarioDAO;
+import java.util.Calendar;
+import Modelo.Usuario;
+import Modelo.UsuarioDAO;
+import Modelo.horario;
+import Vista.JDAnadirHorario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDAnadirHorario {
+
+    private JDAnadirHorario vista;
+<span class="nc" id="L24">    private horarioDAO horario = new horarioDAO();</span>
+    private Usuario usuarioLogueado;
+
+    /**
+     * Constructor parametrizado para establecer el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
+<span class="nc" id="L32">    public ControladorJDAnadirHorario(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L33">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L34">        creaVista();</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     *Metodo para crear la vista JDAnadirHorario
+     */
+    public void creaVista() {
+<span class="nc" id="L41">        this.vista = new JDAnadirHorario(null, true);</span>
+<span class="nc" id="L42">        vista.setControlador(this);</span>
+<span class="nc" id="L43">        combo();</span>
+<span class="nc" id="L44">        vista.setVisible(true);</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Establece el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+    public void setUsuarioLoguedo(Usuario usuarioLogueado) {
+<span class="nc" id="L53">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L54">    }</span>
+
+    /**
+     * Metodo para añadir al jcombobox los nombres de usuarios de la base de
+     * datos
+     */
+    public void combo() {
+<span class="nc" id="L61">        vista.getjComboBoxUsuario().removeAllItems();</span>
+        try {
+<span class="nc" id="L63">            UsuarioDAO usuariodao = new UsuarioDAO();</span>
+<span class="nc" id="L64">            usuariodao.cargaUsuarios();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (Usuario u : usuariodao.getListaUsuarios()) {</span>
+<span class="nc" id="L66">                vista.getjComboBoxUsuario().addItem(u.getNombre());</span>
+<span class="nc" id="L67">            }</span>
+<span class="nc" id="L68">        } catch (SQLException e) {</span>
+<span class="nc" id="L69">            JOptionPane.showMessageDialog(vista, &quot;Error al cargar la lista de usuarios&quot;, &quot;Error al cargar el usuario&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L70">        }</span>
+
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Metodo que devuelve la fecha de inicio con los datos de la vista
+     *
+     * @return String fecha
+     */
+    public String getFechaInicio() {
+<span class="nc" id="L80">        int ano = vista.getjDateChooserFecha().getCalendar().get(Calendar.YEAR);</span>
+<span class="nc" id="L81">        int mes = vista.getjDateChooserFecha().getCalendar().get(Calendar.MONTH);</span>
+<span class="nc" id="L82">        int dia = vista.getjDateChooserFecha().getCalendar().get(Calendar.DAY_OF_MONTH);</span>
+<span class="nc" id="L83">        int hora = Integer.parseInt(vista.getjSpinnerHoraInicio().getValue().toString());</span>
+<span class="nc" id="L84">        int minutos = Integer.parseInt(vista.getjSpinnerMinsInicio().getValue().toString());</span>
+<span class="nc" id="L85">        int segundos = Integer.parseInt(vista.getjSpinnerSecInicio().getValue().toString());</span>
+<span class="nc" id="L86">        String fecha = ano + &quot;-&quot; + mes + &quot;-&quot; + dia + &quot; &quot; + hora + &quot;:&quot; + minutos + &quot;:&quot; + segundos;</span>
+<span class="nc" id="L87">        return fecha;</span>
+    }
+
+    /**
+     * Metodo que devuelve la fecha de finalizacion con los datos de la vista
+     *
+     * @return String fecha
+     */
+    public String getFechaFin() {
+<span class="nc" id="L96">        int ano = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.YEAR);</span>
+<span class="nc" id="L97">        int mes = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.MONTH);</span>
+<span class="nc" id="L98">        int dia = vista.getjDateChooserFechaFinal().getCalendar().get(Calendar.DAY_OF_MONTH);</span>
+<span class="nc" id="L99">        int hora = Integer.parseInt(vista.getjSpinnerHoraFin().getValue().toString());</span>
+<span class="nc" id="L100">        int minutos = Integer.parseInt(vista.getjSpinnerMinFin().getValue().toString());</span>
+<span class="nc" id="L101">        int segundos = Integer.parseInt(vista.getjSpinnerSecFin().getValue().toString());</span>
+
+<span class="nc" id="L103">        String fecha = ano + &quot;-&quot; + mes + &quot;-&quot; + dia + &quot; &quot; + hora + &quot;:&quot; + minutos + &quot;:&quot; + segundos;</span>
+<span class="nc" id="L104">        return fecha;</span>
+    }
+
+    /**
+     * Metodo para añadir a la base de datos el horario establecido en la vista
+     */
+    public void anadirHorario() {
+        try {
+<span class="nc" id="L112">            horarioDAO horarioDAO = new horarioDAO();</span>
+<span class="nc" id="L113">            horario h1 = new horario(getFechaInicio(), getFechaFin(), vista.getjComboBoxUsuario().getSelectedItem().toString(), vista.getjTextFieldDescripcion().getText());</span>
+<span class="nc" id="L114">            horarioDAO.anadirHorario(h1);</span>
+<span class="nc" id="L115">            limpiaDatos();</span>
+<span class="nc" id="L116">            JOptionPane.showMessageDialog(vista, &quot;Horario añadido satisfactoriamente&quot;, &quot;Horario creado&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L117">        } catch (SQLException | NullPointerException e) {</span>
+<span class="nc" id="L118">            JOptionPane.showMessageDialog(vista, &quot;Error al añadir el horario, asegurate de añadir todos los campos correctamente&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L119">        }</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Metodo para limpiar los datos de la vista
+     */
+    public void limpiaDatos() {
+<span class="nc" id="L126">        vista.getjComboBoxUsuario().setSelectedIndex(0);</span>
+<span class="nc" id="L127">        vista.getjTextFieldDescripcion().setText(&quot;&quot;);</span>
+<span class="nc" id="L128">        vista.getjDateChooserFecha().setCalendar(null);</span>
+<span class="nc" id="L129">        vista.getjDateChooserFechaFinal().setCalendar(null);</span>
+<span class="nc" id="L130">        vista.getjSpinnerHoraFin().setValue(new Integer(1));</span>
+<span class="nc" id="L131">        vista.getjSpinnerHoraInicio().setValue(new Integer(1));</span>
+<span class="nc" id="L132">        vista.getjSpinnerMinFin().setValue(new Integer(1));</span>
+<span class="nc" id="L133">        vista.getjSpinnerMinsInicio().setValue(new Integer(1));</span>
+<span class="nc" id="L134">        vista.getjSpinnerSecFin().setValue(new Integer(1));</span>
+<span class="nc" id="L135">        vista.getjSpinnerSecInicio().setValue(new Integer(1));</span>
+
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * Metodo para cerrar la ventana
+     */
+    public void volver() {
+<span class="nc" id="L143">        vista.dispose();</span>
+<span class="nc" id="L144">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

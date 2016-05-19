@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Articulo.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">Articulo.java</span></div><h1>Articulo.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+/**
+ *
+ * @author Mario
+ */
+public class Articulo {
+
+    private int id;
+    private String nombre;
+    private String descripcion;
+    private int stock;
+    private double precioUnitario;
+    private double impuesto;
+
+    /**
+     * Constructor parametrizado para crear un objeto de tipo articulo
+     *
+     * @param id
+     * @param nombre
+     * @param descripcion
+     * @param stock
+     * @param precioUnitario
+     * @param impuesto
+     */
+<span class="nc" id="L31">    public Articulo(int id, String nombre, String descripcion, int stock, double precioUnitario, double impuesto) {</span>
+<span class="nc" id="L32">        this.id = id;</span>
+<span class="nc" id="L33">        this.nombre = nombre;</span>
+<span class="nc" id="L34">        this.descripcion = descripcion;</span>
+<span class="nc" id="L35">        this.stock = stock;</span>
+<span class="nc" id="L36">        this.precioUnitario = precioUnitario;</span>
+<span class="nc" id="L37">        this.impuesto = impuesto;</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * devuelve la id del articulo
+     *
+     * @return int id
+     */
+    public int getId() {
+<span class="nc" id="L46">        return id;</span>
+    }
+
+    /**
+     * Establece la id del articulo
+     *
+     * @param id int id
+     */
+    public void setId(int id) {
+<span class="nc" id="L55">        this.id = id;</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Devuelve el nombre del articulo
+     *
+     * @return
+     */
+    public String getNombre() {
+<span class="nc" id="L64">        return nombre;</span>
+    }
+
+    /**
+     * Establece el nombre del articulo
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+<span class="nc" id="L73">        this.nombre = nombre;</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Devuelve la descripcion del articulo
+     *
+     * @return
+     */
+    public String getDescripcion() {
+<span class="nc" id="L82">        return descripcion;</span>
+    }
+
+    /**
+     * Establece la descripcion del articulo
+     *
+     * @param descripcion
+     */
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L91">        this.descripcion = descripcion;</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * Devuelve el stock de articulo
+     *
+     * @return
+     */
+    public int getStock() {
+<span class="nc" id="L100">        return stock;</span>
+    }
+
+    /**
+     * Establce el stock de articulo
+     *
+     * @param stock
+     */
+    public void setStock(int stock) {
+<span class="nc" id="L109">        this.stock = stock;</span>
+<span class="nc" id="L110">    }</span>
+
+    /**
+     * Devuelve el precio unitario del articulo
+     *
+     * @return
+     */
+    public double getPrecioUnitario() {
+<span class="nc" id="L118">        return precioUnitario;</span>
+    }
+
+    /**
+     * Establece el precio unitario del articulo
+     *
+     * @param precioUnitario
+     */
+    public void setPrecioUnitario(double precioUnitario) {
+<span class="nc" id="L127">        this.precioUnitario = precioUnitario;</span>
+<span class="nc" id="L128">    }</span>
+
+    /**
+     * Devuelve el impuesto del articulo
+     *
+     * @return
+     */
+    public double getImpuesto() {
+<span class="nc" id="L136">        return impuesto;</span>
+    }
+
+    /**
+     * Establece el impuesto del articulo
+     *
+     * @param impuesto
+     */
+    public void setImpuesto(double impuesto) {
+<span class="nc" id="L145">        this.impuesto = impuesto;</span>
+<span class="nc" id="L146">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

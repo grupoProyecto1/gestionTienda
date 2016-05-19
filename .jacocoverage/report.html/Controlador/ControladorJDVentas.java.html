@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDVentas.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDVentas.java</span></div><h1>ControladorJDVentas.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.Articulo;
+import Modelo.ArticuloDAO;
+import Modelo.Cliente;
+import Modelo.FacturaDAO;
+import Modelo.LineafacturaDAO;
+import Modelo.Usuario;
+import Vista.JDVentas;
+import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Mario
+ */
+public class ControladorJDVentas {
+
+    private JDVentas vista;
+    private Usuario usuarioLogueado;
+<span class="nc" id="L28">    private ArticuloDAO articuloDAO = new ArticuloDAO();</span>
+
+    /**
+     * Constructor parametrizado que crea un objeto de tipo controlador con el
+     * usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+<span class="nc" id="L36">    public ControladorJDVentas(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L37">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L38">        creaVista();</span>
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Metodo que crea la vista de ventas
+     */
+    public void creaVista() {
+<span class="nc" id="L45">        this.vista = new JDVentas(null, true);</span>
+<span class="nc" id="L46">        vista.setControlador(this);</span>
+<span class="nc" id="L47">        creaModelos();</span>
+<span class="nc" id="L48">        rellenaTabla();</span>
+<span class="nc" id="L49">        vista.setVisible(true);</span>
+<span class="nc" id="L50">    }</span>
+
+    /**
+     * Metodo que instancia y crea un modelo de tabla, sobrescribiendo los
+     * metodos isCellEditable para que no sean editables las filas y
+     * getColumnClas para poder utilizar checkbox
+     */
+<span class="nc" id="L57">    public DefaultTableModel modeloArticulos = new DefaultTableModel() {</span>
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L61">            return false;</span>
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L66">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que instancia y crea un modelo de tabla, sobrescribiendo los
+     * metodos isCellEditable para que no sean editables las filas y
+     * getColumnClas para poder utilizar checkbox
+     */
+<span class="nc" id="L75">    public DefaultTableModel modeloVentas = new DefaultTableModel() {</span>
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L79">            return false;</span>
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L84">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que crea el modelo de tabla y lo establece
+     */
+    public void creaModelos() {
+        //Modelo de la tabla articulos
+<span class="nc" id="L93">        modeloArticulos.addColumn(&quot;ID&quot;);</span>
+<span class="nc" id="L94">        modeloArticulos.addColumn(&quot;Nombre&quot;);</span>
+<span class="nc" id="L95">        modeloArticulos.addColumn(&quot;Descripción&quot;);</span>
+<span class="nc" id="L96">        modeloArticulos.addColumn(&quot;Stock&quot;);</span>
+<span class="nc" id="L97">        modeloArticulos.addColumn(&quot;Precio&quot;);</span>
+<span class="nc" id="L98">        modeloArticulos.addColumn(&quot;Impuesto&quot;);</span>
+        //Modelo de la tabla ventas
+<span class="nc" id="L100">        modeloVentas.addColumn(&quot;ID&quot;);</span>
+<span class="nc" id="L101">        modeloVentas.addColumn(&quot;Nombre&quot;);</span>
+<span class="nc" id="L102">        modeloVentas.addColumn(&quot;Descripción&quot;);</span>
+<span class="nc" id="L103">        modeloVentas.addColumn(&quot;Cantidad&quot;);</span>
+<span class="nc" id="L104">        modeloVentas.addColumn(&quot;Impuesto&quot;);</span>
+<span class="nc" id="L105">        modeloVentas.addColumn(&quot;PrecioUnit&quot;);</span>
+<span class="nc" id="L106">        modeloVentas.addColumn(&quot;PrecioTotal&quot;);</span>
+<span class="nc" id="L107">        modeloVentas.addColumn(&quot;PrecioImp&quot;);</span>
+        //Establecer modelos 
+<span class="nc" id="L109">        vista.setjTableVenta(modeloVentas);</span>
+<span class="nc" id="L110">        vista.setjTableArticulos(modeloArticulos);</span>
+        //Modelo del jcombobox de filtrado
+<span class="nc" id="L112">        vista.getjComboBoxFiltrado().removeAllItems();</span>
+<span class="nc" id="L113">        vista.getjComboBoxFiltrado().addItem(&quot;ID&quot;);</span>
+<span class="nc" id="L114">        vista.getjComboBoxFiltrado().addItem(&quot;Nombre&quot;);</span>
+<span class="nc" id="L115">        vista.getjComboBoxFiltrado().addItem(&quot;Descripcion&quot;);</span>
+<span class="nc" id="L116">    }</span>
+
+    /**
+     * Metodo que rellena la tabla articulos con los articulos de la base de
+     * datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableArticulos().getRowCount(); i++) {</span>
+<span class="nc" id="L124">            modeloArticulos.removeRow(i);</span>
+<span class="nc" id="L125">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L128">            articuloDAO.cargaArticulos();</span>
+<span class="nc" id="L129">        } catch (SQLException e) {</span>
+<span class="nc" id="L130">            JOptionPane.showMessageDialog(vista, &quot;Ha fallado al cargar los articulos de la BD&quot;, &quot;Error en conexion BD&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L131">        }</span>
+
+<span class="nc" id="L133">        Object[] datos = new Object[6];</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (Articulo a : articuloDAO.getListaArticulos()) {</span>
+<span class="nc" id="L135">            datos[0] = a.getId();</span>
+<span class="nc" id="L136">            datos[1] = a.getNombre();</span>
+<span class="nc" id="L137">            datos[2] = a.getDescripcion();</span>
+<span class="nc" id="L138">            datos[3] = a.getStock();</span>
+<span class="nc" id="L139">            datos[4] = a.getPrecioUnitario();</span>
+<span class="nc" id="L140">            datos[5] = a.getImpuesto();</span>
+<span class="nc" id="L141">            modeloArticulos.addRow(datos);</span>
+<span class="nc" id="L142">        }</span>
+<span class="nc" id="L143">    }</span>
+
+    /**
+     * Metodo para añadir un articulo a la tabla de ventas
+     */
+    public void anadeArticulo() {
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        if (!compruebaDatoColumna()) {</span>
+<span class="nc" id="L150">            Object[] obj = new Object[8];</span>
+<span class="nc" id="L151">            int linea = vista.getjTableArticulos().getSelectedRow();</span>
+<span class="nc" id="L152">            double precio = (Double) vista.getjTableArticulos().getValueAt(linea, 4);</span>
+<span class="nc" id="L153">            double impuesto = (Double) vista.getjTableArticulos().getValueAt(linea, 5);</span>
+<span class="nc" id="L154">            obj[0] = (Integer) vista.getjTableArticulos().getValueAt(linea, 0);//id</span>
+<span class="nc" id="L155">            obj[1] = (String) vista.getjTableArticulos().getValueAt(linea, 1);//nombre</span>
+<span class="nc" id="L156">            obj[2] = (String) vista.getjTableArticulos().getValueAt(linea, 2);//descipcion</span>
+<span class="nc" id="L157">            obj[3] = (Integer) 1;//cantidad</span>
+<span class="nc" id="L158">            obj[4] = impuesto;</span>
+<span class="nc" id="L159">            obj[5] = (Double) precio;//precioUnidad</span>
+<span class="nc" id="L160">            obj[6] = (Double) precio;//precioTotal</span>
+<span class="nc" id="L161">            obj[7] = (Double) precio * impuesto;//precioImp</span>
+<span class="nc" id="L162">            DefaultTableModel model = (DefaultTableModel) vista.getjTableVenta().getModel();</span>
+<span class="nc" id="L163">            model.insertRow(0, obj);</span>
+<span class="nc" id="L164">            vista.getjTableVenta().getSelectionModel().setSelectionInterval(0, 0);</span>
+<span class="nc" id="L165">            establecerInformacion();</span>
+<span class="nc" id="L166">        } else {</span>
+<span class="nc" id="L167">            JOptionPane.showMessageDialog(vista, &quot;El articulo ya se añadio a la tabla de venta&quot;, &quot;Error al volver agregar un articulo&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+        }
+
+<span class="nc" id="L170">    }</span>
+
+    /**
+     * Metodo para comprobar que el articulo no este añadido ya en la tabla
+     * venta
+     *
+     * @return boolean
+     */
+    public Boolean compruebaDatoColumna() {
+<span class="nc" id="L179">        int datoSeleccionado = (Integer) vista.getjTableArticulos().getValueAt(vista.getjTableArticulos().getSelectedRow(), 0);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableVenta().getRowCount(); i++) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">            if ((Integer) vista.getjTableVenta().getValueAt(i, 0) == datoSeleccionado) {</span>
+<span class="nc" id="L182">                return true;</span>
+            }
+        }
+<span class="nc" id="L185">        return false;</span>
+    }
+
+    /**
+     * Establece el usuarioLogueado
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+<span class="nc" id="L194">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L195">    }</span>
+
+    /**
+     * Metodo para variar la cantidad del articulo seleccionado en la tabla
+     * ventas
+     */
+    public void cambiaCantidad() {
+        try {
+<span class="nc" id="L203">            int id = (Integer) vista.getjTableVenta().getValueAt(vista.getjTableVenta().getSelectedRow(), 0);</span>
+<span class="nc" id="L204">            int stockMaximo = obtieneStockArticulo(id);</span>
+<span class="nc" id="L205">            int fila = vista.getjTableVenta().getSelectedRow();</span>
+<span class="nc" id="L206">            int cantidad = (Integer) vista.getjSpinnerCantidad().getValue();</span>
+<span class="nc" id="L207">            double impuesto = (Double) vista.getjTableVenta().getValueAt(fila, 4);</span>
+<span class="nc" id="L208">            double precioUnid = (Double) vista.getjTableVenta().getValueAt(fila, 5);</span>
+<span class="nc" id="L209">            double precioTotal = cantidad * precioUnid;</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (cantidad &lt;= stockMaximo) {</span>
+<span class="nc" id="L211">                vista.getjTableVenta().setValueAt(cantidad, vista.getjTableVenta().getSelectedRow(), 3);</span>
+<span class="nc" id="L212">                vista.getjTableVenta().setValueAt(precioTotal, fila, 6);</span>
+<span class="nc" id="L213">                vista.getjTableVenta().setValueAt(precioTotal * impuesto, fila, 7);</span>
+            } else {
+<span class="nc" id="L215">                vista.getjSpinnerCantidad().setValue(stockMaximo);</span>
+<span class="nc" id="L216">                JOptionPane.showMessageDialog(vista, &quot;No hay stock sufuciente del articulo&quot;, &quot;Stock Insuficiente&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+            }
+
+<span class="nc" id="L219">        } catch (ArrayIndexOutOfBoundsException e) {</span>
+<span class="nc" id="L220">            JOptionPane.showMessageDialog(vista, &quot;Debes seleccionar un elemento de la tabla ventas&quot;, &quot;Error al variar la cantidad&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L221">        }</span>
+<span class="nc" id="L222">    }</span>
+    
+    /**
+     *Metodo para obtener el stock del articulo seleccionado en la tabla de venta
+     * @param id 
+     * @return
+     */
+    public int obtieneStockArticulo(int id){
+        int stock;
+<span class="nc bnc" id="L231" title="All 2 branches missed.">        for(int i = 0; i&lt; vista.getjTableArticulos().getRowCount();i++){</span>
+<span class="nc" id="L232">            int idArticulo = (Integer) vista.getjTableArticulos().getValueAt(i, 0);</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">            if(idArticulo == id){</span>
+<span class="nc" id="L234">                stock = (Integer) vista.getjTableArticulos().getValueAt(i, 3);</span>
+<span class="nc" id="L235">                return stock;</span>
+            }
+        }
+<span class="nc" id="L238">        return -1;</span>
+    }
+
+    /**
+     * Metodo que elimina el articulo seleccionado de la tabla ventas
+     */
+    public void eliminaArticulo() {
+<span class="nc" id="L245">        modeloVentas.removeRow(vista.getjTableVenta().getSelectedRow());</span>
+<span class="nc" id="L246">    }</span>
+
+    /**
+     * Metodo que establece la informacion basica del articulo seleccionado en
+     * los jTextField
+     */
+    public void establecerInformacion() {
+<span class="nc" id="L253">        int fila = vista.getjTableVenta().getSelectedRow();</span>
+<span class="nc" id="L254">        vista.getjTextFieldId().setText(String.valueOf(vista.getjTableVenta().getValueAt(fila, 0)));</span>
+<span class="nc" id="L255">        vista.getjTextFieldNombre().setText((String) vista.getjTableVenta().getValueAt(fila, 1));</span>
+<span class="nc" id="L256">        vista.getjTextFieldDescripcion().setText((String) vista.getjTableVenta().getValueAt(fila, 2));</span>
+<span class="nc" id="L257">        vista.getjTextFieldPrecio().setText(String.valueOf(vista.getjTableVenta().getValueAt(fila, 5)));</span>
+<span class="nc" id="L258">        vista.getjTextFieldImpuesto().setText(String.valueOf(vista.getjTableVenta().getValueAt(fila, 4)));</span>
+<span class="nc" id="L259">        vista.getjSpinnerCantidad().setValue(vista.getjTableVenta().getValueAt(fila, 3));</span>
+<span class="nc" id="L260">    }</span>
+
+    /**
+     * Metodo que crea la factura en la base de datos una vez realizada la venta
+     * correctamente
+     */
+    public void creaFactura() {
+        try {
+<span class="nc" id="L268">            FacturaDAO fdao = new FacturaDAO();</span>
+<span class="nc" id="L269">            LineafacturaDAO ldao = new LineafacturaDAO();</span>
+<span class="nc" id="L270">            ArticuloDAO adao = new ArticuloDAO();</span>
+            Cliente c;
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            if (vista.getjTextFieldDni().getText().length() == 0) {</span>
+<span class="nc" id="L273">                c = new Cliente(&quot;00000000A&quot;, null, null, 000000000, null, null);</span>
+            } else {
+<span class="nc" id="L275">                c = new Cliente(vista.getjTextFieldDni().getText(), null, null, 000000000, null, null);</span>
+            }
+<span class="nc" id="L277">            fdao.creaFactura(usuarioLogueado, c, totalNeto(), totalBruto());</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">            for (int i = 0; i &lt; vista.getjTableVenta().getRowCount(); i++) {</span>
+<span class="nc" id="L279">                int cantidad = (Integer) vista.getjTableVenta().getValueAt(i, 3);</span>
+<span class="nc" id="L280">                Articulo a1 = new Articulo((Integer) vista.getjTableVenta().getValueAt(i, 0), null, null, 0, (Double) vista.getjTableVenta().getValueAt(i, 5), 0);</span>
+<span class="nc" id="L281">                ldao.creaLineasFactura(a1, cantidad);</span>
+<span class="nc" id="L282">                adao.cambiaStock(a1, cantidad);</span>
+            }
+<span class="nc" id="L284">            limpiaTabla();</span>
+<span class="nc" id="L285">            rellenaTabla();</span>
+<span class="nc" id="L286">            JOptionPane.showMessageDialog(vista, &quot;Venta realizada correctamente.&quot;, &quot;Información Venta&quot;, JOptionPane.INFORMATION_MESSAGE);</span>
+<span class="nc" id="L287">        } catch (SQLException e) {</span>
+<span class="nc" id="L288">            JOptionPane.showMessageDialog(vista, &quot;Ha fallado al crear la factura,repita la acción&quot;, &quot;Error en factura&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L289">        }</span>
+<span class="nc" id="L290">    }</span>
+
+    /**
+     * Metodo que limpia la informacion de la tabla ventas
+     */
+    public void limpiaTabla() {
+<span class="nc bnc" id="L296" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableVenta().getRowCount(); i++) {</span>
+<span class="nc" id="L297">            modeloVentas.removeRow(i);</span>
+<span class="nc" id="L298">            i -= 1;</span>
+        }
+<span class="nc" id="L300">        vista.getjTextFieldDni().setText(&quot;&quot;);</span>
+<span class="nc" id="L301">    }</span>
+
+    /**
+     * Metodo que devuelve el total neto de los articulos de la tabla venta
+     *
+     * @return totalNeto
+     */
+    public double totalNeto() {
+<span class="nc" id="L309">        double totalNeto = 0;</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableVenta().getRowCount(); i++) {</span>
+<span class="nc" id="L311">            totalNeto += (Double) vista.getjTableVenta().getValueAt(i, 7);</span>
+        }
+<span class="nc" id="L313">        return totalNeto;</span>
+    }
+
+    /**
+     * Metodo que devuelve el total neto de los articulos de la tabla venta
+     *
+     * @return totalBruto
+     */
+    public double totalBruto() {
+<span class="nc" id="L322">        double totalNeto = 0;</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableVenta().getRowCount(); i++) {</span>
+<span class="nc" id="L324">            totalNeto += (Double) vista.getjTableVenta().getValueAt(i, 6);</span>
+        }
+<span class="nc" id="L326">        return totalNeto;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

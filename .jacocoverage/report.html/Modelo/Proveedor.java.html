@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Proveedor.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">Proveedor.java</span></div><h1>Proveedor.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class Proveedor {
+
+    private String nif;
+    private String nombre;
+    private String direccion;
+    private int telefono;
+    private String email;
+
+    /**
+     * Constructor parametrizado para crear un proveedor con sus atributos
+     *
+     * @param nif
+     * @param nombre
+     * @param direccion
+     * @param telefono
+     * @param email
+     */
+<span class="nc" id="L29">    public Proveedor(String nif, String nombre, String direccion, int telefono, String email) {</span>
+<span class="nc" id="L30">        this.nif = nif;</span>
+<span class="nc" id="L31">        this.nombre = nombre;</span>
+<span class="nc" id="L32">        this.direccion = direccion;</span>
+<span class="nc" id="L33">        this.telefono = telefono;</span>
+<span class="nc" id="L34">        this.email = email;</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Devuelve el nif del proveedor
+     *
+     * @return
+     */
+    public String getNif() {
+<span class="nc" id="L43">        return nif;</span>
+    }
+
+    /**
+     * Establece el nif del proveedor
+     *
+     * @param nif
+     */
+    public void setNif(String nif) {
+<span class="nc" id="L52">        this.nif = nif;</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Devuelve el nombre del proveedor
+     *
+     * @return
+     */
+    public String getNombre() {
+<span class="nc" id="L61">        return nombre;</span>
+    }
+
+    /**
+     * Establece el nombre del proveedor
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+<span class="nc" id="L70">        this.nombre = nombre;</span>
+<span class="nc" id="L71">    }</span>
+
+    /**
+     * Devuelve la direccion del proveedor
+     *
+     * @return
+     */
+    public String getDireccion() {
+<span class="nc" id="L79">        return direccion;</span>
+    }
+
+    /**
+     * Establece la direccion del proveedor
+     *
+     * @param direccion
+     */
+    public void setDireccion(String direccion) {
+<span class="nc" id="L88">        this.direccion = direccion;</span>
+<span class="nc" id="L89">    }</span>
+
+    /**
+     * Devuelve el telefono del proveedor
+     *
+     * @return
+     */
+    public int getTelefono() {
+<span class="nc" id="L97">        return telefono;</span>
+    }
+
+    /**
+     * Establece el telefono del proveedor
+     *
+     * @param telefono
+     */
+    public void setTelefono(int telefono) {
+<span class="nc" id="L106">        this.telefono = telefono;</span>
+<span class="nc" id="L107">    }</span>
+
+    /**
+     * Devuelve el email del proveedor
+     *
+     * @return
+     */
+    public String getEmail() {
+<span class="nc" id="L115">        return email;</span>
+    }
+
+    /**
+     * Establece el email del proveedor
+     *
+     * @param email
+     */
+    public void setEmail(String email) {
+<span class="nc" id="L124">        this.email = email;</span>
+<span class="nc" id="L125">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

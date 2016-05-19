@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProveedorDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">ProveedorDAO.java</span></div><h1>ProveedorDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Joaquin
+ */
+<span class="nc" id="L18">public class ProveedorDAO {</span>
+
+<span class="nc" id="L20">    private ArrayList&lt;Proveedor&gt; listaProveedores = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L21">    private Connection con = ConexionBBDD.getConnection();</span>
+
+    /**
+     * Metodo que carga los proveedores desde la base de datros en el atributo
+     * listaProveedores
+     *
+     * @throws java.sql.SQLException
+     */
+    public void cargaProveedorDAO() throws SQLException {
+<span class="nc" id="L30">        listaProveedores.removeAll(listaProveedores);</span>
+<span class="nc" id="L31">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L32">        ResultSet rs = stm.executeQuery(&quot;select * from proveedor&quot;);</span>
+<span class="nc" id="L33">        String[] datos = new String[5];</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L35">            datos[0] = rs.getString(&quot;NIF&quot;);</span>
+<span class="nc" id="L36">            datos[1] = rs.getString(&quot;Nombre&quot;);</span>
+<span class="nc" id="L37">            datos[2] = rs.getString(&quot;Direccion&quot;);</span>
+<span class="nc" id="L38">            datos[3] = String.valueOf(rs.getInt(&quot;Telefono&quot;));</span>
+<span class="nc" id="L39">            datos[4] = rs.getString(&quot;Email&quot;);</span>
+<span class="nc" id="L40">            Proveedor p1 = new Proveedor(datos[0], datos[1], datos[2], Integer.valueOf(datos[3]), datos[4]);</span>
+<span class="nc" id="L41">            listaProveedores.add(p1);</span>
+
+<span class="nc" id="L43">        }</span>
+<span class="nc" id="L44">    }</span>
+
+    /**
+     * Metodo para añadir un nuevo proveedor
+     *
+     * @param p Objeto de tipo Proveedor
+     * @throws java.sql.SQLException
+     */
+    public void anadirProveedor(Proveedor p) throws SQLException {
+<span class="nc" id="L53">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L54">        String consulta = &quot;Insert into proveedor &quot;</span>
+                + &quot;(NIF,Nombre,Direccion,Telefono,Email)&quot;
+<span class="nc" id="L56">                + &quot;values('&quot; + p.getNif() + &quot;','&quot; + p.getNombre() + &quot;','&quot; + p.getDireccion() + &quot;','&quot; + p.getTelefono() + &quot;','&quot; + p.getEmail() + &quot;')&quot;;</span>
+<span class="nc" id="L57">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L58">        stm.close();</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Devuelve la lista con todos los objetos almacenados en listaProveedores
+     *
+     * @return
+     */
+    public ArrayList&lt;Proveedor&gt; getListaProveedores() {
+<span class="nc" id="L67">        return listaProveedores;</span>
+    }
+
+    /**
+     * Metodo para eliminar un proveedor a partir de su NIF
+     *
+     * @param datosProveedor
+     * @throws java.sql.SQLException
+     */
+    public void eliminarProveedores(Proveedor datosProveedor) throws SQLException {
+<span class="nc" id="L77">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L78">        String consulta = &quot;Delete from proveedor where NIF='&quot; + datosProveedor.getNif() + &quot;'&quot;;</span>
+<span class="nc" id="L79">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L80">        stm.close();</span>
+<span class="nc" id="L81">    }</span>
+
+    /**
+     * Metodo para modificar un proveedor
+     *
+     * @param p
+     * @throws java.sql.SQLException
+     */
+    public void modificarProveedor(Proveedor p) throws SQLException {
+<span class="nc" id="L90">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L91">        String consulta = &quot;update proveedor set nombre='&quot; + p.getNombre() + &quot;',direccion='&quot; + p.getDireccion() + &quot;',telefono=&quot; + p.getTelefono() + &quot;,email='&quot; + p.getEmail() + &quot;'where nif = '&quot; + p.getNif() + &quot;'&quot;;</span>
+<span class="nc" id="L92">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L93">        stm.close();</span>
+<span class="nc" id="L94">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

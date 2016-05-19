@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJFMenu.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJFMenu.java</span></div><h1>ControladorJFMenu.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.Usuario;
+import Vista.JFLogin;
+import Vista.JFMenu;
+
+/**
+ *
+ * @author Mario
+ */
+public class ControladorJFMenu {
+
+    private JFMenu vista;
+    private Usuario usuarioLogueado;
+
+    /**
+     * Constructor que establece la vista
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+<span class="nc" id="L26">    public ControladorJFMenu(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L27">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L28">        creaVista();</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Metodo que crea la vista de menu
+     */
+    public void creaVista() {
+<span class="nc" id="L35">        this.vista = new JFMenu();</span>
+<span class="nc" id="L36">        vista.setControlador(this);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (usuarioLogueado.isAdmin()) {</span>
+<span class="nc" id="L38">            vista.getjButtonUsuarios().setVisible(true);</span>
+<span class="nc" id="L39">            vista.getjButtonClientes().setVisible(true);</span>
+<span class="nc" id="L40">            vista.getjButtonProveedores().setVisible(true);</span>
+<span class="nc" id="L41">            vista.getjButtonFacturas().setVisible(true);</span>
+<span class="nc" id="L42">            vista.getjButtonArticulos().setVisible(true);</span>
+        } else {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (usuarioLogueado.isVistaClientes()) {</span>
+<span class="nc" id="L45">                vista.getjButtonClientes().setVisible(true);</span>
+            }
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if (usuarioLogueado.isVistaUsuarios()) {</span>
+<span class="nc" id="L48">                vista.getjButtonUsuarios().setVisible(true);</span>
+            }
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (usuarioLogueado.isVistaProveedores()) {</span>
+<span class="nc" id="L51">                vista.getjButtonProveedores().setVisible(true);</span>
+            }
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            if (usuarioLogueado.isVistaProductos()) {</span>
+<span class="nc" id="L54">                vista.getjButtonArticulos().setVisible(true);</span>
+            }
+        }
+<span class="nc" id="L57">        vista.setVisible(true);</span>
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion usuarios
+     */
+    public void gestionUsuarios() {
+<span class="nc" id="L65">        ControladorJFGestionUsuarios cjfgu = new ControladorJFGestionUsuarios(usuarioLogueado);</span>
+<span class="nc" id="L66">        vista.dispose();</span>
+<span class="nc" id="L67">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion horario
+     */
+    public void gestionHorarios() {
+<span class="nc" id="L74">        ControladorJFGestionHorario cjfgh = new ControladorJFGestionHorario(usuarioLogueado);</span>
+<span class="nc" id="L75">        vista.dispose();</span>
+<span class="nc" id="L76">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion ventas
+     */
+    public void gestionVentas() {
+<span class="nc" id="L83">        ControladorJDVentas cjdv = new ControladorJDVentas(usuarioLogueado);</span>
+<span class="nc" id="L84">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion cliente
+     */
+    public void gestionCliente() {
+<span class="nc" id="L91">        ControladorJFGestionClientes cjfgc = new ControladorJFGestionClientes(usuarioLogueado);</span>
+<span class="nc" id="L92">        vista.dispose();</span>
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion proveedores
+     */
+    public void gestionProveedores() {
+<span class="nc" id="L100">        ControladorJFGestionProveedores cjfgp = new ControladorJFGestionProveedores(usuarioLogueado);</span>
+<span class="nc" id="L101">        vista.dispose();</span>
+<span class="nc" id="L102">    }</span>
+
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion facturas
+     */
+    public void gestionFacturas() {
+<span class="nc" id="L109">        ControladorJDTablaFactura cjdtf = new ControladorJDTablaFactura(usuarioLogueado);</span>
+<span class="nc" id="L110">    }</span>
+    
+    /**
+     * Metodo que crea el controlador que se encarga de crear la vista de
+     * gestion articulos
+     */
+    public void gestionArticulos() {
+<span class="nc" id="L117">        ControladorJFGestionArticulos cjfga = new ControladorJFGestionArticulos(usuarioLogueado);</span>
+<span class="nc" id="L118">        vista.dispose();</span>
+<span class="nc" id="L119">    }</span>
+    
+    /**
+     *Metodo para cerrar la sesion
+     */
+    public void cierraSesion(){
+<span class="nc" id="L125">        new JFLogin().setVisible(true);</span>
+<span class="nc" id="L126">        vista.dispose();</span>
+<span class="nc" id="L127">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+/**
+ *
+ * @author Mario
+ */
+public class Usuario {
+
+    private String nombre;
+    private String pass;
+    private boolean admin;
+    private boolean vistaClientes;
+    private boolean vistaProductos;
+    private boolean vistaProveedores;
+    private boolean vistaUsuarios;
+
+    /**
+     * Constructor parametrizado para crearte un usuario con todos sus atributos
+     *
+     * @param nombre
+     * @param pass
+     * @param admin
+     * @param cliente
+     * @param producto
+     * @param proveedor
+     * @param usuarios
+     */
+<span class="fc" id="L33">    public Usuario(String nombre, String pass, boolean admin, boolean cliente, boolean producto, boolean proveedor, boolean usuarios) {</span>
+<span class="fc" id="L34">        this.nombre = nombre;</span>
+<span class="fc" id="L35">        this.pass = pass;</span>
+<span class="fc" id="L36">        this.admin = admin;</span>
+<span class="fc" id="L37">        this.vistaClientes = cliente;</span>
+<span class="fc" id="L38">        this.vistaProductos = producto;</span>
+<span class="fc" id="L39">        this.vistaProveedores = proveedor;</span>
+<span class="fc" id="L40">        this.vistaUsuarios = usuarios;</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Devuelve el nombre del usuario
+     *
+     * @return
+     */
+    public String getNombre() {
+<span class="fc" id="L49">        return nombre;</span>
+    }
+
+    /**
+     * Establece el nombre del usuario
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+<span class="nc" id="L58">        this.nombre = nombre;</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Devuelve la pass del usuario
+     *
+     * @return
+     */
+    public String getPass() {
+<span class="fc" id="L67">        return pass;</span>
+    }
+
+    /**
+     * Establece la pass del usuario
+     *
+     * @param pass
+     */
+    public void setPass(String pass) {
+<span class="nc" id="L76">        this.pass = pass;</span>
+<span class="nc" id="L77">    }</span>
+
+    /**
+     * Devuelve si es admin el usuario
+     *
+     * @return
+     */
+    public boolean isAdmin() {
+<span class="fc" id="L85">        return admin;</span>
+    }
+
+    /**
+     * Establece como admin al usuario
+     *
+     * @param admin
+     */
+    public void setAdmin(boolean admin) {
+<span class="nc" id="L94">        this.admin = admin;</span>
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * Devuelve si tiene acceso a la VistaClientes el usuario
+     *
+     * @return
+     */
+    public boolean isVistaClientes() {
+<span class="fc" id="L103">        return vistaClientes;</span>
+    }
+
+    /**
+     * Establece el acceso a la VistaClientes del usuario
+     *
+     * @param vistaClientes
+     */
+    public void setVistaClientes(boolean vistaClientes) {
+<span class="nc" id="L112">        this.vistaClientes = vistaClientes;</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * Devuelve si tiene acceso a la VistaProductos el usuario
+     *
+     * @return
+     */
+    public boolean isVistaProductos() {
+<span class="fc" id="L121">        return vistaProductos;</span>
+    }
+
+    /**
+     * Establece el acceso a la VistaProductos del usuario
+     *
+     * @param vistaProductos
+     */
+    public void setVistaProductos(boolean vistaProductos) {
+<span class="nc" id="L130">        this.vistaProductos = vistaProductos;</span>
+<span class="nc" id="L131">    }</span>
+
+    /**
+     * Devuelve si tiene acceso a la VistaProveedores el usuario
+     *
+     * @return
+     */
+    public boolean isVistaProveedores() {
+<span class="fc" id="L139">        return vistaProveedores;</span>
+    }
+
+    /**
+     * Establece el acceso a la VistaProveedores del usuario
+     *
+     * @param vistaProveedores
+     */
+    public void setVistaProveedores(boolean vistaProveedores) {
+<span class="nc" id="L148">        this.vistaProveedores = vistaProveedores;</span>
+<span class="nc" id="L149">    }</span>
+
+    /**
+     * Devuelve si tiene acceso a la VistaUsuarios el usuario
+     *
+     * @return
+     */
+    public boolean isVistaUsuarios() {
+<span class="fc" id="L157">        return vistaUsuarios;</span>
+    }
+
+    /**
+     * Establece el acceso a la VistaUsuarios del usuario
+     *
+     * @param vistaUsuarios
+     */
+    public void setVistaUsuarios(boolean vistaUsuarios) {
+<span class="nc" id="L166">        this.vistaUsuarios = vistaUsuarios;</span>
+<span class="nc" id="L167">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

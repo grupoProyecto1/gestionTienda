@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ArticuloDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">ArticuloDAO.java</span></div><h1>ArticuloDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Mario
+ */
+<span class="nc" id="L18">public class ArticuloDAO {</span>
+
+<span class="nc" id="L20">    private ArrayList&lt;Articulo&gt; listaArticulos = new ArrayList&lt;Articulo&gt;();</span>
+<span class="nc" id="L21">    private Connection con = ConexionBBDD.getConnection();</span>
+
+    /**
+     * Carga los articulos de la base de datos
+     *
+     * @throws SQLException
+     */
+    public void cargaArticulos() throws SQLException {
+<span class="nc" id="L29">        listaArticulos.removeAll(listaArticulos);</span>
+<span class="nc" id="L30">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L31">        ResultSet rs = stm.executeQuery(&quot;select * from articulo&quot;);</span>
+<span class="nc" id="L32">        String[] datos = new String[6];</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L34">            datos[0] = rs.getString(&quot;idarticulo&quot;);</span>
+<span class="nc" id="L35">            datos[1] = rs.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L36">            datos[2] = rs.getString(&quot;descripcion&quot;);</span>
+<span class="nc" id="L37">            datos[3] = rs.getString(&quot;stock&quot;);</span>
+<span class="nc" id="L38">            datos[4] = rs.getString(&quot;precioUnitario&quot;);</span>
+<span class="nc" id="L39">            datos[5] = rs.getString(&quot;impuesto&quot;);</span>
+<span class="nc" id="L40">            Articulo a1 = new Articulo(Integer.parseInt(datos[0]), datos[1], datos[2], Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Double.parseDouble(datos[5]));</span>
+<span class="nc" id="L41">            listaArticulos.add(a1);</span>
+<span class="nc" id="L42">        }</span>
+<span class="nc" id="L43">        stm.close();</span>
+<span class="nc" id="L44">    }</span>
+
+    /**
+     * Añade el articulo pasado como parametro a la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
+    public void anadirArticulo(Articulo a) throws SQLException {
+<span class="nc" id="L53">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L54">        String consulta = &quot;Insert into articulo &quot;</span>
+                + &quot;(nombre,descripcion,stock,preciounitario,impuesto)&quot;
+<span class="nc" id="L56">                + &quot;values('&quot; + a.getNombre() + &quot;','&quot; + a.getDescripcion() + &quot;','&quot; + a.getStock() + &quot;','&quot; + a.getPrecioUnitario() + &quot;','&quot; + a.getImpuesto() + &quot;')&quot;;</span>
+<span class="nc" id="L57">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L58">        stm.close();</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Elimina el articulo pasado como parametro de la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
+    public void eliminarArticulo(Articulo a) throws SQLException {
+<span class="nc" id="L68">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L69">        String consulta = &quot;Delete from articulo where idarticulo='&quot; + a.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L70">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L71">        stm.close();</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Modifica el articulo pasado como parametro de la base de datos
+     *
+     * @param a
+     * @throws SQLException
+     */
+    public void modificarArticulo(Articulo a) throws SQLException {
+<span class="nc" id="L81">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L82">        String consulta = &quot;update articulo set nombre='&quot; + a.getNombre() + &quot;',descripcion='&quot; + a.getDescripcion()</span>
+<span class="nc" id="L83">                + &quot;',stock='&quot; + a.getStock() + &quot;',preciounitario='&quot; + a.getPrecioUnitario()</span>
+<span class="nc" id="L84">                + &quot;',impuesto='&quot; + a.getImpuesto() + &quot;'where idarticulo = '&quot; + a.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L85">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L86">        stm.close();</span>
+<span class="nc" id="L87">    }</span>
+    
+    /**
+     *Actualiza el stock despues de una venta
+     * @param a
+     * @param cantidad
+     * @throws SQLException
+     */
+    public void cambiaStock(Articulo a,int cantidad) throws SQLException{
+<span class="nc" id="L96">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L97">        String consulta = &quot;update articulo set stock='&quot; + (devuelveStock(a)-cantidad) +  &quot;'where idarticulo = '&quot; + a.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L98">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L99">        stm.close();</span>
+<span class="nc" id="L100">    }</span>
+    
+    /**
+     *Devuelve el Stock de un articulo
+     * @param a
+     * @return
+     * @throws SQLException
+     */
+    public int devuelveStock(Articulo a)throws SQLException{
+<span class="nc" id="L109">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L110">        ResultSet rs = stm.executeQuery(&quot;select * from articulo where idarticulo ='&quot;+a.getId()+&quot;'&quot;);</span>
+<span class="nc" id="L111">        int cantidad=-1;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L113">            cantidad=rs.getInt(&quot;stock&quot;);</span>
+        }
+<span class="nc" id="L115">        stm.close();</span>
+<span class="nc" id="L116">        return cantidad;</span>
+    }
+
+    /**
+     * Devuelve una lista de articulos
+     *
+     * @return
+     */
+    public ArrayList&lt;Articulo&gt; getListaArticulos() {
+<span class="nc" id="L125">        return listaArticulos;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

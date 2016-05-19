@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ClienteDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">ClienteDAO.java</span></div><h1>ClienteDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ * Clase que maneja todas las operaciones relacionadas con los clientes
+ *
+ * @author Alejandroo
+ */
+<span class="nc" id="L19">public class ClienteDAO {</span>
+
+<span class="nc" id="L21">    private ArrayList&lt;Cliente&gt; listaClientes = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L22">    private Connection conn = ConexionBBDD.getConnection();</span>
+
+    /**
+     * Inserta un nuevo cliente en la base de datos de la aplicacion
+     *
+     * @param datosCliente
+     * @throws java.sql.SQLException
+     */
+    public void anadirCliente(Cliente datosCliente) throws SQLException {
+<span class="nc" id="L31">        String sql = &quot;INSERT into cliente values (&quot; + &quot;'&quot; + datosCliente.getDni() + &quot;'&quot; + &quot;,&quot; + &quot;'&quot; + datosCliente.getNombre() + &quot;'&quot; + &quot;,&quot; + &quot;'&quot; + datosCliente.getApellidos() + &quot;'&quot; + &quot;,&quot; + &quot;'&quot; + datosCliente.getTelefono() + &quot;'&quot; + &quot;,&quot; + &quot;'&quot; + datosCliente.getDireccion() + &quot;'&quot; + &quot;,&quot; + &quot;'&quot; + datosCliente.getEmail() + &quot;'&quot; + &quot;)&quot;;</span>
+<span class="nc" id="L32">        Statement stm = conn.createStatement();</span>
+<span class="nc" id="L33">        int result = stm.executeUpdate(sql);</span>
+<span class="nc" id="L34">        stm.close();</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Elimina un cliente de la base de datos de la aplicacion
+     *
+     * @param datosCliente
+     * @throws java.sql.SQLException
+     */
+    public void eliminarCliente(Cliente datosCliente) throws SQLException {
+<span class="nc" id="L44">        Statement stm = conn.createStatement();</span>
+<span class="nc" id="L45">        String sql = &quot;delete from cliente where DNI= '&quot; + datosCliente.getDni() + &quot;'&quot;;</span>
+<span class="nc" id="L46">        stm.executeUpdate(sql);</span>
+<span class="nc" id="L47">        stm.close();</span>
+<span class="nc" id="L48">    }</span>
+
+    /**
+     * Modifica los datos de un cliente de la base de datos de la aplicacion
+     *
+     * @param datosCliente
+     * @throws java.sql.SQLException
+     */
+    public void modificarCliente(Cliente datosCliente) throws SQLException {
+<span class="nc" id="L57">        String sql = &quot;update cliente set DNI = '&quot; + datosCliente.getDni() + &quot;',nombre='&quot;</span>
+<span class="nc" id="L58">                + datosCliente.getNombre() + &quot;',apellidos ='&quot; + datosCliente.getApellidos()</span>
+<span class="nc" id="L59">                + &quot;',telefono ='&quot; + datosCliente.getTelefono() + &quot;',direccion='&quot; + datosCliente.getDireccion()</span>
+<span class="nc" id="L60">                + &quot;',email ='&quot; + datosCliente.getEmail() + &quot;' where dni = '&quot; + datosCliente.getDni()</span>
+                + &quot;'&quot;;
+<span class="nc" id="L62">        Statement stm = conn.createStatement();</span>
+<span class="nc" id="L63">        int result = stm.executeUpdate(sql);</span>
+<span class="nc" id="L64">        stm.close();</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Muestra todos los clientes almacenados en la base de datos de nuestra
+     * aplicacion
+     *
+     * @throws java.sql.SQLException
+     */
+    public void cargaCliente() throws SQLException {
+<span class="nc" id="L74">        listaClientes.removeAll(listaClientes);</span>
+<span class="nc" id="L75">        String sql = &quot;select * from cliente&quot;;</span>
+<span class="nc" id="L76">        Statement stm = conn.createStatement();</span>
+<span class="nc" id="L77">        ResultSet rs = stm.executeQuery(sql);</span>
+<span class="nc" id="L78">        String[] datosCliente = new String[6];</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L80">            datosCliente[0] = rs.getString(&quot;dni&quot;);</span>
+<span class="nc" id="L81">            datosCliente[1] = rs.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L82">            datosCliente[2] = rs.getString(&quot;apellidos&quot;);</span>
+<span class="nc" id="L83">            datosCliente[3] = rs.getString(&quot;telefono&quot;);</span>
+<span class="nc" id="L84">            datosCliente[4] = rs.getString(&quot;direccion&quot;);</span>
+<span class="nc" id="L85">            datosCliente[5] = rs.getString(&quot;email&quot;);</span>
+<span class="nc" id="L86">            Cliente c = new Cliente(datosCliente[0], datosCliente[1], datosCliente[2], Integer.parseInt(datosCliente[3]), datosCliente[4], datosCliente[5]);</span>
+<span class="nc" id="L87">            listaClientes.add(c);</span>
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">        stm.close();</span>
+<span class="nc" id="L90">    }</span>
+
+    /**
+     * Devuelve la lista con todos los objetos almacenados en listaClientes
+     *
+     * @return arraylist listaClientes
+     */
+    public ArrayList&lt;Cliente&gt; getListaClientes() {
+<span class="nc" id="L98">        return listaClientes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

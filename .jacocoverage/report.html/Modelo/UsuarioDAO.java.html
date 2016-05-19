@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UsuarioDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">UsuarioDAO.java</span></div><h1>UsuarioDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Mario
+ */
+<span class="fc" id="L20">public class UsuarioDAO {</span>
+
+<span class="fc" id="L22">    private ArrayList&lt;Usuario&gt; listaUsuarios = new ArrayList&lt;Usuario&gt;();</span>
+<span class="fc" id="L23">    private Connection con = ConexionBBDD.getConnection();</span>
+
+    /**
+     * Metodo que carga los usuarios desde la base de datos en el atributo
+     * privado listaUsuarios
+     *
+     * @throws java.sql.SQLException
+     */
+    public void cargaUsuarios() throws SQLException {
+<span class="nc" id="L32">        listaUsuarios.removeAll(listaUsuarios);</span>
+<span class="nc" id="L33">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L34">        ResultSet rs = stm.executeQuery(&quot;select * from usuario&quot;);</span>
+<span class="nc" id="L35">        String[] datos = new String[7];</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L37">            datos[0] = rs.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L38">            datos[1] = rs.getString(&quot;contrasena&quot;);</span>
+<span class="nc" id="L39">            datos[2] = rs.getString(&quot;admin&quot;);</span>
+<span class="nc" id="L40">            datos[3] = rs.getString(&quot;vistaClientes&quot;);</span>
+<span class="nc" id="L41">            datos[4] = rs.getString(&quot;vistaProductos&quot;);</span>
+<span class="nc" id="L42">            datos[5] = rs.getString(&quot;vistaProveedores&quot;);</span>
+<span class="nc" id="L43">            datos[6] = rs.getString(&quot;vistaUsuarios&quot;);</span>
+<span class="nc" id="L44">            Usuario u1 = new Usuario(datos[0], datos[1], Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));</span>
+<span class="nc" id="L45">            listaUsuarios.add(u1);</span>
+<span class="nc" id="L46">        }</span>
+<span class="nc" id="L47">        stm.close();</span>
+<span class="nc" id="L48">    }</span>
+
+    /**
+     * Metodo para añadir un nuevo usuario
+     *
+     * @param u Objeto de tipo Usuario
+     * @throws java.sql.SQLException
+     */
+    public void anadirUsuario(Usuario u) throws SQLException {
+<span class="fc" id="L57">        Statement stm = con.createStatement();</span>
+        //el establecimiento_nif esta por defecto con una empresa pero para futuras implementaciones esta esa columna
+<span class="fc" id="L59">        String consulta = &quot;Insert into usuario &quot;</span>
+                + &quot;(nombre,contrasena,admin,vistaclientes,vistaproductos,vistaproveedores,vistausuarios,establecimiento_nif)&quot;
+<span class="fc" id="L61">                + &quot;values('&quot; + u.getNombre() + &quot;','&quot; + u.getPass() + &quot;','&quot; + u.isAdmin() + &quot;','&quot; + u.isVistaClientes() + &quot;','&quot; + u.isVistaProductos() + &quot;','&quot; + u.isVistaProveedores() + &quot;','&quot; + u.isVistaUsuarios() + &quot;','11111111A')&quot;;</span>
+<span class="fc" id="L62">        stm.executeUpdate(consulta);</span>
+<span class="fc" id="L63">        stm.close();</span>
+<span class="fc" id="L64">    }</span>
+
+    /**
+     * Devuelve la lista con todos los objetos almacenados en el ArrayList
+     * listaUsuarios
+     *
+     * @return listaUsuarios
+     */
+    public ArrayList&lt;Usuario&gt; getListaUsuarios() {
+<span class="nc" id="L73">        return listaUsuarios;</span>
+    }
+
+    /**
+     * Metodo para eliminar un usuario a partir de su nombre
+     *
+     * @param u Objeto de tipo usuario
+     * @throws java.sql.SQLException
+     */
+    public void eliminarUsuarios(Usuario u) throws SQLException {
+<span class="fc" id="L83">        Statement stm = con.createStatement();</span>
+<span class="fc" id="L84">        String consulta = &quot;Delete from usuario where nombre='&quot; + u.getNombre() + &quot;'&quot;;</span>
+<span class="fc" id="L85">        stm.executeUpdate(consulta);</span>
+<span class="fc" id="L86">        stm.close();</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Metodo para modificar un usuario
+     *
+     * @param u Objeto de tipo Usuario
+     * @throws java.sql.SQLException
+     */
+    public void modificarUsuarios(Usuario u) throws SQLException {
+<span class="fc" id="L96">        Statement stm = con.createStatement();</span>
+<span class="fc" id="L97">        String consulta = &quot;update usuario set admin='&quot; + u.isAdmin() + &quot;',vistaclientes='&quot; + u.isVistaClientes()</span>
+<span class="fc" id="L98">                + &quot;',vistaproductos='&quot; + u.isVistaProductos() + &quot;',vistaproveedores='&quot; + u.isVistaProveedores()</span>
+<span class="fc" id="L99">                + &quot;',vistausuarios='&quot; + u.isVistaUsuarios() + &quot;'where nombre = '&quot; + u.getNombre() + &quot;'&quot;;</span>
+<span class="fc" id="L100">        stm.executeUpdate(consulta);</span>
+<span class="fc" id="L101">        stm.close();</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Comprueba si existe o no el usuario en la base de datos
+     *
+     * @param usuario
+     * @param contrasena
+     * @return objeto de la clase Usuario
+     * @throws java.sql.SQLException
+     */
+    public Usuario compruebaUsuario(String usuario, String contrasena) throws SQLException {
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">        if (con == null) {</span>
+<span class="nc" id="L114">            JOptionPane.showMessageDialog(null, &quot;No se ha encontrado la base de datos, no existe o no esta encendida&quot;, &quot;Error en la conexion a la BD&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        }
+<span class="fc" id="L116">        PreparedStatement pstm = con.prepareStatement(&quot;select * from usuario where nombre=? and contrasena =?&quot;);</span>
+<span class="fc" id="L117">        pstm.setString(1, usuario);</span>
+<span class="fc" id="L118">        pstm.setString(2, contrasena);</span>
+<span class="fc" id="L119">        ResultSet rs = pstm.executeQuery();</span>
+<span class="fc" id="L120">        String[] datos = new String[7];</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (rs.next()) {</span>
+<span class="fc" id="L122">            datos[0] = rs.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L123">            datos[1] = rs.getString(&quot;contrasena&quot;);</span>
+<span class="fc" id="L124">            datos[2] = rs.getString(&quot;admin&quot;);</span>
+<span class="fc" id="L125">            datos[3] = rs.getString(&quot;vistaClientes&quot;);</span>
+<span class="fc" id="L126">            datos[4] = rs.getString(&quot;vistaProductos&quot;);</span>
+<span class="fc" id="L127">            datos[5] = rs.getString(&quot;vistaProveedores&quot;);</span>
+<span class="fc" id="L128">            datos[6] = rs.getString(&quot;vistaUsuarios&quot;);</span>
+<span class="fc" id="L129">            Usuario u = new Usuario(datos[0], datos[1], Boolean.parseBoolean(datos[2]), Boolean.parseBoolean(datos[3]), Boolean.parseBoolean(datos[4]), Boolean.parseBoolean(datos[5]), Boolean.parseBoolean(datos[6]));</span>
+<span class="fc" id="L130">            rs.close();</span>
+<span class="fc" id="L131">            pstm.close();</span>
+<span class="fc" id="L132">            return u;</span>
+        }
+<span class="fc" id="L134">        return null;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaArticulos.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaArticulos.java</span></div><h1>ControladorJDTablaArticulos.java</h1><pre class="source lang-java linenums">package Controlador;
+
+import Modelo.Articulo;
+import Modelo.ArticuloDAO;
+import Modelo.Usuario;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDTablaArticulos {
+
+    private JDTablaUsuariosClientesProveedorArticulo vista;
+<span class="nc" id="L17">    private boolean editable = false;</span>
+<span class="nc" id="L18">    private ArticuloDAO articuloDAO = new ArticuloDAO();</span>
+    private Usuario usuarioLogueado;
+    private int botones;
+
+    /**
+     * Constructor parametrizado que establece el usuario logueado y los botones
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     * @param botones int para mostrar los botones
+     */
+<span class="nc" id="L28">    public ControladorJDTablaArticulos(Usuario usuarioLogueado, int botones) {</span>
+<span class="nc" id="L29">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L30">        this.botones = botones;</span>
+<span class="nc" id="L31">        creaVista();</span>
+<span class="nc" id="L32">    }</span>
+
+    /**
+     * Metodo que crea la vista de jdtablaarticulos
+     */
+    public void creaVista() {
+<span class="nc" id="L38">        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 3);</span>
+<span class="nc" id="L39">        vista.setControladorArticulo(this);</span>
+<span class="nc" id="L40">        vista.setTitle(&quot;Articulos&quot;);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (botones == 2) {</span>
+<span class="nc" id="L42">            editable = true;</span>
+        }
+<span class="nc" id="L44">        creaTabla();</span>
+<span class="nc" id="L45">        rellenaTabla();</span>
+<span class="nc" id="L46">        vista.setVisible(true);</span>
+<span class="nc" id="L47">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L54">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (!editable) {</span>
+<span class="nc" id="L59">                return false;</span>
+            } else {
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                if (columnIndex == 0) {</span>
+<span class="nc" id="L62">                    return false;</span>
+                }
+<span class="nc" id="L64">                return true;</span>
+            }
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L70">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que crea estable las columnas y establece el modelo de la tabla
+     */
+    public void creaTabla() {
+<span class="nc" id="L78">        miTableModel.addColumn(&quot;ID&quot;);</span>
+<span class="nc" id="L79">        miTableModel.addColumn(&quot;Nombre&quot;);</span>
+<span class="nc" id="L80">        miTableModel.addColumn(&quot;Descripcion&quot;);</span>
+<span class="nc" id="L81">        miTableModel.addColumn(&quot;Stock&quot;);</span>
+<span class="nc" id="L82">        miTableModel.addColumn(&quot;PrecioUnitario&quot;);</span>
+<span class="nc" id="L83">        miTableModel.addColumn(&quot;Impuesto&quot;);</span>
+<span class="nc" id="L84">        vista.setjTableUsuariosClientes(miTableModel);</span>
+<span class="nc" id="L85">        vista.getjTableUsuariosClientes().setAutoCreateRowSorter(true);</span>
+
+<span class="nc" id="L87">    }</span>
+
+    /**
+     * Metodo que rellena la tabla con los articulos de la base de datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableUsuariosClientes().getRowCount(); i++) {</span>
+<span class="nc" id="L94">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L95">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L98">            articuloDAO.cargaArticulos();</span>
+<span class="nc" id="L99">            Object[] datos = new Object[6];</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            for (Articulo a : articuloDAO.getListaArticulos()) {</span>
+<span class="nc" id="L101">                datos[0] = a.getId();</span>
+<span class="nc" id="L102">                datos[1] = a.getNombre();</span>
+<span class="nc" id="L103">                datos[2] = a.getDescripcion();</span>
+<span class="nc" id="L104">                datos[3] = a.getStock();</span>
+<span class="nc" id="L105">                datos[4] = a.getPrecioUnitario();</span>
+<span class="nc" id="L106">                datos[5] = a.getImpuesto();</span>
+<span class="nc" id="L107">                miTableModel.addRow(datos);</span>
+<span class="nc" id="L108">            }</span>
+<span class="nc" id="L109">        } catch (Exception SQLException) {</span>
+<span class="nc" id="L110">            JOptionPane.showMessageDialog(vista, &quot;Problema al cargar la lista de la Base de Datos&quot;, &quot;Error conexion Base de Datos&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L111">        }</span>
+<span class="nc" id="L112">    }</span>
+
+    /**
+     * Devuelve si es editable la tabla
+     *
+     * @return boolean 
+     */
+    public boolean isEditable() {
+<span class="nc" id="L120">        return editable;</span>
+    }
+
+    /**
+     * Establece si es editable la tabla
+     *
+     * @param editable boolean
+     */
+    public void setEditable(boolean editable) {
+<span class="nc" id="L129">        this.editable = editable;</span>
+<span class="nc" id="L130">    }</span>
+
+    /**
+     * Eliminar el articulo seleccionado en la tabla de la base de datos
+     */
+    public void eliminaArticulo() {
+        try {
+<span class="nc" id="L137">            int id = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString());</span>
+<span class="nc" id="L138">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L139">            String descripcion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L140">            int stock = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString());</span>
+<span class="nc" id="L141">            double precioUnitario = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString());</span>
+<span class="nc" id="L142">            double impuesto = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString());</span>
+<span class="nc" id="L143">            Articulo a = new Articulo(id, nombre, descripcion, stock, precioUnitario, impuesto);</span>
+<span class="nc" id="L144">            articuloDAO.eliminarArticulo(a);</span>
+<span class="nc" id="L145">            rellenaTabla();</span>
+<span class="nc" id="L146">        } catch (Exception e) {</span>
+<span class="nc" id="L147">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun articulo&quot;, &quot;Error de articulo&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L148">        }</span>
+<span class="nc" id="L149">    }</span>
+
+    /**
+     * Modifica en la base de datos el articulo seleccionado en la tabla
+     */
+    public void modificaArticulo() {
+        try {
+<span class="nc" id="L156">            int id = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString());</span>
+<span class="nc" id="L157">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L158">            String descripcion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L159">            int stock = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString());</span>
+<span class="nc" id="L160">            double precioUnitario = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString());</span>
+<span class="nc" id="L161">            double impuesto = Double.parseDouble(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString());</span>
+<span class="nc" id="L162">            Articulo a = new Articulo(id, nombre, descripcion, stock, precioUnitario, impuesto);</span>
+<span class="nc" id="L163">            articuloDAO.modificarArticulo(a);</span>
+
+<span class="nc" id="L165">        } catch (Exception e) {</span>
+<span class="nc" id="L166">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun articulo&quot;, &quot;Error de articulo&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L167">        }</span>
+
+<span class="nc" id="L169">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

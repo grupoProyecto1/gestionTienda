@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaHorario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaHorario.java</span></div><h1>ControladorJDTablaHorario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import javax.swing.table.DefaultTableModel;
+import Vista.JDTablaHorario;
+import Modelo.horario;
+import Modelo.horarioDAO;
+import Modelo.Usuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDTablaHorario {
+
+    private JDTablaHorario vista;
+<span class="nc" id="L23">    private horarioDAO horariodao = new horarioDAO();</span>
+    private Usuario usuarioLogueado;
+    private int botonBorrar;
+
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablahorario
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     * @param botonBorrar int 1 para mostrar el boton
+     */
+<span class="nc" id="L34">    public ControladorJDTablaHorario(Usuario usuarioLogueado, int botonBorrar) {</span>
+<span class="nc" id="L35">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L36">        this.botonBorrar = botonBorrar;</span>
+<span class="nc" id="L37">        creaVista();</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Metodo para crear la vista de jdtablahorario
+     */
+    public void creaVista() {
+<span class="nc" id="L44">        this.vista = new JDTablaHorario(null, true);</span>
+<span class="nc" id="L45">        vista.setControlador(this);</span>
+<span class="nc" id="L46">        creaTabla();</span>
+<span class="nc" id="L47">        rellanaTabla();</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">        if (usuarioLogueado.isAdmin() &amp;&amp; botonBorrar == 1) {</span>
+<span class="nc" id="L49">            vista.getjButtonBorrar().setVisible(true);</span>
+        }
+<span class="nc" id="L51">        vista.setVisible(true);</span>
+<span class="nc" id="L52">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L59">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L62">            return false;</span>
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L67">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo para crear las columnas de la tabla y establecer el modelo
+     */
+    public void creaTabla() {
+<span class="nc" id="L75">        miTableModel.addColumn(&quot;Fecha de Incio&quot;);</span>
+<span class="nc" id="L76">        miTableModel.addColumn(&quot;Fecha Finalizacion&quot;);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (usuarioLogueado.isAdmin()) {</span>
+<span class="nc" id="L78">            miTableModel.addColumn(&quot;Usuario&quot;);</span>
+        }
+<span class="nc" id="L80">        miTableModel.addColumn(&quot;Descripcion&quot;);</span>
+<span class="nc" id="L81">        vista.setjTableHorario(miTableModel);</span>
+<span class="nc" id="L82">        vista.getjTableHorario().setAutoCreateRowSorter(true);</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Metodo para rellenar la tabla con los horarios de la base de datos
+     */
+    public void rellanaTabla() {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableHorario().getRowCount(); i++) {</span>
+<span class="nc" id="L90">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L91">            i -= 1;</span>
+        }
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (usuarioLogueado.isAdmin()) {</span>
+            try {
+<span class="nc" id="L95">                horariodao.cargaHorarios();</span>
+<span class="nc" id="L96">            } catch (SQLException e) {</span>
+<span class="nc" id="L97">                JOptionPane.showMessageDialog(vista, &quot;Error al cargar la lista de horarios en la tabla&quot;, &quot;Error al cargar la lista&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L98">            }</span>
+
+<span class="nc" id="L100">            Object[] datos = new Object[4];</span>
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            for (horario h : horariodao.getListaHorarios()) {</span>
+<span class="nc" id="L103">                datos[2] = h.getUsuario();</span>
+<span class="nc" id="L104">                datos[0] = h.getFechaInicio();</span>
+<span class="nc" id="L105">                datos[1] = h.getFechaFin();</span>
+<span class="nc" id="L106">                datos[3] = h.getDescripcion();</span>
+<span class="nc" id="L107">                miTableModel.addRow(datos);</span>
+<span class="nc" id="L108">            }</span>
+
+<span class="nc" id="L110">        } else {</span>
+            try {
+<span class="nc" id="L112">                horariodao.cargaHorarios();</span>
+<span class="nc" id="L113">                horariodao.cargaHorarioUsuario(usuarioLogueado);</span>
+<span class="nc" id="L114">            } catch (SQLException e) {</span>
+<span class="nc" id="L115">                JOptionPane.showMessageDialog(vista, &quot;Error al cargar la lista de horarios en la tabla&quot;, &quot;Error al cargar la lista&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L116">            }</span>
+<span class="nc" id="L117">            Object[] datos = new Object[3];</span>
+
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (horario h : horariodao.getListaHorarios()) {</span>
+<span class="nc" id="L120">                datos[0] = h.getFechaInicio();</span>
+<span class="nc" id="L121">                datos[1] = h.getFechaFin();</span>
+<span class="nc" id="L122">                datos[2] = h.getDescripcion();</span>
+<span class="nc" id="L123">                miTableModel.addRow(datos);</span>
+<span class="nc" id="L124">            }</span>
+        }
+<span class="nc" id="L126">    }</span>
+
+    /**
+     * Metodo para eliminar el horario seleccionado de la base de datos
+     */
+    public void eliminaHorario() {
+        try {
+<span class="nc" id="L133">            String fechaInicio = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L134">            String fechaFin = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L135">            String usuario = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L136">            String descripcion = vista.getjTableHorario().getValueAt(vista.getjTableHorario().getSelectedRow(), 3).toString();</span>
+<span class="nc" id="L137">            horario h = new horario(fechaInicio, fechaFin, usuario, descripcion);</span>
+<span class="nc" id="L138">            horariodao.eliminarHorario(h);</span>
+<span class="nc" id="L139">            rellanaTabla();</span>
+<span class="nc" id="L140">        } catch (SQLException e) {</span>
+<span class="nc" id="L141">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun horario&quot;, &quot;Error de horario&quot;, JOptionPane.ERROR_MESSAGE);</span>
+
+<span class="nc" id="L143">        }</span>
+<span class="nc" id="L144">    }</span>
+
+    /**
+     * Establece el usuario logueado
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     */
+    public void setUsuarioLogueado(Usuario usuarioLogueado) {
+<span class="nc" id="L152">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L153">    }</span>
+
+    /**
+     * Metodo para crear una ventana de tipo jfgestionhorario
+     */
+    public void volver() {
+<span class="nc" id="L159">        vista.dispose();</span>
+<span class="nc" id="L160">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

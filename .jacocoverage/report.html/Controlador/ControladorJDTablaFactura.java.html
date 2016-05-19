@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaFactura.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaFactura.java</span></div><h1>ControladorJDTablaFactura.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Vista.JDTablaFactura;
+import javax.swing.table.DefaultTableModel;
+import Modelo.Factura;
+import Modelo.FacturaDAO;
+import Modelo.Usuario;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDTablaFactura {
+
+    private JDTablaFactura vista;
+<span class="nc" id="L23">    private boolean editable = false;</span>
+<span class="nc" id="L24">    private FacturaDAO facturaDAO = new FacturaDAO();</span>
+    private Usuario usuarioLogueado;
+
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablafactura
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     */
+<span class="nc" id="L33">    public ControladorJDTablaFactura(Usuario usuarioLogueado) {</span>
+<span class="nc" id="L34">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L35">        creaVista();</span>
+<span class="nc" id="L36">    }</span>
+
+    /**
+     * Metodo que crea la vista de jdtablafactura
+     */
+    public void creaVista() {
+<span class="nc" id="L42">        this.vista = new JDTablaFactura(null, true);</span>
+<span class="nc" id="L43">        vista.setControlador(this);</span>
+<span class="nc" id="L44">        creaTabla();</span>
+<span class="nc" id="L45">        rellenaTabla();</span>
+<span class="nc" id="L46">        vista.setVisible(true);</span>
+
+<span class="nc" id="L48">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L55">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+
+<span class="nc" id="L59">            return false;</span>
+
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L65">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que establece las columnas de la tabla y el modelo
+     */
+    public void creaTabla() {
+<span class="nc" id="L73">        miTableModel.addColumn(&quot;ID&quot;);</span>
+<span class="nc" id="L74">        miTableModel.addColumn(&quot;DNI Cliente&quot;);</span>
+<span class="nc" id="L75">        miTableModel.addColumn(&quot;Nombre de Usuario&quot;);</span>
+<span class="nc" id="L76">        miTableModel.addColumn(&quot;Total Neto&quot;);</span>
+<span class="nc" id="L77">        miTableModel.addColumn(&quot;Total Bruto&quot;);</span>
+<span class="nc" id="L78">        miTableModel.addColumn(&quot;Fecha&quot;);</span>
+<span class="nc" id="L79">        vista.setjTableFactura(miTableModel);</span>
+<span class="nc" id="L80">    }</span>
+
+    /**
+     * Metodo que rellena la tabla con las facturas de la base de datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableFactura().getRowCount(); i++) {</span>
+<span class="nc" id="L87">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L88">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L91">            facturaDAO.cargaFacturas();</span>
+<span class="nc" id="L92">        } catch (SQLException e) {</span>
+<span class="nc" id="L93">            JOptionPane.showMessageDialog(vista, &quot;Error al cargar las facturas&quot;, &quot;Error al cargar&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L94">        }</span>
+<span class="nc" id="L95">        Object[] datos = new Object[6];</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        for (Factura f : facturaDAO.getListaFacturas()) {</span>
+<span class="nc" id="L97">            datos[0] = f.getId();</span>
+<span class="nc" id="L98">            datos[1] = f.getDNICliente();</span>
+<span class="nc" id="L99">            datos[2] = f.getNombreUsuario();</span>
+<span class="nc" id="L100">            datos[3] = f.getTotalNeto();</span>
+<span class="nc" id="L101">            datos[4] = f.getTotalBruto();</span>
+<span class="nc" id="L102">            datos[5] = f.getFecha();</span>
+<span class="nc" id="L103">            miTableModel.addRow(datos);</span>
+<span class="nc" id="L104">        }</span>
+
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * Metodo que llama al controlador de jdtablalineas pasandole la factura
+     * seleccionada y el usuario logueado, para mostrar las lineas de la factura
+     */
+    public void seleccionarFactura() {
+        try{
+<span class="nc" id="L114">        String id = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L115">        String dni = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L116">        String usuario = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L117">        String totalNeto = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 3).toString();</span>
+<span class="nc" id="L118">        String totalBruto = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 4).toString();</span>
+<span class="nc" id="L119">        String fecha = vista.getjTableFactura().getValueAt(vista.getjTableFactura().getSelectedRow(), 5).toString();</span>
+<span class="nc" id="L120">        Factura f = new Factura(Integer.parseInt(id), dni, usuario, Double.parseDouble(totalNeto), Double.parseDouble(totalBruto), fecha);</span>
+<span class="nc" id="L121">        ControladorJDTablaLineas cjdtl = new ControladorJDTablaLineas(f, usuarioLogueado);</span>
+<span class="nc" id="L122">        }catch(ArrayIndexOutOfBoundsException e){</span>
+<span class="nc" id="L123">            JOptionPane.showMessageDialog(vista, &quot;Debe seleccionar la factura de la cual quiere ver las lineas&quot;, &quot;Error Ninguna Factura Seleccionada&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L124">        }</span>
+<span class="nc" id="L125">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

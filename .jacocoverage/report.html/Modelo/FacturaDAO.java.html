@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FacturaDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Modelo</a> &gt; <span class="el_source">FacturaDAO.java</span></div><h1>FacturaDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Modelo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Joaquin
+ */
+<span class="nc" id="L18">public class FacturaDAO {</span>
+
+<span class="nc" id="L20">    private ArrayList&lt;Factura&gt; listaFacturas = new ArrayList&lt;Factura&gt;();</span>
+<span class="nc" id="L21">    private Connection con = ConexionBBDD.getConnection();</span>
+
+    /**
+     * Cargar las facturas de la base de datos
+     *
+     * @throws SQLException
+     */
+    public void cargaFacturas() throws SQLException {
+<span class="nc" id="L29">        listaFacturas.removeAll(listaFacturas);</span>
+<span class="nc" id="L30">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L31">        ResultSet rs = stm.executeQuery(&quot;select * from factura&quot;);</span>
+<span class="nc" id="L32">        String[] datos = new String[6];</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L34">            datos[0] = rs.getString(&quot;ID&quot;);</span>
+<span class="nc" id="L35">            datos[1] = rs.getString(&quot;DNICliente&quot;);</span>
+<span class="nc" id="L36">            datos[2] = rs.getString(&quot;NombreUsuario&quot;);</span>
+<span class="nc" id="L37">            datos[3] = rs.getString(&quot;TotalNeto&quot;);</span>
+<span class="nc" id="L38">            datos[4] = rs.getString(&quot;TotalBruto&quot;);</span>
+<span class="nc" id="L39">            datos[5] = rs.getString(&quot;Fecha&quot;);</span>
+<span class="nc" id="L40">            Factura f1 = new Factura(Integer.parseInt(datos[0]), datos[1], datos[2], Double.parseDouble(datos[3]), Double.parseDouble(datos[4]), datos[5]);</span>
+<span class="nc" id="L41">            listaFacturas.add(f1);</span>
+
+<span class="nc" id="L43">        }</span>
+<span class="nc" id="L44">        stm.close();</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Crea una Factura
+     *
+     * @param u
+     * @param c
+     * @param totalNeto
+     * @param totalBruto
+     * @throws SQLException
+     */
+    public void creaFactura(Usuario u, Cliente c, double totalNeto, double totalBruto) throws SQLException {
+<span class="nc" id="L57">        Statement stm = con.createStatement();</span>
+<span class="nc" id="L58">        String consulta = &quot;insert into factura(dnicliente,nombreusuario,totalneto,totalbruto)values('&quot; + c.getDni() + &quot;','&quot; + u.getNombre() + &quot;','&quot; + totalNeto + &quot;','&quot; + totalBruto + &quot;')&quot;;</span>
+<span class="nc" id="L59">        stm.executeUpdate(consulta);</span>
+<span class="nc" id="L60">        stm.close();</span>
+<span class="nc" id="L61">    }</span>
+
+    /**
+     * Devuelve la lista de facturas
+     *
+     * @return
+     */
+    public ArrayList&lt;Factura&gt; getListaFacturas() {
+<span class="nc" id="L69">        return listaFacturas;</span>
+    }
+
+    /**
+     * Establece la listaFacturas a una lista dada
+     *
+     * @param listaFacturas
+     */
+    public void setListaFacturas(ArrayList&lt;Factura&gt; listaFacturas) {
+<span class="nc" id="L78">        this.listaFacturas = listaFacturas;</span>
+<span class="nc" id="L79">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

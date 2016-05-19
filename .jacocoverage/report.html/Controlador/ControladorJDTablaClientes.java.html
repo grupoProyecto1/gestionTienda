@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaClientes.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaClientes.java</span></div><h1>ControladorJDTablaClientes.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import Modelo.Cliente;
+import Modelo.ClienteDAO;
+import Modelo.Usuario;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Mario
+ */
+public class ControladorJDTablaClientes {
+
+    private JDTablaUsuariosClientesProveedorArticulo vista;
+<span class="nc" id="L23">    private boolean editable = false;</span>
+<span class="nc" id="L24">    private ClienteDAO clienteDAO = new ClienteDAO();</span>
+    private Usuario usuarioLogueado;
+    private int botones;
+
+    /**
+     * Constructor parametrizado que establece el usuario logueado y los botones
+     *
+     * @param usuarioLogueado objeto de tipo usuario
+     * @param botones int para mostrar los botones
+     */
+<span class="nc" id="L34">    public ControladorJDTablaClientes(Usuario usuarioLogueado, int botones) {</span>
+<span class="nc" id="L35">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L36">        this.botones = botones;</span>
+<span class="nc" id="L37">        creaVista();</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Metodo que crea la vista para jdtablaclientes
+     */
+    public void creaVista() {
+<span class="nc" id="L44">        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 1);</span>
+<span class="nc" id="L45">        vista.setControladorClientes(this);</span>
+<span class="nc" id="L46">        vista.setTitle(&quot;Clientes&quot;);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (botones == 2) {</span>
+<span class="nc" id="L48">            editable = true;</span>
+        }
+<span class="nc" id="L50">        creaTabla();</span>
+<span class="nc" id="L51">        rellenaTabla();</span>
+<span class="nc" id="L52">        vista.setVisible(true);</span>
+<span class="nc" id="L53">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L60">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (!editable) {</span>
+<span class="nc" id="L65">                return false;</span>
+            } else {
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                if (columnIndex == 0) {</span>
+<span class="nc" id="L68">                    return false;</span>
+                }
+<span class="nc" id="L70">                return true;</span>
+            }
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L76">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que crea el modelo de tabla y lo establece
+     */
+    public void creaTabla() {
+<span class="nc" id="L84">        miTableModel.addColumn(&quot;DNI&quot;);</span>
+<span class="nc" id="L85">        miTableModel.addColumn(&quot;Nombre&quot;);</span>
+<span class="nc" id="L86">        miTableModel.addColumn(&quot;Apellidos&quot;);</span>
+<span class="nc" id="L87">        miTableModel.addColumn(&quot;Telefono&quot;);</span>
+<span class="nc" id="L88">        miTableModel.addColumn(&quot;Direccion&quot;);</span>
+<span class="nc" id="L89">        miTableModel.addColumn(&quot;Email&quot;);</span>
+<span class="nc" id="L90">        vista.setjTableUsuariosClientes(miTableModel);</span>
+<span class="nc" id="L91">        vista.getjTableUsuariosClientes().setAutoCreateRowSorter(true);</span>
+
+<span class="nc" id="L93">    }</span>
+
+    /**
+     * Metodo para rellenar la tabla con los datos de cliente de la base de
+     * datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableUsuariosClientes().getRowCount(); i++) {</span>
+<span class="nc" id="L101">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L102">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L105">            clienteDAO.cargaCliente();</span>
+<span class="nc" id="L106">        } catch (SQLException e) {</span>
+<span class="nc" id="L107">            JOptionPane.showMessageDialog(vista, &quot;Error al cargar los clientes en la tabla&quot;, &quot;Error al cargar los clientes&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L108">        }</span>
+
+<span class="nc" id="L110">        Object[] datos = new Object[6];</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (Cliente c : clienteDAO.getListaClientes()) {</span>
+<span class="nc" id="L112">            datos[0] = c.getDni();</span>
+<span class="nc" id="L113">            datos[1] = c.getNombre();</span>
+<span class="nc" id="L114">            datos[2] = c.getApellidos();</span>
+<span class="nc" id="L115">            datos[3] = c.getTelefono();</span>
+<span class="nc" id="L116">            datos[4] = c.getDireccion();</span>
+<span class="nc" id="L117">            datos[5] = c.getEmail();</span>
+<span class="nc" id="L118">            miTableModel.addRow(datos);</span>
+<span class="nc" id="L119">        }</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Devuelve si las columnas son editables
+     *
+     * @return boolean
+     */
+    public boolean isEditable() {
+<span class="nc" id="L128">        return editable;</span>
+    }
+
+    /**
+     * Establece si las columnas son editables
+     *
+     * @param editable boolean
+     */
+    public void setEditable(boolean editable) {
+<span class="nc" id="L137">        this.editable = editable;</span>
+<span class="nc" id="L138">    }</span>
+
+    /**
+     * Metodo que elimina el cliente seleccionado en la tabla de la base de
+     * datos
+     */
+    public void eliminaCliente() {
+        try {
+<span class="nc" id="L146">            String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L147">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L148">            String apellidos = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L149">            int telefono = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString());</span>
+<span class="nc" id="L150">            String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();</span>
+<span class="nc" id="L151">            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();</span>
+<span class="nc" id="L152">            Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);</span>
+<span class="nc" id="L153">            clienteDAO.eliminarCliente(c);</span>
+<span class="nc" id="L154">            rellenaTabla();</span>
+<span class="nc" id="L155">        } catch (Exception e) {</span>
+<span class="nc" id="L156">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun cliente&quot;, &quot;Error de cliente&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L157">        }</span>
+<span class="nc" id="L158">    }</span>
+
+    /**
+     * Metodo que actualiza el cliente de la base de datos con el seleccionado
+     * en la tabla
+     */
+    public void modificaCliente() {
+        try {
+<span class="nc" id="L166">            String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L167">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+<span class="nc" id="L168">            String apellidos = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString();</span>
+<span class="nc" id="L169">            int telefono = (int) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3);</span>
+<span class="nc" id="L170">            String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();</span>
+<span class="nc" id="L171">            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 5).toString();</span>
+<span class="nc" id="L172">            Cliente c = new Cliente(dni, nombre, apellidos, telefono, direccion, email);</span>
+<span class="nc" id="L173">            clienteDAO.modificarCliente(c);</span>
+<span class="nc" id="L174">        } catch (Exception e) {</span>
+<span class="nc" id="L175">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun cliente&quot;, &quot;Error de cliente&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L176">        }</span>
+<span class="nc" id="L177">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

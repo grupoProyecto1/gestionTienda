@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ControladorJDTablaProveedor.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;gestionTienda1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Controlador</a> &gt; <span class="el_source">ControladorJDTablaProveedor.java</span></div><h1>ControladorJDTablaProveedor.java</h1><pre class="source lang-java linenums">package Controlador;
+
+import Modelo.Proveedor;
+import Modelo.ProveedorDAO;
+import Modelo.Usuario;
+import Vista.JDTablaUsuariosClientesProveedorArticulo;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Joaquin
+ */
+public class ControladorJDTablaProveedor {
+
+    private JDTablaUsuariosClientesProveedorArticulo vista;
+<span class="nc" id="L18">    private boolean editable = false;</span>
+<span class="nc" id="L19">    private ProveedorDAO proveedorDAO = new ProveedorDAO();</span>
+    private Usuario usuarioLogueado;
+    private int botones;
+
+    /**
+     * Constructor parametrizado que crea un objeto de tipo
+     * controladorjdtablaproveedor
+     *
+     * @param usuarioLogueado objeto de tipo Usuario
+     * @param botones int para mostrar los botones
+     */
+<span class="nc" id="L30">    public ControladorJDTablaProveedor(Usuario usuarioLogueado, int botones) {</span>
+<span class="nc" id="L31">        this.usuarioLogueado = usuarioLogueado;</span>
+<span class="nc" id="L32">        this.botones = botones;</span>
+<span class="nc" id="L33">        creaVista();</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * Metodo que crea la vista para jdtablaproveedor
+     */
+    public void creaVista() {
+<span class="nc" id="L40">        this.vista = new JDTablaUsuariosClientesProveedorArticulo(botones, 2);</span>
+<span class="nc" id="L41">        vista.setControladorProveedor(this);</span>
+<span class="nc" id="L42">        vista.setTitle(&quot;Proveedores&quot;);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (botones == 2) {</span>
+<span class="nc" id="L44">            editable = true;</span>
+        }
+<span class="nc" id="L46">        creaTabla();</span>
+<span class="nc" id="L47">        rellenaTabla();</span>
+<span class="nc" id="L48">        vista.setVisible(true);</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * Objeto de tablemodel con las propiedades isCellEditable(para poder
+     * modificar o no las celdas) y getColumnClass(para obtener el tipo de valor
+     * de la columna, y asi poder utilizar checkbox) sobreescritos
+     */
+<span class="nc" id="L56">    public DefaultTableModel miTableModel = new DefaultTableModel() {</span>
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (!editable) {</span>
+<span class="nc" id="L61">                return false;</span>
+            } else {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (columnIndex == 0) {</span>
+<span class="nc" id="L64">                    return false;</span>
+                }
+<span class="nc" id="L66">                return true;</span>
+            }
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+<span class="nc" id="L72">            return getValueAt(0, c).getClass();</span>
+        }
+    };
+
+    /**
+     * Metodo que crea el modelo de tabla y lo establece
+     */
+    public void creaTabla() {
+<span class="nc" id="L80">        miTableModel.addColumn(&quot;NIF&quot;);</span>
+<span class="nc" id="L81">        miTableModel.addColumn(&quot;Nombre&quot;);</span>
+<span class="nc" id="L82">        miTableModel.addColumn(&quot;Telefono&quot;);</span>
+<span class="nc" id="L83">        miTableModel.addColumn(&quot;Direccion&quot;);</span>
+<span class="nc" id="L84">        miTableModel.addColumn(&quot;Email&quot;);</span>
+<span class="nc" id="L85">        vista.setjTableUsuariosClientes(miTableModel);</span>
+<span class="nc" id="L86">        vista.getjTableUsuariosClientes().setAutoCreateRowSorter(true);</span>
+
+<span class="nc" id="L88">    }</span>
+
+    /**
+     * Metodo que rellena la tabla con los datos de los proveedores de la base
+     * de datos
+     */
+    public void rellenaTabla() {
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        for (int i = 0; i &lt; vista.getjTableUsuariosClientes().getRowCount(); i++) {</span>
+<span class="nc" id="L96">            miTableModel.removeRow(i);</span>
+<span class="nc" id="L97">            i -= 1;</span>
+        }
+        try {
+<span class="nc" id="L100">            proveedorDAO.cargaProveedorDAO();</span>
+<span class="nc" id="L101">        } catch (SQLException e) {</span>
+<span class="nc" id="L102">            JOptionPane.showMessageDialog(vista, &quot;Error al cargar la lista de proveedores en la tabla&quot;, &quot;Error al cargar los proveedores&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L103">        }</span>
+
+<span class="nc" id="L105">        Object[] datos = new Object[6];</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (Proveedor p : proveedorDAO.getListaProveedores()) {</span>
+<span class="nc" id="L107">            datos[0] = p.getNif();</span>
+<span class="nc" id="L108">            datos[1] = p.getNombre();</span>
+<span class="nc" id="L109">            datos[2] = p.getTelefono();</span>
+<span class="nc" id="L110">            datos[3] = p.getDireccion();</span>
+<span class="nc" id="L111">            datos[4] = p.getEmail();</span>
+<span class="nc" id="L112">            miTableModel.addRow(datos);</span>
+<span class="nc" id="L113">        }</span>
+
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * Devuelve si es editable toda la tabla
+     *
+     * @return boolean
+     */
+    public boolean isEditable() {
+<span class="nc" id="L123">        return editable;</span>
+    }
+
+    /**
+     * Establece si es editable toda la tabla
+     *
+     * @param editable boolean
+     */
+    public void setEditable(boolean editable) {
+<span class="nc" id="L132">        this.editable = editable;</span>
+<span class="nc" id="L133">    }</span>
+
+    /**
+     * Metodo para eliminar el proveedor seleccionado en la tabla, de la base de
+     * datos
+     */
+    public void eliminaProveedor() {
+        try {
+<span class="nc" id="L141">            String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L142">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+
+<span class="nc" id="L144">            int telefono = Integer.parseInt(vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2).toString());</span>
+<span class="nc" id="L145">            String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString();</span>
+<span class="nc" id="L146">            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();</span>
+<span class="nc" id="L147">            Proveedor p = new Proveedor(dni, nombre, direccion, telefono, email);</span>
+<span class="nc" id="L148">            proveedorDAO.eliminarProveedores(p);</span>
+<span class="nc" id="L149">            rellenaTabla();</span>
+<span class="nc" id="L150">        } catch (Exception e) {</span>
+<span class="nc" id="L151">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun proveedor&quot;, &quot;Error de Proveedor&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L152">        }</span>
+<span class="nc" id="L153">    }</span>
+
+    /**
+     * Metodo para modificar en la base de datos el proveedor seleccionado en la
+     * tabla
+     */
+    public void modificaProveedor() {
+        try {
+<span class="nc" id="L161">            String dni = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 0).toString();</span>
+<span class="nc" id="L162">            String nombre = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 1).toString();</span>
+
+<span class="nc" id="L164">            int telefono = (int) vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 2);</span>
+<span class="nc" id="L165">            String direccion = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 3).toString();</span>
+<span class="nc" id="L166">            String email = vista.getjTableUsuariosClientes().getValueAt(vista.getjTableUsuariosClientes().getSelectedRow(), 4).toString();</span>
+<span class="nc" id="L167">            Proveedor p = new Proveedor(dni, nombre, direccion, telefono, email);</span>
+<span class="nc" id="L168">            proveedorDAO.modificarProveedor(p);</span>
+<span class="nc" id="L169">        } catch (Exception e) {</span>
+<span class="nc" id="L170">            JOptionPane.showMessageDialog(vista, &quot;No has seleccionado ningun proveedor&quot;, &quot;Error de proveedor&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L171">        }</span>
+<span class="nc" id="L172">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
